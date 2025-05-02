@@ -1,9 +1,33 @@
 .sidebar {
   width: 200px;
   height: 100%;
-  //background-color: bisque;
   padding: 0;
   margin: 0;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   backdrop-filter: blur(10px);
+}
+
+.sidebarHeader {
+  width: 100%;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+.sidebarItem {
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sidebarItem:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+hr {
+  margin-left: 10px;
+  margin-right: 10px;
 }
