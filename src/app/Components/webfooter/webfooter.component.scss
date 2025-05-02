@@ -3,8 +3,12 @@
   bottom: 0;
   width: 100%;
   height: 20px;
-  background-color:blue;
-  // border-top: 2px solid white;
-  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  // backdrop-filter: blur(10px);
+  background-color:rgb(146, 183, 244);
+  border-top: 2px solid white;
+}
+
+.footerContent {
+  width: 100%;
+  text-align: center;
+  padding-top: 2px;
 }
