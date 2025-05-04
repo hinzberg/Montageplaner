@@ -33,4 +33,9 @@ export class AddPersonnelComponent {
       this.personForm.reset();
     }
   }
+
+  onReset(): void {
+    this.personForm.reset();
+    this.submittedPerson = null;
+  }
 }
