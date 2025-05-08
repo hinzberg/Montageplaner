@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 // Primary colors
 $color-primary-border: #6667AB; // Very Peri
 $color-primary-hover: #d0eaff;
@@ -17,14 +16,13 @@ $color-reset-hover-bg: #ffcccc;
 $color-reset-hover-border: #ff1a1a;
 $color-reset-hover-text: #800000;
 
-
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   background-attachment: fixed;
   background: #f9f3e8;
- background: linear-gradient(180deg, rgba(249, 243, 232, 1) 0%, rgb(146, 183, 244) 100%);
+  background: linear-gradient(180deg, rgba(249, 243, 232, 1) 0%, rgb(146, 183, 244) 100%);
   font-family: Helvetica Neue, Arial, Geneva, sans-serif;
   font-size: 18px;
 }
@@ -39,17 +37,35 @@ html {
   font-weight: bold;
   margin-left: 20px;
   margin-top: 10px;
+  color: $color-primary-border;
+}
+
+.buttonItemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.errorMessage {
+  color: $color-reset-text;
 }
 
 a:link {
   text-decoration: none;
 }
+
 a:visited {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: none;
 }
+
 a:active {
   text-decoration: none;
 }
@@ -84,7 +100,6 @@ button {
   color: $color-submit-text;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
-  margin-right: 10px;
   min-width: 100px;
 
   &:hover {
