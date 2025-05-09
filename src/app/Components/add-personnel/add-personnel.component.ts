@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { Person} from "../../core/models/person.model";
-import { Profession} from "../../core/models/profession.enum";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Person } from "../../core/models/person.model";
+import { Profession } from "../../core/models/profession.enum";
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PersonnelService } from '../../core/services/personnel.service';
 
 @Component({
   selector: 'app-add-personnel',
@@ -13,11 +14,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './add-personnel.component.scss'
 })
 
-export class AddPersonnelComponent {
+export class AddPersonnelComponent implements OnInit {
   personForm: FormGroup;
   submittedPerson: Person | null = null;
   professions = Object.values(Profession);
   formErrors: { [key: string]: string } = {};
+  persons: Person[] = [];
 
   // Field name mapping for user-friendly error messages
   private fieldNames: { [key: string]: string } = {
@@ -26,7 +28,10 @@ export class AddPersonnelComponent {
     profession: 'Profession'
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private personnelService: PersonnelService
+  ) {
     this.personForm = this.fb.group({
       firstName: ['', [Validators.required, this.validateName('firstName')]],
       lastName: ['', [Validators.required, this.validateName('lastName')]],
@@ -36,6 +41,16 @@ export class AddPersonnelComponent {
     // Subscribe to form value changes to update validation messages
     this.personForm.valueChanges.subscribe(() => {
       this.updateValidationMessages();
+    });
+  }
+
+  ngOnInit(): void {
+    // Get initial persons
+    this.persons = this.personnelService.getPersons();
+    
+    // Subscribe to updates
+    this.personnelService.personsUpdated.subscribe(persons => {
+      this.persons = persons;
     });
   }
 
@@ -131,7 +146,20 @@ export class AddPersonnelComponent {
         formValue.firstName = formValue.firstName.trim();
         formValue.lastName = formValue.lastName.trim();
         
-        this.submittedPerson = formValue;
+        // Create a new Person instance
+        const newPerson = new Person(
+          formValue.firstName,
+          formValue.lastName,
+          formValue.profession
+        );
+        
+        // Add the person to the service
+        this.personnelService.addPerson(newPerson);
+        
+        // Update the submitted person for display
+        this.submittedPerson = newPerson;
+        
+        // Reset the form
         this.personForm.reset();
         this.formErrors = {};
       }
