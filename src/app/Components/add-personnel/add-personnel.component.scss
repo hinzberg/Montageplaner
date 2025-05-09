@@ -1,13 +1,13 @@
 @import '../../../styles/app-colors';
 
 .person-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
   padding: 16px;
   max-width: 300px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   display: block;
+  margin: 20px auto;
+  border: 2px solid $color-primary-border;
+  border-radius: 6px;
+  background-color: white;
 }
 
 form
@@ -28,7 +28,7 @@ form
     transition: background-color 0.3s ease;
 
     &.invalid-input {
-      background-color: #fff3cd;
+      background-color: $color-primary-error-input;
     }
   }
 
