@@ -1,20 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
-// Primary colors
-$color-primary-border: #6667AB; // Very Peri
-$color-primary-hover: #d0eaff;
-
-// Submit button
-$color-submit-bg: white;
-$color-submit-text: #333;
-
-// Reset button
-$color-reset-bg: #ffe5e5;
-$color-reset-border: #ff4d4d;
-$color-reset-text: #b30000;
-$color-reset-hover-bg: #ffcccc;
-$color-reset-hover-border: #ff1a1a;
-$color-reset-hover-text: #800000;
+@import 'styles/app-colors';
 
 body {
   margin: 0;

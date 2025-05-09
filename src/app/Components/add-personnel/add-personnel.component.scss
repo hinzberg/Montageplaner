@@ -1,3 +1,5 @@
+@import '../../../styles/app-colors';
+
 .person-card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -15,4 +17,24 @@ form
   margin-right: auto;
   text-align: left;
   width: 25%;
+}
+
+.form {
+  input, select {
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+
+    &.invalid-input {
+      background-color: #fff3cd;
+    }
+  }
+
+  .errorMessage {
+    color: $color-primary-error;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
 }
