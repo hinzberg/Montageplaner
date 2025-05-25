@@ -1,39 +1,44 @@
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
-  <div>
-    <label class="formLabel" for="firstName">First Name</label>
-    <input id="firstName" formControlName="firstName" />
-    <div *ngIf="personForm.get('firstName')?.invalid && personForm.get('firstName')?.touched">
-      First name is required.
+<div class="form">
+  <div class="pageHeadline">Add new Personnel</div>
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+      <label class="formLabel" for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" [class.invalid-input]="formErrors['firstName']"/>
+      <div *ngIf="formErrors['firstName']" class="errorMessage">
+        {{ formErrors['firstName'] }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label class="formLabel" for="lastName">Last Name</label>
-    <input id="lastName" formControlName="lastName" />
-    <div *ngIf="personForm.get('lastName')?.invalid && personForm.get('lastName')?.touched">
-      Last name is required.
+    <div>
+      <label class="formLabel" for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" [class.invalid-input]="formErrors['lastName']"/>
+      <div *ngIf="formErrors['lastName']" class="errorMessage">
+        {{ formErrors['lastName'] }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label class="formLabel" for="profession">Profession</label>
-    <select id="profession" formControlName="profession">
-      <option *ngFor="let prof of professions" [value]="prof">{{ prof }}</option>
-    </select>
-    <div *ngIf="personForm.get('profession')?.invalid && personForm.get('profession')?.touched">
-      Profession is required.
+    <div>
+      <label class="formLabel" for="profession">Profession</label>
+      <select id="profession" formControlName="profession" [class.invalid-input]="formErrors['profession']">
+        <option value="">Select a profession</option>
+        <option *ngFor="let prof of professions" [value]="prof">{{ prof }}</option>
+      </select>
+      <div *ngIf="formErrors['profession']" class="errorMessage">
+        {{ formErrors['profession'] }}
+      </div>
     </div>
+    <div class="buttonItemContainer">
+      <button type="button" class="reset-button" (click)="onReset()">Reset</button>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <!-- Show the submitted person -->
+  <div *ngIf="submittedPerson" class="person-card">
+    <h3>Person added</h3>
+    <p><strong>First Name:</strong> {{ submittedPerson.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ submittedPerson.lastName }}</p>
+    <p><strong>Profession:</strong> {{ submittedPerson.profession }}</p>
+    <button type="button" (click)="onReset()">OK</button>
   </div>
-
-  <button type="button" class="reset-button" (click)="onReset()">Reset</button>
-  <button type="submit" [disabled]="personForm.invalid">Submit</button>
-
-</form>
-
-<!-- Show the submitted person -->
-<div *ngIf="submittedPerson" class="person-card">
-  <h3>Submitted Person</h3>
-  <p><strong>First Name:</strong> {{ submittedPerson.firstName }}</p>
-  <p><strong>Last Name:</strong> {{ submittedPerson.lastName }}</p>
-  <p><strong>Profession:</strong> {{ submittedPerson.profession }}</p>
 </div>

@@ -1,8 +1,40 @@
+@import '../../../styles/app-colors';
+
 .person-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
   padding: 16px;
   max-width: 300px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 20px auto;
+  border: 2px solid $color-primary-border;
+  border-radius: 6px;
+  background-color: white;
+}
+
+form
+{
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 25%;
+}
+
+.form {
+  input, select {
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+
+    &.invalid-input {
+      background-color: $color-primary-error-input;
+    }
+  }
+
+  .errorMessage {
+    color: $color-primary-error;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
 }
