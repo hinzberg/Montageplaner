@@ -1,10 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Person } from "../../core/models/person.model";
-import { Profession } from "../../core/models/profession.enum";
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { PersonnelService } from '../../core/services/personnel.service';
+import {Component, OnInit} from '@angular/core';
+import {Person} from "../../core/models/person.model";
+import {Profession} from "../../core/models/profession.enum";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators
+} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {PersonnelService} from '../../core/services/personnel.service';
+import { ToFormControls } from '../../shared/utils/form-utils';
 
 @Component({
   selector: 'app-add-personnel',
@@ -15,7 +23,7 @@ import { PersonnelService } from '../../core/services/personnel.service';
 })
 
 export class AddPersonnelComponent implements OnInit {
-  personForm: FormGroup;
+
   submittedPerson: Person | null = null;
   professions = Object.values(Profession);
   formErrors: { [key: string]: string } = {};
@@ -28,15 +36,16 @@ export class AddPersonnelComponent implements OnInit {
     profession: 'Profession'
   };
 
+  readonly personForm = new FormGroup<PersonForm>({
+    firstName: new FormControl('', {validators: [Validators.required, this.validateName('firstName')] }),
+    lastName: new FormControl('', {validators: [Validators.required, this.validateName('lastName')] }),
+    profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]})
+  })
+
   constructor(
     private fb: FormBuilder,
     private personnelService: PersonnelService
   ) {
-    this.personForm = this.fb.group({
-      firstName: ['', [Validators.required, this.validateName('firstName')]],
-      lastName: ['', [Validators.required, this.validateName('lastName')]],
-      profession: ['', [Validators.required, this.validateProfession]]
-    });
 
     // Subscribe to form value changes to update validation messages
     this.personForm.valueChanges.subscribe(() => {
@@ -47,7 +56,7 @@ export class AddPersonnelComponent implements OnInit {
   ngOnInit(): void {
     // Get initial persons
     this.persons = this.personnelService.getPersons();
-    
+
     // Subscribe to updates
     this.personnelService.personsUpdated.subscribe(persons => {
       this.persons = persons;
@@ -58,7 +67,7 @@ export class AddPersonnelComponent implements OnInit {
   validateName(fieldName: string) {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
-      
+
       if (!value) {
         return { required: true };
       }
@@ -139,26 +148,22 @@ export class AddPersonnelComponent implements OnInit {
       // Update validation messages
       this.updateValidationMessages();
 
-      // If form is still valid after marking as touched
+      // If the form is still valid after marking as touched
       if (this.personForm.valid) {
-        // Trim the values before submitting
-        const formValue = this.personForm.value;
-        formValue.firstName = formValue.firstName.trim();
-        formValue.lastName = formValue.lastName.trim();
-        
+
         // Create a new Person instance
-        const newPerson = new Person(
-          formValue.firstName,
-          formValue.lastName,
-          formValue.profession
+        const newPerson = new Person (
+          this.personForm.controls.firstName.value!.trim(),
+          this.personForm.controls.lastName.value!.trim(),
+          this.personForm.controls.profession.value!
         );
-        
+
         // Add the person to the service
         this.personnelService.addPerson(newPerson);
-        
+
         // Update the submitted person for display
         this.submittedPerson = newPerson;
-        
+
         // Reset the form
         this.personForm.reset();
         this.formErrors = {};
@@ -179,3 +184,5 @@ export class AddPersonnelComponent implements OnInit {
     this.formErrors = {};
   }
 }
+
+export type PersonForm = ToFormControls<Person, 'id'>;
