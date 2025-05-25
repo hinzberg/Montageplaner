@@ -1,0 +1,28 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+  <h3>Namen eingeben</h3>
+
+  <!-- Vorname -->
+  <label for="firstName">Vorname:</label>
+  <input
+    id="firstName"
+    type="text"
+    formControlName="firstName"
+  />
+  <div *ngIf="personForm.get('firstName')?.touched && personForm.get('firstName')?.invalid">
+    Vorname ist erforderlich (mind. 2 Zeichen).
+  </div>
+
+  <!-- Nachname -->
+  <label for="lastName">Nachname:</label>
+  <input
+    id="lastName"
+    type="text"
+    formControlName="lastName"
+  />
+  <div *ngIf="personForm.get('lastName')?.touched && personForm.get('lastName')?.invalid">
+    Nachname ist erforderlich (mind. 2 Zeichen).
+  </div>
+
+  <!-- Button -->
+  <button type="submit" [disabled]="personForm.invalid">Speichern</button>
+</form>
