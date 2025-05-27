@@ -1,0 +1,29 @@
+@import '../app-colors';
+
+button {
+  font-size: 1.2rem;
+  padding: 5px;
+  border: 2px solid $color-primary-border;
+  border-radius: 6px;
+  background-color: $color-submit-bg;
+  color: $color-submit-text;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  min-width: 100px;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+
+  &.red-button {
+    background-color: $color-reset-bg;
+    border-color: $color-reset-border;
+    color: $color-reset-text;
+
+    &:hover {
+      background-color: $color-reset-hover-bg;
+      border-color: $color-reset-hover-border;
+      color: $color-reset-hover-text;
+    }
+  }
+}
