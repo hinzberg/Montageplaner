@@ -3,17 +3,24 @@ import { PersonnelService } from '../../core/services/personnel.service';
 import { Person } from '../../core/models/person.model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-manage-personnel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ConfirmDialogComponent],
   templateUrl: './manage-personnel.component.html',
   styleUrl: './manage-personnel.component.scss'
 })
 export class ManagePersonnelComponent implements OnInit, OnDestroy {
   persons: Person[] = [];
   private subscription: Subscription = new Subscription();
+  
+  // Dialog state
+  showConfirmDialog = false;
+  personToDelete: Person | null = null;
+  dialogTitle = 'Delete Personnel';
+  dialogMessage = '';
 
   constructor(private personnelService: PersonnelService) {}
 
@@ -27,6 +34,24 @@ export class ManagePersonnelComponent implements OnInit, OnDestroy {
         this.persons = persons;
       })
     );
+  }
+
+  deletePerson(person: Person): void {
+    this.personToDelete = person;
+    this.dialogMessage = `Are you sure you want to delete ${person.firstName} ${person.lastName}?`;
+    this.showConfirmDialog = true;
+  }
+
+  onConfirmDelete(): void {
+    if (this.personToDelete) {
+      this.personnelService.removePerson(this.personToDelete.id);
+      this.personToDelete = null;
+    }
+  }
+
+  onCancelDelete(): void {
+    this.personToDelete = null;
+    this.showConfirmDialog = false;
   }
 
   ngOnDestroy(): void {

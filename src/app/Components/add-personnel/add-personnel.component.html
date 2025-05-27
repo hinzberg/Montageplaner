@@ -1,5 +1,7 @@
+
 <div class="form">
-  <div class="pageHeadline">Add new Personnel</div>
+  <h2 class="pageHeadline">Add new Personnel</h2>
+
   <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
     <div>
       <label class="formLabel" for="firstName">First Name</label>
@@ -28,7 +30,7 @@
       </div>
     </div>
     <div class="buttonItemContainer">
-      <button type="button" class="reset-button" (click)="onReset()">Reset</button>
+      <button type="button" class="red-button" (click)="onReset()">Reset</button>
       <button type="submit">Submit</button>
     </div>
   </form>
