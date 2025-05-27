@@ -1,1 +1,24 @@
-<div class="pageHeadline">manage-personnel works!</div>
+<div class="personnel-container">
+  <h2 class="pageHeadline">Manage Personnel</h2>
+  
+  <div *ngIf="persons.length === 0" class="no-persons">
+    No personnel added yet.
+  </div>
+
+  <table *ngIf="persons.length > 0" class="personnel-table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Profession</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of persons">
+        <td>{{ person.firstName }}</td>
+        <td>{{ person.lastName }}</td>
+        <td>{{ person.profession }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
