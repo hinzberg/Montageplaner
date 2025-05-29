@@ -83,7 +83,7 @@ export class AddPersonnelComponent implements OnInit {
       }
 
       // Check if the value contains only letters and spaces
-      if (!/^[a-zA-Z\s]*$/.test(value)) {
+      if (!/^[a-zA-ZäöüßÄÖÜ\s]*$/.test(value)) {
         return {invalidCharacters: true};
       }
 
