@@ -12,6 +12,7 @@ export class ConfirmDialogComponent {
   @Input() isVisible = false;
   @Input() title = 'Confirm Action';
   @Input() message = 'Are you sure you want to proceed?';
+  @Input() useInnerHTML: boolean = false;
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 
@@ -31,4 +32,4 @@ export class ConfirmDialogComponent {
       this.onCancel();
     }
   }
-} 
+}

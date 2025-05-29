@@ -1,10 +1,11 @@
 <div class="dialog-overlay" *ngIf="isVisible" (click)="onOverlayClick($event)">
   <div class="dialog-container">
     <h3 class="dialog-title">{{ title }}</h3>
-    <p class="dialog-message">{{ message }}</p>
+    <p class="message" *ngIf="!useInnerHTML">{{ message }}</p>
+    <p class="message" *ngIf="useInnerHTML" [innerHTML]="message"></p>
     <div class="dialog-buttons">
       <button class="red-button" (click)="onCancel()">Cancel</button>
       <button (click)="onConfirm()">Confirm</button>
     </div>
   </div>
-</div> 
+</div>

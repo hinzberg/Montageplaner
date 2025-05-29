@@ -30,7 +30,9 @@
     [isVisible]="showConfirmDialog"
     [title]="dialogTitle"
     [message]="dialogMessage"
+    [useInnerHTML]="true"
     (confirm)="onConfirmDelete()"
     (cancel)="onCancelDelete()">
   </app-confirm-dialog>
 </div>
+

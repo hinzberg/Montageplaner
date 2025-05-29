@@ -15,7 +15,7 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 export class ManagePersonnelComponent implements OnInit, OnDestroy {
   persons: Person[] = [];
   private subscription: Subscription = new Subscription();
-  
+
   // Dialog state
   showConfirmDialog = false;
   personToDelete: Person | null = null;
@@ -38,7 +38,7 @@ export class ManagePersonnelComponent implements OnInit, OnDestroy {
 
   deletePerson(person: Person): void {
     this.personToDelete = person;
-    this.dialogMessage = `Are you sure you want to delete ${person.firstName} ${person.lastName}?`;
+    this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
     this.showConfirmDialog = true;
   }
 
