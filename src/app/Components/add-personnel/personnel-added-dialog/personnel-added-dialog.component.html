@@ -1,0 +1,13 @@
+<div class="dialog-overlay" *ngIf="isVisible" (click)="onOverlayClick($event)">
+  <div class="dialog-container">
+    <h3 class="dialog-title">{{ title }}</h3>
+    @if (submittedPerson) {
+      <p><strong>First Name:</strong> {{ submittedPerson.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ submittedPerson.lastName }}</p>
+      <p><strong>Profession:</strong> {{ submittedPerson.profession }}</p>
+    }
+    <div class="dialog-buttons">
+      <button (click)="onConfirm()">OK</button>
+    </div>
+  </div>
+</div>

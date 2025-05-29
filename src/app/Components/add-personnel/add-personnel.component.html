@@ -35,11 +35,12 @@
   </form>
 
   <!-- Show the submitted person -->
-  <div *ngIf="submittedPerson" class="person-card">
-    <h3>Person added</h3>
-    <p><strong>First Name:</strong> {{ submittedPerson.firstName }}</p>
-    <p><strong>Last Name:</strong> {{ submittedPerson.lastName }}</p>
-    <p><strong>Profession:</strong> {{ submittedPerson.profession }}</p>
-    <button type="button" (click)="onReset()">OK</button>
-  </div>
+  <app-personnel-added-dialog
+    [isVisible]="showConfirmDialog"
+    [submittedPerson]="submittedPerson"
+    (ok)="onConfirmOkDialog()">
+  </app-personnel-added-dialog>
+
 </div>
+
+

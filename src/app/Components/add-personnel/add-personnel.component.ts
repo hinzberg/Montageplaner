@@ -12,17 +12,21 @@ import {
 } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {PersonnelService} from '../../core/services/personnel.service';
-import { ToFormControls } from '../../shared/utils/form-utils';
+import {ToFormControls} from '../../shared/utils/form-utils';
+import {PersonnelAddedDialogComponent} from "./personnel-added-dialog/personnel-added-dialog.component";
 
 @Component({
   selector: 'app-add-personnel',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, PersonnelAddedDialogComponent],
   templateUrl: './add-personnel.component.html',
   styleUrl: './add-personnel.component.scss'
 })
 
 export class AddPersonnelComponent implements OnInit {
+
+  // Dialog state
+  showConfirmDialog = false;
 
   submittedPerson: Person | null = null;
   professions = Object.values(Profession);
@@ -37,8 +41,8 @@ export class AddPersonnelComponent implements OnInit {
   };
 
   readonly personForm = new FormGroup<PersonForm>({
-    firstName: new FormControl('', {validators: [Validators.required, this.validateName('firstName')] }),
-    lastName: new FormControl('', {validators: [Validators.required, this.validateName('lastName')] }),
+    firstName: new FormControl('', {validators: [Validators.required, this.validateName('firstName')]}),
+    lastName: new FormControl('', {validators: [Validators.required, this.validateName('lastName')]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]})
   })
 
@@ -65,31 +69,32 @@ export class AddPersonnelComponent implements OnInit {
 
   // Custom validator for names
   validateName(fieldName: string) {
+
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
 
       if (!value) {
-        return { required: true };
+        return {required: true};
       }
 
       // Trim the value to check for leading/trailing spaces
       if (value !== value.trim()) {
-        return { hasSpaces: true };
+        return {hasSpaces: true};
       }
 
       // Check if the value contains only letters and spaces
       if (!/^[a-zA-Z\s]*$/.test(value)) {
-        return { invalidCharacters: true };
+        return {invalidCharacters: true};
       }
 
       // Check minimum length (2 characters)
       if (value.length < 2) {
-        return { minlength: { requiredLength: 2, actualLength: value.length } };
+        return {minlength: {requiredLength: 2, actualLength: value.length}};
       }
 
       // Check maximum length (50 characters)
       if (value.length > 50) {
-        return { maxlength: { requiredLength: 50, actualLength: value.length } };
+        return {maxlength: {requiredLength: 50, actualLength: value.length}};
       }
 
       return null;
@@ -100,10 +105,10 @@ export class AddPersonnelComponent implements OnInit {
   validateProfession(control: AbstractControl): ValidationErrors | null {
     const profession = control.value;
     if (!profession) {
-      return { required: true };
+      return {required: true};
     }
     if (!Object.values(Profession).includes(profession)) {
-      return { invalidProfession: true };
+      return {invalidProfession: true};
     }
     return null;
   }
@@ -152,7 +157,7 @@ export class AddPersonnelComponent implements OnInit {
       if (this.personForm.valid) {
 
         // Create a new Person instance
-        const newPerson = new Person (
+        const newPerson = new Person(
           this.personForm.controls.firstName.value!.trim(),
           this.personForm.controls.lastName.value!.trim(),
           this.personForm.controls.profession.value!
@@ -163,10 +168,11 @@ export class AddPersonnelComponent implements OnInit {
 
         // Update the submitted person for display
         this.submittedPerson = newPerson;
+        this.showConfirmDialog = true;
 
         // Reset the form
-        this.personForm.reset();
-        this.formErrors = {};
+        // this.personForm.reset();
+        // this.formErrors = {};
       }
     } else {
       // Mark all fields as touched to show validation errors
@@ -176,6 +182,10 @@ export class AddPersonnelComponent implements OnInit {
       });
       this.updateValidationMessages();
     }
+  }
+
+  onConfirmOkDialog(): void {
+    this.onReset()
   }
 
   onReset(): void {
