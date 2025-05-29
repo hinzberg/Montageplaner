@@ -5,37 +5,18 @@
     </div>
   </a>
   <hr>
-  <a routerLink="/addPersonnel">
-  <div class="sidebarItem">
-    Add new Personnel
-  </div>
-  </a>
-  <a routerLink="/addResource">
-  <div class="sidebarItem">
-    Add new Resource
-  </div>
-  </a>
-  <hr>
-  <a routerLink="/managePersonnel">
-  <div class="sidebarItem">
-    Manage Personnel
-  </div>
-  </a>
-  <a routerLink="/manageResources">
-  <div class="sidebarItem">
-    Manage Resources
-  </div>
-  </a>
-  <hr>
-  <a routerLink="/plan">
-  <div class="sidebarItem">
-    Plan
-  </div>
-  </a>
-  <hr>
-  <a routerLink="/settings">
-    <div class="sidebarItem">
-      Settings
-    </div>
-  </a>
+
+  @for (item of items; track $index) {
+    @if (item.label === '-') {
+      <hr>
+    } @else {
+      <a [routerLink]=item.routeLink>
+        <div class="sidebarItem"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+          {{ item.label }}
+        </div>
+      </a>
+    }
+  }
 </div>

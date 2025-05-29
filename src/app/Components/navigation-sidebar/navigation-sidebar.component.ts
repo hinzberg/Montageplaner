@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-navigation-sidebar',
@@ -8,6 +8,37 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navigation-sidebar.component.html',
   styleUrl: './navigation-sidebar.component.scss',
 })
+
 export class NavigationSidebarComponent {
 
+  items = [
+    {
+      routeLink: 'addPersonnel',
+      label: 'Add new Personnel'
+    },
+    {
+      routeLink: 'addResource',
+      label: 'Add new Resource'
+    },
+    {
+      routeLink: '',
+      label: '-'
+    },
+    {
+      routeLink: 'managePersonnel',
+      label: 'Manage Personnel'
+    },
+    {
+      routeLink: 'manageResources',
+      label: 'Manage Resources'
+    },
+    {
+      routeLink: '',
+      label: '-'
+    },
+    {
+      routeLink: 'plan',
+      label: 'Plan'
+    }
+  ]
 }
