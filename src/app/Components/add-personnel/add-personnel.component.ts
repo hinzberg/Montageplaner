@@ -41,8 +41,8 @@ export class AddPersonnelComponent implements OnInit {
   };
 
   readonly personForm = new FormGroup<PersonForm>({
-    firstName: new FormControl('', {validators: [Validators.required, this.validateName('firstName')]}),
-    lastName: new FormControl('', {validators: [Validators.required, this.validateName('lastName')]}),
+    firstName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
+    lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]})
   })
 
@@ -68,7 +68,7 @@ export class AddPersonnelComponent implements OnInit {
   }
 
   // Custom validator for names
-  validateName(fieldName: string) {
+  validateName() {
 
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
@@ -113,7 +113,7 @@ export class AddPersonnelComponent implements OnInit {
     return null;
   }
 
-  // Get user-friendly field name
+  // Get a user-friendly field name
   private getFieldName(key: string): string {
     return this.fieldNames[key] || key;
   }
