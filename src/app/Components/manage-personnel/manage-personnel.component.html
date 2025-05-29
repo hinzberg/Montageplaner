@@ -8,19 +8,19 @@
   <table *ngIf="persons.length > 0" class="personnel-table">
     <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Profession</th>
-        <th>Actions</th>
+        <th class="tableHeader">First Name</th>
+        <th class="tableHeader">Last Name</th>
+        <th class="tableHeader">Profession</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let person of persons">
-        <td>{{ person.firstName }}</td>
-        <td>{{ person.lastName }}</td>
-        <td>{{ person.profession }}</td>
-        <td>
-          <button class="delete-button" (click)="deletePerson(person)">Delete</button>
+        <td class="tableCell">{{ person.firstName }}</td>
+        <td class="tableCell">{{ person.lastName }}</td>
+        <td class="tableCell">{{ person.profession }}</td>
+        <td class="tableCellActions">
+          <button class="red-button" (click)="deletePerson(person)">Delete</button>
         </td>
       </tr>
     </tbody>
