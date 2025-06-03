@@ -4,11 +4,12 @@ import { Person } from '../../core/models/person.model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-manage-personnel',
   standalone: true,
-  imports: [CommonModule, ConfirmDialogComponent],
+  imports: [CommonModule, ConfirmDialogComponent, ToolbarComponent],
   templateUrl: './manage-personnel.component.html',
   styleUrl: './manage-personnel.component.scss'
 })

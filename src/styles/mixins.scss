@@ -1,0 +1,23 @@
+@mixin svg {
+
+  :host {
+    width: inherit;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    svg {
+      height: auto;
+      width: inherit;
+    }
+
+    svg:not(.custom-svg) {
+      fill: currentColor;
+    }
+  }
+}
+
+@mixin box-shadow() {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}

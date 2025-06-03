@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-icon-user',
   standalone: true,
   imports: [],
-  templateUrl: './icon-user.component.html',
+  templateUrl: './icon-user.svg',
   styleUrl: './icon-user.component.scss'
 })
 export class IconUserComponent {
