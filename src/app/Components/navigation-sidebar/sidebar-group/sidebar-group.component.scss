@@ -1,0 +1,39 @@
+@import '../../../../styles/app-colors';
+
+// Mixin for horizontal alignment
+@mixin horizontal-align($justify: center) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify; // options: flex-start, center, flex-end, space-between, etc.
+  align-items: center; // vertically center within the row
+}
+
+// Example usage
+.container {
+  @include horizontal-align(center);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.text {
+  margin-left: 6px;
+  margin-right: 6px;
+  font-size:  16px;
+  color: $color-primary;
+}
+
+.hrShort {
+  height: 2px;      // Visible height
+  background: $color-primary;
+  border: none;     // Remove default border
+  width: 8px;
+}
+
+.hrLong {
+  flex: 1;          // Makes it grow to fill space
+  height: 2px;      // Visible height
+  background: $color-primary;
+  border: none;     // Remove default border
+}

@@ -8,11 +8,12 @@ import {ManagePersonnelComponent} from "./Components/manage-personnel/manage-per
 import { ManageResourcesComponent } from "./Components/manage-resources/manage-resources.component";
 import { PlanAssemblyComponent} from "./Components/plan-assembly/plan-assembly.component";
 import { PersonFormComponent} from "./playground/person-form/person-form.component";
+import { SidebarGroupComponent} from "./Components/navigation-sidebar/sidebar-group/sidebar-group.component";
 
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
-  { path: '', component: SplashComponent },
-  //{ path: '', component: PersonFormComponent },
+  // { path: '', component: SplashComponent },
+  { path: '', component: SidebarGroupComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPersonnel', component: AddPersonnelComponent },
   { path: 'addResource', component: AddResourceComponent },
