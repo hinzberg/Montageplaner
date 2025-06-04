@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-personnel',
@@ -23,7 +24,7 @@ export class ManagePersonnelComponent implements OnInit, OnDestroy {
   dialogTitle = 'Delete Personnel';
   dialogMessage = '';
 
-  constructor(private personnelService: PersonnelService) {}
+  constructor(private router: Router, private personnelService: PersonnelService) {}
 
   ngOnInit(): void {
     // Get initial list of persons
@@ -41,6 +42,11 @@ export class ManagePersonnelComponent implements OnInit, OnDestroy {
     this.personToDelete = person;
     this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
     this.showConfirmDialog = true;
+  }
+
+  newPerson(): void {
+    console.log('newPerson');
+    this.router.navigate(['/addPersonnel']);
   }
 
   onConfirmDelete(): void {
