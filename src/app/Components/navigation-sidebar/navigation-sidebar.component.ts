@@ -15,8 +15,8 @@ export class NavigationSidebarComponent {
   items = [
     {
       type : 'link',
-      routeLink: 'managePersonnel',
-      label: 'Manage Personnel'
+      routeLink: 'manageStaff',
+      label: 'Manage Staff'
     },
     {
       type : 'link',
@@ -35,8 +35,8 @@ export class NavigationSidebarComponent {
     },
     {
       type : 'link',
-      routeLink: 'addPersonnel',
-      label: 'Add new Personnel'
+      routeLink: 'addStaff',
+      label: 'Add new Staff'
     },
     {
       type : 'link',

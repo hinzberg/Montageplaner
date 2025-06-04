@@ -3,17 +3,17 @@ import {NgIf} from "@angular/common";
 import {Person} from "../../../core/models/person.model";
 
 @Component({
-  selector: 'app-personnel-added-dialog',
+  selector: 'app-staff-added-dialog',
   standalone: true,
   imports: [
     NgIf
   ],
-  templateUrl: './personnel-added-dialog.component.html',
-  styleUrl: './personnel-added-dialog.component.scss'
+  templateUrl: './staff-added-dialog.component.html',
+  styleUrl: './staff-added-dialog.component.scss'
 })
-export class PersonnelAddedDialogComponent {
+export class StaffAddedDialogComponent {
   @Input() isVisible = false;
-  @Input() title = 'New Person added';
+  @Input() title = 'New Staff added';
   @Output() ok = new EventEmitter<void>();
   @Input() submittedPerson: Person | null = null;
 

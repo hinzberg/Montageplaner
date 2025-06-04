@@ -1,11 +1,11 @@
 <app-toolbar>
-  <button class="toolbar-button" (click)="newPerson()">Add New</button>  
+  <button class="toolbar-button" (click)="newPerson()">Add New</button>
 </app-toolbar>
 
-<div class="pageHeadline">Manage Personnel</div>
+<div class="pageHeadline">Manage Staff</div>
 <div class="personnel-container" >
   <div *ngIf="persons.length === 0" class="no-persons">
-    No personnel added yet.
+    No staff added yet.
   </div>
 
   <table *ngIf="persons.length > 0" class="personnel-table">

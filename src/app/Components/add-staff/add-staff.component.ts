@@ -13,17 +13,17 @@ import {
 import {CommonModule} from '@angular/common';
 import {PersonnelService} from '../../core/services/personnel.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
-import {PersonnelAddedDialogComponent} from "./personnel-added-dialog/personnel-added-dialog.component";
+import {StaffAddedDialogComponent} from "./staff-added-dialog/staff-added-dialog.component";
 
 @Component({
-  selector: 'app-add-personnel',
+  selector: 'app-add-staff',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, PersonnelAddedDialogComponent],
-  templateUrl: './add-personnel.component.html',
-  styleUrl: './add-personnel.component.scss'
+  imports: [ReactiveFormsModule, CommonModule, StaffAddedDialogComponent],
+  templateUrl: './add-staff.component.html',
+  styleUrl: './add-staff.component.scss'
 })
 
-export class AddPersonnelComponent implements OnInit {
+export class AddStaffComponent implements OnInit {
 
   // Dialog state
   showConfirmDialog = false;
@@ -169,10 +169,6 @@ export class AddPersonnelComponent implements OnInit {
         // Update the submitted person for display
         this.submittedPerson = newPerson;
         this.showConfirmDialog = true;
-
-        // Reset the form
-        // this.personForm.reset();
-        // this.formErrors = {};
       }
     } else {
       // Mark all fields as touched to show validation errors
