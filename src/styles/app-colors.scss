@@ -5,6 +5,7 @@ $color-primary-hover: #d0eaff;
 $color-primary-error: #b30000;
 $color-primary-error-input: #fff3cd;
 $color-primary-secondary-text: white;
+$color-background-blue: rgb(196, 216, 255);
 
 // Submit button
 $color-submit-bg: white;
@@ -17,3 +18,6 @@ $color-reset-text: #b30000;
 $color-reset-hover-bg: #ffcccc;
 $color-reset-hover-border: #ff1a1a;
 $color-reset-hover-text: #800000;
+
+// Background colors
+$white-linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(230, 230, 230) 100%);

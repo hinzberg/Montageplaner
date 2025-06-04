@@ -3,10 +3,23 @@
 input, select {
   font-size: 1.2rem;
   padding: 8px;
-  border: 2px solid $color-primary-border;
-  border-radius: 6px;
+  border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
   margin-top: 5px;
   margin-bottom: 5px;
+  background: $white-linear-gradient;
+  border: 2px solid $color-primary-border;
+}
+
+input:focus {
+  border: 2px solid $color-primary-border;
+  outline: none;
+  background: white;
+}
+
+select:focus {
+  border: 2px solid $color-primary-border;
+  outline: none;
+  background: white;
 }
