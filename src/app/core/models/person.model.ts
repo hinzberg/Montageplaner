@@ -2,12 +2,14 @@ import { Profession } from './profession.enum';
 
 export class Person {
   readonly id: string;
+  isSelected: boolean;
   firstName: string;
   lastName: string;
   profession: Profession;
 
   constructor(firstName: string, lastName: string, profession: Profession) {
     this.id = this.generateGuid();
+    this.isSelected = false;
     this.firstName = firstName;
     this.lastName = lastName;
     this.profession = profession;

@@ -8,21 +8,21 @@
 
 .personnel-table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 3px;
+  border-collapse: collapse;
+  background-color: $color-primary-border;
+  border: 2px solid $color-primary-border;
 
   .tableHeader {
-    background-color: $color-primary-border;
     color: white;
     padding: 12px;
     font-weight: 600;
-    border-radius: 6px 6px 0 0;
+    border-right: 2px solid white;
   }
 
- .tableCell {
+  .tableCell {
     padding: 12px;
     text-align: left;
-    border: 2px solid $color-primary-border;
+    border-bottom: 2px solid $color-primary-border;
     background-color: white;
   }
 
@@ -59,3 +59,4 @@
   color: #666;
   font-style: italic;
 }
+

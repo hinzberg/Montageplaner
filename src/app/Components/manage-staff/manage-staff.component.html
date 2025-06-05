@@ -3,29 +3,36 @@
 </app-toolbar>
 
 <div class="pageHeadline">Manage Staff</div>
-<div class="personnel-container" >
+<div class="personnel-container">
   <div *ngIf="persons.length === 0" class="no-persons">
     No staff added yet.
   </div>
 
   <table *ngIf="persons.length > 0" class="personnel-table">
     <thead>
-      <tr>
-        <th class="tableHeader">First Name</th>
-        <th class="tableHeader">Last Name</th>
-        <th class="tableHeader">Profession</th>
-        <th></th>
-      </tr>
+    <tr>
+      <th class="tableHeader"></th>
+      <th class="tableHeader">First Name</th>
+      <th class="tableHeader">Last Name</th>
+      <th class="tableHeader">Profession</th>
+      <th></th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let person of persons">
-        <td class="tableCell">{{ person.firstName }}</td>
-        <td class="tableCell">{{ person.lastName }}</td>
-        <td class="tableCell">{{ person.profession }}</td>
-        <td class="tableCellActions">
-          <button class="red-button" (click)="deletePerson(person)">Delete</button>
-        </td>
-      </tr>
+    <tr *ngFor="let person of persons">
+      <td class="tableCell">
+        <input type="checkbox"
+               [checked]="person.isSelected"
+               (change)="toggleSelection(person)"
+               class="checkbox-input">
+      </td>
+      <td class="tableCell">{{ person.firstName }}</td>
+      <td class="tableCell">{{ person.lastName }}</td>
+      <td class="tableCell">{{ person.profession }}</td>
+      <td class="tableCell">
+        <button class="red-button" (click)="deletePerson(person)">Delete</button>
+      </td>
+    </tr>
     </tbody>
   </table>
 

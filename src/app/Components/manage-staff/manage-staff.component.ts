@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PersonnelService } from '../../core/services/personnel.service';
-import { Person } from '../../core/models/person.model';
-import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
-import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { Router } from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {PersonnelService} from '../../core/services/personnel.service';
+import {Person} from '../../core/models/person.model';
+import {CommonModule} from '@angular/common';
+import {Subscription} from 'rxjs';
+import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
+import {ToolbarComponent} from '../toolbar/toolbar.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manage-staff',
@@ -21,10 +21,11 @@ export class ManageStaffComponent implements OnInit, OnDestroy {
   // Dialog state
   showConfirmDialog = false;
   personToDelete: Person | null = null;
-  dialogTitle = 'Delete Personnel';
+  dialogTitle = 'Delete Staff';
   dialogMessage = '';
 
-  constructor(private router: Router, private personnelService: PersonnelService) {}
+  constructor(private router: Router, private personnelService: PersonnelService) {
+  }
 
   ngOnInit(): void {
     // Get initial list of persons
@@ -42,6 +43,12 @@ export class ManageStaffComponent implements OnInit, OnDestroy {
     this.personToDelete = person;
     this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
     this.showConfirmDialog = true;
+  }
+
+  toggleSelection(person: Person): void {
+    person.isSelected = !person.isSelected;
+    // Update the person selection in the service to persist the change
+    this.personnelService.updatePerson(person);
   }
 
   newPerson(): void {

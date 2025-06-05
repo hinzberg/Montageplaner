@@ -43,7 +43,8 @@ export class AddStaffComponent implements OnInit {
   readonly personForm = new FormGroup<PersonForm>({
     firstName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
-    profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]})
+    profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
+    isSelected: new FormControl(false) 
   })
 
   constructor(
