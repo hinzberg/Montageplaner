@@ -44,7 +44,8 @@ export class AddPeopleComponent implements OnInit {
     firstName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
-    isSelected: new FormControl(false)
+    isSelected: new FormControl(false),
+    canBeTeamLeader: new FormControl(false)
   })
 
   constructor(

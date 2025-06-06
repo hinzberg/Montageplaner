@@ -15,20 +15,34 @@
       <th class="tableHeader">First Name</th>
       <th class="tableHeader">Last Name</th>
       <th class="tableHeader">Profession</th>
+      <th class="tableHeader">Leader</th>
       <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let person of persons">
       <td class="tableCell">
-        <input type="checkbox"
-               [checked]="person.isSelected"
-               (change)="toggleSelection(person)"
-               class="checkbox-input">
+        <label class="custom-checkbox">
+          <input type="checkbox"
+                 [checked]="person.isSelected"
+                 (change)="toggleSelection(person)"
+                 class="checkbox-input">
+          <span class="checkmark"></span>
+        </label>
       </td>
       <td class="tableCell">{{ person.firstName }}</td>
       <td class="tableCell">{{ person.lastName }}</td>
       <td class="tableCell">{{ person.profession }}</td>
+      <td class="tableCell">
+        @if (person.canBeTeamLeader)
+        {
+          YES
+        }
+        @else
+        {
+          NO
+        }
+      </td>
       <td class="tableCell">
         <button class="red-button" (click)="deletePerson(person)">Delete</button>
       </td>

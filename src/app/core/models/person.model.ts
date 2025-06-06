@@ -3,6 +3,7 @@ import { Profession } from './profession.enum';
 export class Person {
   readonly id: string;
   isSelected: boolean;
+  canBeTeamLeader: boolean = false;
   firstName: string;
   lastName: string;
   profession: Profession;

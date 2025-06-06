@@ -6,11 +6,12 @@ import {Subscription} from 'rxjs';
 import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
 import {ToolbarComponent} from '../toolbar/toolbar.component';
 import {Router} from '@angular/router';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-manage-people',
   standalone: true,
-  imports: [CommonModule, ConfirmDialogComponent, ToolbarComponent],
+    imports: [CommonModule, ConfirmDialogComponent, ToolbarComponent, ReactiveFormsModule],
   templateUrl: './manage-people.component.html',
   styleUrl: './manage-people.component.scss'
 })
