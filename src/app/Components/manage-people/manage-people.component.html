@@ -22,24 +22,21 @@
     <tbody>
     <tr *ngFor="let person of persons">
       <td class="tableCell">
-        <label class="custom-checkbox">
-          <input type="checkbox"
+        <div>
+          <input id="selected-check-{{person.id}}"
+                 type="checkbox"
                  [checked]="person.isSelected"
-                 (change)="toggleSelection(person)"
-                 class="checkbox-input">
-          <span class="checkmark"></span>
-        </label>
+                 (change)="toggleSelection(person)">
+          <label for="selected-check-{{person.id}}"></label>
+        </div>
       </td>
       <td class="tableCell">{{ person.firstName }}</td>
       <td class="tableCell">{{ person.lastName }}</td>
       <td class="tableCell">{{ person.profession }}</td>
       <td class="tableCell">
-        @if (person.canBeTeamLeader)
-        {
+        @if (person.canBeTeamLeader) {
           YES
-        }
-        @else
-        {
+        } @else {
           NO
         }
       </td>

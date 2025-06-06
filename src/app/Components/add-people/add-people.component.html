@@ -27,11 +27,10 @@
       <div *ngIf="formErrors['profession']" class="errorMessage">
         {{ formErrors['profession'] }}
       </div>
-      <label class="custom-checkbox">
-        <input type="checkbox" class="checkbox-input" formControlName="canBeTeamLeader" />
-        <span class="checkmark"></span>
-        Can be Team Leader
-      </label>
+      <div class="checkboxContainer">
+        <input id="checkbox" type="checkbox" formControlName="canBeTeamLeader"/>
+        <label for="checkbox">Can be Team Leader</label>
+      </div>
     </div>
     <div class="buttonItemContainer">
       <button type="button" class="red-button" (click)="onReset()">Reset</button>
