@@ -8,13 +8,13 @@ import {ToolbarComponent} from '../toolbar/toolbar.component';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-manage-staff',
+  selector: 'app-manage-people',
   standalone: true,
   imports: [CommonModule, ConfirmDialogComponent, ToolbarComponent],
-  templateUrl: './manage-staff.component.html',
-  styleUrl: './manage-staff.component.scss'
+  templateUrl: './manage-people.component.html',
+  styleUrl: './manage-people.component.scss'
 })
-export class ManageStaffComponent implements OnInit, OnDestroy {
+export class ManagePeopleComponent implements OnInit, OnDestroy {
   persons: Person[] = [];
   private subscription: Subscription = new Subscription();
 
@@ -52,7 +52,7 @@ export class ManageStaffComponent implements OnInit, OnDestroy {
   }
 
   newPerson(): void {
-    this.router.navigate(['/addStaff']);
+    this.router.navigate(['/addPeople']);
   }
 
   onConfirmDelete(): void {

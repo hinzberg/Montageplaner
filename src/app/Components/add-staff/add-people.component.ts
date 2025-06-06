@@ -13,17 +13,17 @@ import {
 import {CommonModule} from '@angular/common';
 import {PersonnelService} from '../../core/services/personnel.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
-import {StaffAddedDialogComponent} from "./staff-added-dialog/staff-added-dialog.component";
+import {PeopleAddedDialogComponent} from "./people-added-dialog/people-added-dialog.component";
 
 @Component({
   selector: 'app-add-staff',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, StaffAddedDialogComponent],
-  templateUrl: './add-staff.component.html',
-  styleUrl: './add-staff.component.scss'
+  imports: [ReactiveFormsModule, CommonModule, PeopleAddedDialogComponent],
+  templateUrl: './add-people.component.html',
+  styleUrl: './add-people.component.scss'
 })
 
-export class AddStaffComponent implements OnInit {
+export class AddPeopleComponent implements OnInit {
 
   // Dialog state
   showConfirmDialog = false;
@@ -44,7 +44,7 @@ export class AddStaffComponent implements OnInit {
     firstName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
-    isSelected: new FormControl(false) 
+    isSelected: new FormControl(false)
   })
 
   constructor(

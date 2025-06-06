@@ -12,17 +12,17 @@ export class ConfirmDialogComponent {
   @Input() isVisible = false;
   @Input() title = 'Confirm Action';
   @Input() message = 'Are you sure you want to proceed?';
-  @Input() useInnerHTML: boolean = false;
-  @Output() confirm = new EventEmitter<void>();
-  @Output() cancel = new EventEmitter<void>();
+  @Input() useInnerHTML = false;
+  @Output() confirmEvent = new EventEmitter<void>();
+  @Output() cancelEvent = new EventEmitter<void>();
 
   onConfirm(): void {
-    this.confirm.emit();
+    this.confirmEvent.emit();
     this.isVisible = false;
   }
 
   onCancel(): void {
-    this.cancel.emit();
+    this.cancelEvent.emit();
     this.isVisible = false;
   }
 

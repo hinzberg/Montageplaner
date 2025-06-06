@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Person } from '../models/person.model';
-import { Profession } from '../models/profession.enum';
 
 const STORAGE_KEY = 'montageplaner_persons';
 
@@ -8,7 +7,7 @@ const STORAGE_KEY = 'montageplaner_persons';
   providedIn: 'root'
 })
 export class PersonnelService {
-  
+
   // This is actual the list of persons
   private persons: Person[] = [];
 
@@ -92,4 +91,4 @@ export class PersonnelService {
       console.error('Error saving persons to storage:', error);
     }
   }
-} 
+}

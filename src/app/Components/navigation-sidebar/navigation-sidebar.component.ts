@@ -15,13 +15,13 @@ export class NavigationSidebarComponent {
   items = [
     {
       type : 'link',
-      routeLink: 'manageStaff',
-      label: 'Manage Staff'
+      routeLink: 'managePeople',
+      label: 'People'
     },
     {
       type : 'link',
-      routeLink: 'manageResources',
-      label: 'Manage Resources'
+      routeLink: 'manageEquipment',
+      label: 'Equipment'
     },
     {
       type : 'link',
@@ -35,13 +35,13 @@ export class NavigationSidebarComponent {
     },
     {
       type : 'link',
-      routeLink: 'addStaff',
-      label: 'Add new Staff'
+      routeLink: 'addPeople',
+      label: 'New People'
     },
     {
       type : 'link',
-      routeLink: 'addResource',
-      label: 'Add new Resource'
+      routeLink: 'addEquipment',
+      label: 'New Equipment'
     },
 
   ]

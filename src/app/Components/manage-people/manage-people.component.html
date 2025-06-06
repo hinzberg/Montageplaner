@@ -41,8 +41,8 @@
     [title]="dialogTitle"
     [message]="dialogMessage"
     [useInnerHTML]="true"
-    (confirm)="onConfirmDelete()"
-    (cancel)="onCancelDelete()">
+    (confirmEvent)="onConfirmDelete()"
+    (cancelEvent)="onCancelDelete()">
   </app-confirm-dialog>
 </div>
 

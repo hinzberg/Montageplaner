@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-manage-resources',
+  selector: 'app-manage-equipment',
   standalone: true,
   imports: [],
-  templateUrl: './manage-resources.component.html',
-  styleUrl: './manage-resources.component.scss'
+  templateUrl: './manage-equipment.component.html',
+  styleUrl: './manage-equipment.component.scss'
 })
-export class ManageResourcesComponent {
+export class ManageEquipmentComponent {
 
 }
