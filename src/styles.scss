@@ -4,6 +4,13 @@
 @import 'styles/components/input';
 @import 'styles/components/checkbox';
 
+@font-face {
+  font-family: 'MainFont';
+  src: url('assets/fonts/SFPRODISPLAYREGULAR.OTF') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,7 +18,7 @@ body {
   background-attachment: fixed;
   background: #f9f3e8;
   background: linear-gradient(180deg, rgba(249, 243, 232, 1) 0%, $color-background-blue 100%);
-  font-family: Helvetica Neue, Arial, Geneva, sans-serif;
+  font-family: 'MainFont', sans-serif;
   font-size: 1.0rem;
 }
 
