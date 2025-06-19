@@ -47,13 +47,13 @@
     </tbody>
   </table>
 
-  <app-confirm-dialog
+  <app-confirm-overlay-dialog
     [isVisible]="showConfirmDialog"
     [title]="dialogTitle"
     [message]="dialogMessage"
     [useInnerHTML]="true"
     (confirmEvent)="onConfirmDelete()"
     (cancelEvent)="onCancelDelete()">
-  </app-confirm-dialog>
+  </app-confirm-overlay-dialog>
 </div>
 

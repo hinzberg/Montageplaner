@@ -13,12 +13,12 @@ import {
 import {CommonModule} from '@angular/common';
 import {PersonnelService} from '../../core/services/personnel.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
-import {PeopleAddedDialogComponent} from "./people-added-dialog/people-added-dialog.component";
+import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
 
 @Component({
   selector: 'app-add-staff',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, PeopleAddedDialogComponent],
+  imports: [ReactiveFormsModule, CommonModule, PeopleAddedOverlayDialogComponent],
   templateUrl: './add-people.component.html',
   styleUrl: './add-people.component.scss'
 })

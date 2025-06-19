@@ -3,7 +3,7 @@ import {PersonnelService} from '../../core/services/personnel.service';
 import {Person} from '../../core/models/person.model';
 import {CommonModule} from '@angular/common';
 import {Subscription} from 'rxjs';
-import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
+import {ConfirmOverlayDialogComponent} from '../shared/confirm-overlay-dialog/confirm-overlay-dialog.component';
 import {ToolbarComponent} from '../toolbar/toolbar.component';
 import {Router} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -11,7 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 @Component({
   selector: 'app-manage-people',
   standalone: true,
-    imports: [CommonModule, ConfirmDialogComponent, ToolbarComponent, ReactiveFormsModule],
+    imports: [CommonModule,ConfirmOverlayDialogComponent , ToolbarComponent, ReactiveFormsModule],
   templateUrl: './manage-people.component.html',
   styleUrl: './manage-people.component.scss'
 })

@@ -1,4 +1,4 @@
-<h2 class="pageHeadline">Add new Staff</h2>
+<h2 class="pageHeadline">Add new People</h2>
 
 <div class="form">
   <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
@@ -39,11 +39,11 @@
   </form>
 
   <!-- Show the submitted person -->
-  <app-people-added-dialog
+  <app-people-added-overlay-dialog
     [isVisible]="showConfirmDialog"
     [submittedPerson]="submittedPerson"
     (ok)="onConfirmOkDialog()">
-  </app-people-added-dialog>
+  </app-people-added-overlay-dialog>
 
 </div>
 
