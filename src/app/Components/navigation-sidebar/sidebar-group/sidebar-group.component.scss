@@ -21,12 +21,12 @@
   margin-left: 6px;
   margin-right: 6px;
   font-size:  16px;
-  color: $color-primary;
+  color: $color-primary-negative;
 }
 
 .hrShort {
   height: 2px;      // Visible height
-  background: $color-primary;
+  background: $color-primary-negative;
   border: none;     // Remove default border
   width: 8px;
 }
@@ -34,6 +34,6 @@
 .hrLong {
   flex: 1;          // Makes it grow to fill space
   height: 2px;      // Visible height
-  background: $color-primary;
+  background: $color-primary-negative;
   border: none;     // Remove default border
 }
