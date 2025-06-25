@@ -184,6 +184,7 @@ export class AddPeopleComponent implements OnInit {
 
   onConfirmOkDialog(): void {
     this.onReset()
+    this.showConfirmDialog = false;
   }
 
   onReset(): void {

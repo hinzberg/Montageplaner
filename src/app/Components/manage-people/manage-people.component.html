@@ -1,6 +1,6 @@
 <app-toolbar>
-  <button class="circle-button" (click)="newPerson()">+</button>
-  <button class="toolbar-button" (click)="newPerson()">Add New</button>
+  <button class="circle-button" (click)="onNewPersonClicked()">+</button>
+  <button class="toolbar-button" (click)="onNewPersonClicked()">Add New</button>
 </app-toolbar>
 
 <div class="pageHeadline">Manage People</div>
@@ -42,7 +42,7 @@
         }
       </td>
       <td class="tableCell">
-        <button class="red-button" (click)="deletePerson(person)">Delete</button>
+        <button class="red-button" (click)="onDeletePersonClicked(person)">Delete</button>
       </td>
     </tr>
     </tbody>

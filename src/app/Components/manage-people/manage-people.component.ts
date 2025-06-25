@@ -40,20 +40,20 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
     );
   }
 
-  deletePerson(person: Person): void {
-    this.personToDelete = person;
-    this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
-    this.showConfirmDialog = true;
-  }
-
   toggleSelection(person: Person): void {
     person.isSelected = !person.isSelected;
     // Update the person selection in the service to persist the change
     this.personnelService.updatePerson(person);
   }
 
-  newPerson(): void {
+  onNewPersonClicked(): void {
     this.router.navigate(['/addPeople']);
+  }
+
+  onDeletePersonClicked(person: Person): void {
+    this.personToDelete = person;
+    this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
+    this.showConfirmDialog = true;
   }
 
   onConfirmDelete(): void {
@@ -61,6 +61,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
       this.personnelService.removePerson(this.personToDelete.id);
       this.personToDelete = null;
     }
+    this.showConfirmDialog = false;
   }
 
   onCancelDelete(): void {
