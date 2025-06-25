@@ -25,6 +25,11 @@ export class NavigationSidebarComponent {
     },
     {
       type : 'link',
+      routeLink: 'maintenance',
+      label: 'Maintenance'
+    },
+    {
+      type : 'link',
       routeLink: 'plan',
       label: 'Plan'
     },

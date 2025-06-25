@@ -13,7 +13,7 @@ import {Person} from "../../../core/models/person.model";
 })
 export class PeopleAddedOverlayDialogComponent {
   @Input() isVisible = false;
-  @Input() title = 'New Staff added';
+  @Input() title = 'New Person added';
   @Output() ok = new EventEmitter<void>();
   @Input() submittedPerson: Person | null = null;
 

@@ -7,6 +7,7 @@ import { AddEquipmentComponent} from "./Components/add-equipment/add-equipment.c
 import { ManagePeopleComponent } from "./Components/manage-people/manage-people.component";
 import { ManageEquipmentComponent } from "./Components/manage-equipment/manage-equipment.component";
 import { PlanAssemblyComponent} from "./Components/plan-assembly/plan-assembly.component";
+import { MaintenanceComponent} from "./Components/maintenance/maintenance.component";
 // import { PersonFormComponent} from "./playground/person-form/person-form.component";
 
 export const routes: Routes = [
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'managePeople', component: ManagePeopleComponent },
   { path: 'plan', component: PlanAssemblyComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'maintenance', component: MaintenanceComponent },
   { path: '**', pathMatch: 'full',component: WrongRouteComponent}
 ];

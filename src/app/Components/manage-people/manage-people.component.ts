@@ -22,7 +22,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   // Dialog state
   showConfirmDialog = false;
   personToDelete: Person | null = null;
-  dialogTitle = 'Delete Staff';
+  dialogTitle = 'Delete Person';
   dialogMessage = '';
 
   constructor(private router: Router, private personnelService: PersonnelService) {
