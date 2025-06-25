@@ -25,11 +25,6 @@ export class NavigationSidebarComponent {
     },
     {
       type : 'link',
-      routeLink: 'maintenance',
-      label: 'Maintenance'
-    },
-    {
-      type : 'link',
       routeLink: 'plan',
       label: 'Plan'
     },
@@ -47,6 +42,16 @@ export class NavigationSidebarComponent {
       type : 'link',
       routeLink: 'addEquipment',
       label: 'New Equipment'
+    },
+    {
+      type : 'group',
+      routeLink: '',
+      label: 'Development'
+    },
+    {
+      type : 'link',
+      routeLink: 'maintenance',
+      label: 'Maintenance'
     },
 
   ]
