@@ -1,7 +1,8 @@
 @import '../app-colors';
 
 button {
-  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
   padding: 5px;
   border: 2px solid $color-primary;
   border-radius: 10px;
@@ -45,6 +46,18 @@ button {
       border-color: $color-reset-hover-border;
       color: $color-primary-secondary-text;
     }
+  }
+
+  &.circle-button {
+    height: 40px;
+    width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+    min-width: 40px;
+    min-height: 40px;
+    font-weight: bold;
+    border: 2px solid $color-primary;
   }
 }
 

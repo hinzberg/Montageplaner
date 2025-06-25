@@ -44,9 +44,9 @@ input[type="checkbox"]:checked + label::after {
   position: absolute;
   width: 1.2ex;
   height: 0.4ex;
-  top: 0.6ex;
-  left: 0.5ex;
-  border: 3px solid $color-primary;
+  top: 0.8ex;
+  left: 0.4ex;
+  border: 4px solid $color-primary;
   border-top: none;
   border-right: none;
   -webkit-transform: rotate(-45deg);

@@ -5,7 +5,7 @@
     <div>
       <label class="formLabel" for="firstName">First Name</label>
       <input id="firstName" formControlName="firstName" [class.invalid-input]="formErrors['firstName']"/>
-      <div *ngIf="formErrors['firstName']" class="errorMessage">
+      <div *ngIf="formErrors['firstName']" class="errorLabel">
         {{ formErrors['firstName'] }}
       </div>
     </div>
@@ -13,7 +13,7 @@
     <div>
       <label class="formLabel" for="lastName">Last Name</label>
       <input id="lastName" formControlName="lastName" [class.invalid-input]="formErrors['lastName']"/>
-      <div *ngIf="formErrors['lastName']" class="errorMessage">
+      <div *ngIf="formErrors['lastName']" class="errorLabel">
         {{ formErrors['lastName'] }}
       </div>
     </div>
@@ -24,12 +24,12 @@
         <option value="">Select a profession</option>
         <option *ngFor="let prof of professions" [value]="prof">{{ prof }}</option>
       </select>
-      <div *ngIf="formErrors['profession']" class="errorMessage">
+      <div *ngIf="formErrors['profession']" class="errorLabel">
         {{ formErrors['profession'] }}
       </div>
       <div class="checkboxContainer">
         <input id="checkbox" type="checkbox" formControlName="canBeTeamLeader"/>
-        <label for="checkbox">Can be Team Leader</label>
+        <label class="formLabel" for="checkbox">Can be Team Leader</label>
       </div>
     </div>
     <div class="buttonItemContainer">

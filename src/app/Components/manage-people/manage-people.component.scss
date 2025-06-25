@@ -15,15 +15,19 @@
   .tableHeader {
     color: white;
     padding: 12px;
-    font-weight: 600;
+    font-weight: bold;
     border-right: 2px solid white;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
   }
 
   .tableCell {
     padding: 12px;
     text-align: left;
-    border-bottom: 2px solid $color-primary-border;
+    border-bottom: 2px solid $color-primary;
     background-color: white;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
   }
 
   .tableCellActions {
