@@ -4,7 +4,7 @@
     <p class="message" *ngIf="!useInnerHTML">{{ message }}</p>
     <p class="message" *ngIf="useInnerHTML" [innerHTML]="message"></p>
     <div class="spacer-vertical-30"></div>
-    <div class="dialog-buttons">
+    <div class="dialog-button-container">
       <button class="red-button" (click)="onCancel()">Cancel</button>
       <button (click)="onConfirm()">Confirm</button>
     </div>

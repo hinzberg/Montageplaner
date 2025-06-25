@@ -1,0 +1,51 @@
+@import '../app-colors';
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(200, 200, 200, 0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px); // for Safari
+}
+
+.dialog-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 1rem;
+  border: 2px solid $color-primary-border;
+  min-width: 400px;
+  max-width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-title {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  color: $color-primary-border;
+}
+
+.dialog-message {
+  margin: 0 0 24px 0;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.dialog-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.spacer-vertical-30 {
+  height: 30px;
+}

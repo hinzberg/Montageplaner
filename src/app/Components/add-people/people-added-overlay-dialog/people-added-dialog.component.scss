@@ -1,31 +1,23 @@
 @import '../../../../styles/app-colors';
 
-.dialog-container {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  border: 2px solid $color-primary-border;
-  min-width: 300px;
-  max-width: 500px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.dialogLabel {
+  font-size: 1.0rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
 }
 
-.dialog-title {
-  margin: 0 0 16px 0;
-  font-size: 1.25rem;
-  color: $color-primary-border;
+.dialogLabelBold {
+  font-size: 1.0rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: $color-dim-text;
 }
 
-.dialog-message {
-  margin: 0 0 24px 0;
-  color: #666;
-  line-height: 1.5;
-}
-
-.dialog-buttons {
+.horizontal-stack {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+  flex-direction: row;
+  align-items: center; // Vertikale Zentrierung
+  gap: 10px; // Abstand zwischen den Elementen
 }
-
-
