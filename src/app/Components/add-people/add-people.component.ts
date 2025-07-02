@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {PersonnelService} from '../../core/services/personnel.service';
+import {PersonEditService} from "../../core/services/person-edit.service";
 import {ToFormControls} from '../../shared/utils/form-utils';
 import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
 
@@ -24,6 +25,9 @@ import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/p
 })
 
 export class AddPeopleComponent implements OnInit {
+
+  // Contains an existing person if in edit mode
+  editedPerson: Person | null = null;
 
   // Dialog state
   showConfirmDialog = false;
@@ -50,7 +54,8 @@ export class AddPeopleComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private personnelService: PersonnelService
+    private personnelService: PersonnelService,
+    private personEditService: PersonEditService
   ) {
 
     // Subscribe to form value changes to update validation messages
@@ -67,6 +72,18 @@ export class AddPeopleComponent implements OnInit {
     this.personnelService.personsUpdated.subscribe(persons => {
       this.persons = persons;
     });
+
+    // Is a person in the PersonEditService?
+    this.editedPerson = null;
+    const person = this.personEditService.getPerson();
+    if (person) {
+      this.editedPerson = person;
+      this.personForm.controls.firstName.setValue(person.firstName);
+      this.personForm.controls.lastName.setValue(person.lastName);
+      this.personForm.controls.profession.setValue(person.profession);
+      this.personForm.controls.canBeTeamLeader.setValue(person.canBeTeamLeader);
+      this.personEditService.clearPerson(); // Clear person to avoid stale data
+    }
   }
 
   // Custom validator for names
@@ -158,18 +175,12 @@ export class AddPeopleComponent implements OnInit {
       // If the form is still valid after marking as touched
       if (this.personForm.valid) {
 
-        // Create a new Person instance
-        const newPerson = new Person(
-          this.personForm.controls.firstName.value!.trim(),
-          this.personForm.controls.lastName.value!.trim(),
-          this.personForm.controls.profession.value!
-        );
+        if (this.editedPerson != null) {
+          this.updatePerson()
+        } else {
+          this.addNewPerson();
+        }
 
-        // Add the person to the service
-        this.personnelService.addPerson(newPerson);
-
-        // Update the submitted person for display
-        this.submittedPerson = newPerson;
         this.showConfirmDialog = true;
       }
     } else {
@@ -181,6 +192,31 @@ export class AddPeopleComponent implements OnInit {
       this.updateValidationMessages();
     }
   }
+
+  addNewPerson(): void {
+    // Create a new Person instance
+    const newPerson = new Person(
+      this.personForm.controls.firstName.value!.trim(),
+      this.personForm.controls.lastName.value!.trim(),
+      this.personForm.controls.profession.value!
+    );
+
+    // Add the person to the service
+    this.personnelService.addPerson(newPerson);
+    this.submittedPerson = newPerson;
+  }
+
+  updatePerson(): void {
+    // Update the person with the edited values
+    this.editedPerson!.firstName = this.personForm.controls.firstName.value!.trim();
+    this.editedPerson!.lastName = this.personForm.controls.lastName.value!.trim();
+    this.editedPerson!.profession = this.personForm.controls.profession.value!;
+
+    this.personnelService.updatePerson(this.editedPerson!);
+    this.submittedPerson = this.editedPerson;
+    this.editedPerson = null;
+  }
+
 
   onConfirmOkDialog(): void {
     this.onReset()

@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {PersonnelService} from '../../core/services/personnel.service';
 import {Person} from '../../core/models/person.model';
+import {PersonEditService} from '../../core/services/person-edit.service';
 import {CommonModule} from '@angular/common';
 import {Subscription} from 'rxjs';
 import {ConfirmOverlayDialogComponent} from '../shared/confirm-overlay-dialog/confirm-overlay-dialog.component';
@@ -25,7 +26,11 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   dialogTitle = 'Delete Person';
   dialogMessage = '';
 
-  constructor(private router: Router, private personnelService: PersonnelService) {
+  constructor(private router: Router,
+              private personnelService: PersonnelService,
+              private personEditService: PersonEditService) {
+    // Initialize the personEditService to ensure it's ready for use
+    this.personEditService.clearPerson();
   }
 
   ngOnInit(): void {
@@ -54,6 +59,11 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
     this.personToDelete = person;
     this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
     this.showConfirmDialog = true;
+  }
+
+  onEditPersonClicked(person: Person): void {
+    this.personEditService.setPerson(person);
+    this.router.navigate(['/addPeople']);
   }
 
   onConfirmDelete(): void {
