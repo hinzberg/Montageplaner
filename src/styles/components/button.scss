@@ -4,14 +4,15 @@ button {
   letter-spacing: 1px;
   font-size: 1rem;
   padding: 5px;
-  border: 2px solid $color-primary;
-  border-radius: 10px;
+  border: 3px solid $color-primary;
+  border-radius: 5px;
   background-color: transparent;
   color: $color-primary;
   cursor: pointer;
   transition: background-color 0.1s ease, color 0.1s ease;
   min-width: 100px;
   height: 40px;
+  font-weight: bold;
 
   &:hover {
     background-color: $color-primary;
@@ -31,19 +32,19 @@ button {
 
   &.red-button {
     background-color: transparent;
-    border-color: $color-reset-border;
-    color: $color-reset-text;
+    border-color: $color-reset;
+    color: $color-reset;
 
     &:hover {
-      background-color: $color-reset-border;
-      border-color: $color-reset-hover-border;
+      background-color: $color-reset;
+      border-color: $color-reset;
       color: $color-primary-secondary-text;
     }
 
     &:focus {
       outline: none;
-      background-color: $color-reset-border;
-      border-color: $color-reset-hover-border;
+      background-color: $color-reset;
+      border-color: $color-reset;
       color: $color-primary-secondary-text;
     }
   }
@@ -57,10 +58,66 @@ button {
     min-width: 40px;
     min-height: 40px;
     font-weight: bold;
-    border: 2px solid $color-primary;
+    border: 3px solid $color-primary;
   }
 }
 
+.table-button {
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  font-weight: bold;
+  color: $color-primary;
+
+  &:hover {
+    background:none;
+    text-decoration: underline;
+    color: $color-primary;
+  }
+
+  &:focus {
+    background:none;
+    text-decoration: underline;
+    color: $color-primary;
+  }
+}
+
+.table-button-red {
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  font-weight: bold;
+  color: $color-reset;
+
+  &:hover {
+    background:none;
+    text-decoration: underline;
+    color: $color-reset;
+  }
+
+  &:focus {
+    background:none;
+    text-decoration: underline;
+    color: $color-reset;
+  }
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row; // horizontal orientation
+  gap: 20px;           // 5px space between elements
+}
+.vertical-layout {
+  display: flex;
+  flex-direction: column; // vertical orientation
+  gap: 10px;              // 5px space between elements
+}
 .buttonItemContainer {
   display: flex;
   flex-direction: row;

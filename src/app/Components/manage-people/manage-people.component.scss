@@ -22,7 +22,7 @@
   }
 
   .tableCell {
-    padding: 12px;
+    padding: 8px;
     text-align: left;
     border-bottom: 2px solid $color-primary;
     background-color: white;
@@ -42,7 +42,7 @@
   */
 
   .delete-button {
-    color: $color-reset-text;
+    color: $color-reset;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s;

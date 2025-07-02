@@ -42,7 +42,10 @@
         }
       </td>
       <td class="tableCell">
-        <button class="red-button" (click)="onDeletePersonClicked(person)">Delete</button>
+      <div class="horizontal-layout">
+        <button class="table-button" (click)="onDeletePersonClicked(person)">Edit</button>
+        <button class="table-button-red" (click)="onDeletePersonClicked(person)">Delete</button>
+      </div>
       </td>
     </tr>
     </tbody>
