@@ -6,7 +6,7 @@ button {
   padding: 5px;
   border: 3px solid $color-primary;
   border-radius: 5px;
-  background-color: transparent;
+  background-color: white;
   color: $color-primary;
   cursor: pointer;
   transition: background-color 0.1s ease, color 0.1s ease;
@@ -31,7 +31,7 @@ button {
   }
 
   &.red-button {
-    background-color: transparent;
+    background-color: white;
     border-color: $color-reset;
     color: $color-reset;
 
@@ -117,6 +117,8 @@ button {
   display: flex;
   flex-direction: column; // vertical orientation
   gap: 10px;              // 5px space between elements
+  align-items: center;    // center items horizontally
+  justify-content: center; // center items vertically (optional)
 }
 .buttonItemContainer {
   display: flex;

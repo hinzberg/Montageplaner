@@ -25,13 +25,17 @@ import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/p
 
 export class AddPeopleComponent implements OnInit {
 
+  // HeadlineTitle
+  headlineTitle = 'Add Staff';
+
   // Contains an existing person if in edit mode
   editedPerson: Person | null = null;
 
-  // Dialog state
+  // Dialog
   showConfirmDialog = false;
+  personForConfirmDialog: Person | null = null;
+  titleForConfirmDialog = 'Person Added';
 
-  submittedPerson: Person | null = null;
   professions = Object.values(Profession);
   formErrors: { [key: string]: string } = {};
   persons: Person[] = [];
@@ -71,8 +75,11 @@ export class AddPeopleComponent implements OnInit {
       this.persons = persons;
     });
 
-    // Is a person in the PersonEditService?
+    // Set some default values for the page
     this.editedPerson = null;
+    this.headlineTitle = 'Add new Person';
+
+    // Is a selectedPerson in the PersonEditService?
     const person = this.personService.getSelectedPerson();
     if (person) {
       this.editedPerson = person;
@@ -81,6 +88,7 @@ export class AddPeopleComponent implements OnInit {
       this.personForm.controls.profession.setValue(person.profession);
       this.personForm.controls.canBeTeamLeader.setValue(person.canBeTeamLeader);
       this.personService.clearSelectedPerson(); // Clear person to avoid stale data
+      this.headlineTitle = 'Edit Person';
     }
   }
 
@@ -175,8 +183,10 @@ export class AddPeopleComponent implements OnInit {
 
         if (this.editedPerson != null) {
           this.updatePerson()
+          this.titleForConfirmDialog = 'Person updated';
         } else {
           this.addNewPerson();
+          this.titleForConfirmDialog = 'Person added';
         }
 
         this.showConfirmDialog = true;
@@ -199,9 +209,12 @@ export class AddPeopleComponent implements OnInit {
       this.personForm.controls.profession.value!
     );
 
+    // Set additional properties
+    newPerson.canBeTeamLeader = this.personForm.controls.canBeTeamLeader.value!;
+
     // Add the person to the service
     this.personService.addPerson(newPerson);
-    this.submittedPerson = newPerson;
+    this.personForConfirmDialog = newPerson;
   }
 
   updatePerson(): void {
@@ -209,9 +222,10 @@ export class AddPeopleComponent implements OnInit {
     this.editedPerson!.firstName = this.personForm.controls.firstName.value!.trim();
     this.editedPerson!.lastName = this.personForm.controls.lastName.value!.trim();
     this.editedPerson!.profession = this.personForm.controls.profession.value!;
+    this.editedPerson!.canBeTeamLeader = this.personForm.controls.canBeTeamLeader.value!;
 
     this.personService.updatePerson(this.editedPerson!);
-    this.submittedPerson = this.editedPerson;
+    this.personForConfirmDialog = this.editedPerson;
     this.editedPerson = null;
   }
 
@@ -223,8 +237,9 @@ export class AddPeopleComponent implements OnInit {
 
   onReset(): void {
     this.personForm.reset();
-    this.submittedPerson = null;
+    this.personForConfirmDialog = null;
     this.formErrors = {};
+    this.headlineTitle = 'Add Person';
   }
 }
 
