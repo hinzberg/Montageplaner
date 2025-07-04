@@ -2,6 +2,7 @@
 
 <div class="form">
   <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
+
     <div>
       <label class="formLabel" for="firstName">First Name</label>
       <input id="firstName" formControlName="firstName" [class.invalid-input]="formErrors['firstName']"/>
@@ -28,8 +29,12 @@
         {{ formErrors['profession'] }}
       </div>
       <div class="checkboxContainer">
-        <input id="checkbox" type="checkbox" formControlName="canBeTeamLeader"/>
-        <label class="formLabel" for="checkbox">Can be Team Leader</label>
+        <input id="checkboxActive" type="checkbox" formControlName="isActive"/>
+        <label class="formLabel" for="checkboxActive">Is Active</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="checkboxLeader" type="checkbox" formControlName="canBeTeamLeader"/>
+        <label class="formLabel" for="checkboxLeader">Can be Team Leader</label>
       </div>
     </div>
     <div class="buttonItemContainer">

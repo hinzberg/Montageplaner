@@ -3,17 +3,21 @@ import { Profession } from './profession.enum';
 export class Person {
   readonly id: string;
   isSelected: boolean;
+  isActive: boolean = false;
   canBeTeamLeader: boolean = false;
   firstName: string;
   lastName: string;
   profession: Profession;
 
-  constructor(firstName: string, lastName: string, profession: Profession) {
+  constructor(firstName: string, lastName: string, profession: Profession, isActive: boolean, canBeTeamLeader: boolean) {
     this.id = this.generateGuid();
+    this.isActive = false;
     this.isSelected = false;
     this.firstName = firstName;
     this.lastName = lastName;
     this.profession = profession;
+    this.isActive = isActive;
+    this.canBeTeamLeader = canBeTeamLeader;
   }
 
   private generateGuid(): string {

@@ -18,6 +18,7 @@
       <th class="tableHeader">Last Name</th>
       <th class="tableHeader">Profession</th>
       <th class="tableHeader">Leader</th>
+      <th class="tableHeader">Active</th>
       <th></th>
     </tr>
     </thead>
@@ -32,11 +33,18 @@
           <label for="selected-check-{{person.id}}"></label>
         </div>
       </td>
-      <td class="tableCell">{{ person.firstName }}</td>
-      <td class="tableCell">{{ person.lastName }}</td>
-      <td class="tableCell">{{ person.profession }}</td>
-      <td class="tableCell">
+      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.firstName }}</td>
+      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.lastName }}</td>
+      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.profession }}</td>
+      <td class="tableCell" [class.inactive]="!person.isActive">
         @if (person.canBeTeamLeader) {
+          YES
+        } @else {
+          NO
+        }
+      </td>
+      <td class="tableCell" [class.inactive]="!person.isActive">
+        @if (person.isActive) {
           YES
         } @else {
           NO

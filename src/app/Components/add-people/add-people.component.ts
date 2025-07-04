@@ -52,7 +52,8 @@ export class AddPeopleComponent implements OnInit {
     lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
     isSelected: new FormControl(false),
-    canBeTeamLeader: new FormControl(false)
+    canBeTeamLeader: new FormControl(false),
+    isActive: new FormControl(true)
   })
 
   constructor(
@@ -87,6 +88,7 @@ export class AddPeopleComponent implements OnInit {
       this.personForm.controls.lastName.setValue(person.lastName);
       this.personForm.controls.profession.setValue(person.profession);
       this.personForm.controls.canBeTeamLeader.setValue(person.canBeTeamLeader);
+      this.personForm.controls.isActive.setValue(person.isActive);
       this.personService.clearSelectedPerson(); // Clear person to avoid stale data
       this.headlineTitle = 'Edit Person';
     }
@@ -206,11 +208,10 @@ export class AddPeopleComponent implements OnInit {
     const newPerson = new Person(
       this.personForm.controls.firstName.value!.trim(),
       this.personForm.controls.lastName.value!.trim(),
-      this.personForm.controls.profession.value!
+      this.personForm.controls.profession.value!,
+      this.personForm.controls.isActive.value!,
+      this.personForm.controls.canBeTeamLeader.value!
     );
-
-    // Set additional properties
-    newPerson.canBeTeamLeader = this.personForm.controls.canBeTeamLeader.value!;
 
     // Add the person to the service
     this.personService.addPerson(newPerson);
@@ -223,12 +224,12 @@ export class AddPeopleComponent implements OnInit {
     this.editedPerson!.lastName = this.personForm.controls.lastName.value!.trim();
     this.editedPerson!.profession = this.personForm.controls.profession.value!;
     this.editedPerson!.canBeTeamLeader = this.personForm.controls.canBeTeamLeader.value!;
+    this.editedPerson!.isActive = this.personForm.controls.isActive.value!;
 
     this.personService.updatePerson(this.editedPerson!);
     this.personForConfirmDialog = this.editedPerson;
     this.editedPerson = null;
   }
-
 
   onConfirmOkDialog(): void {
     this.onReset()

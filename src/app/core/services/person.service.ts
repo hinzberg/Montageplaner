@@ -78,7 +78,7 @@ export class PersonService {
       try {
         // Parse the stored JSON and recreate Person objects
         const parsedPersons = JSON.parse(storedPersons);
-        this.persons = parsedPersons.map((p: any) => new Person(p.firstName, p.lastName, p.profession));
+        this.persons = parsedPersons.map((p: any) => new Person(p.firstName, p.lastName, p.profession, p.isActive, p.canBeTeamLeader));
         this.personsUpdated.emit([...this.persons]);
       } catch (error) {
         console.error('Error loading persons from storage:', error);
@@ -94,8 +94,6 @@ export class PersonService {
       console.error('Error saving persons to storage:', error);
     }
   }
-
-
 
   setSelectedPerson(person: Person): void {
     this.selectedPerson = person;
