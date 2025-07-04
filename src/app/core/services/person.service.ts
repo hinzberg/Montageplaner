@@ -6,10 +6,13 @@ const STORAGE_KEY = 'montageplaner_persons';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonnelService {
+export class PersonService {
 
   // This is actual the list of persons
   private persons: Person[] = [];
+
+  // For Editing a person, we keep a reference to the person being edited
+  private selectedPerson: Person | null = null;
 
   // This is the event emitter for the persons list
   //  It's used to notify components that are subscribed to it about changes in the personnel list.
@@ -91,4 +94,19 @@ export class PersonnelService {
       console.error('Error saving persons to storage:', error);
     }
   }
+
+
+
+  setSelectedPerson(person: Person): void {
+    this.selectedPerson = person;
+  }
+
+  getSelectedPerson(): Person | null {
+    return this.selectedPerson;
+  }
+
+  clearSelectedPerson() {
+    this.selectedPerson = null;
+  }
+
 }

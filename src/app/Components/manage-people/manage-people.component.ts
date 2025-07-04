@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {PersonnelService} from '../../core/services/personnel.service';
+import {PersonService} from '../../core/services/person.service';
 import {Person} from '../../core/models/person.model';
-import {PersonEditService} from '../../core/services/person-edit.service';
 import {CommonModule} from '@angular/common';
 import {Subscription} from 'rxjs';
 import {ConfirmOverlayDialogComponent} from '../shared/confirm-overlay-dialog/confirm-overlay-dialog.component';
@@ -27,19 +26,19 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   dialogMessage = '';
 
   constructor(private router: Router,
-              private personnelService: PersonnelService,
-              private personEditService: PersonEditService) {
+              private personService: PersonService) {
+
     // Initialize the personEditService to ensure it's ready for use
-    this.personEditService.clearPerson();
+    this.personService.clearSelectedPerson();
   }
 
   ngOnInit(): void {
     // Get initial list of persons
-    this.persons = this.personnelService.getPersons();
+    this.persons = this.personService.getPersons();
 
     // Subscribe to updates
     this.subscription.add(
-      this.personnelService.personsUpdated.subscribe(persons => {
+      this.personService.personsUpdated.subscribe(persons => {
         this.persons = persons;
       })
     );
@@ -48,7 +47,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   toggleSelection(person: Person): void {
     person.isSelected = !person.isSelected;
     // Update the person selection in the service to persist the change
-    this.personnelService.updatePerson(person);
+    this.personService.updatePerson(person);
   }
 
   onNewPersonClicked(): void {
@@ -62,13 +61,13 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   }
 
   onEditPersonClicked(person: Person): void {
-    this.personEditService.setPerson(person);
+    this.personService.setSelectedPerson(person);
     this.router.navigate(['/addPeople']);
   }
 
   onConfirmDelete(): void {
     if (this.personToDelete) {
-      this.personnelService.removePerson(this.personToDelete.id);
+      this.personService.removePerson(this.personToDelete.id);
       this.personToDelete = null;
     }
     this.showConfirmDialog = false;

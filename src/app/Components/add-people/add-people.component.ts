@@ -11,8 +11,7 @@ import {
   Validators
 } from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {PersonnelService} from '../../core/services/personnel.service';
-import {PersonEditService} from "../../core/services/person-edit.service";
+import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
 import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
 
@@ -54,8 +53,7 @@ export class AddPeopleComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private personnelService: PersonnelService,
-    private personEditService: PersonEditService
+    private personService: PersonService,
   ) {
 
     // Subscribe to form value changes to update validation messages
@@ -66,23 +64,23 @@ export class AddPeopleComponent implements OnInit {
 
   ngOnInit(): void {
     // Get initial persons
-    this.persons = this.personnelService.getPersons();
+    this.persons = this.personService.getPersons();
 
     // Subscribe to updates
-    this.personnelService.personsUpdated.subscribe(persons => {
+    this.personService.personsUpdated.subscribe(persons => {
       this.persons = persons;
     });
 
     // Is a person in the PersonEditService?
     this.editedPerson = null;
-    const person = this.personEditService.getPerson();
+    const person = this.personService.getSelectedPerson();
     if (person) {
       this.editedPerson = person;
       this.personForm.controls.firstName.setValue(person.firstName);
       this.personForm.controls.lastName.setValue(person.lastName);
       this.personForm.controls.profession.setValue(person.profession);
       this.personForm.controls.canBeTeamLeader.setValue(person.canBeTeamLeader);
-      this.personEditService.clearPerson(); // Clear person to avoid stale data
+      this.personService.clearSelectedPerson(); // Clear person to avoid stale data
     }
   }
 
@@ -202,7 +200,7 @@ export class AddPeopleComponent implements OnInit {
     );
 
     // Add the person to the service
-    this.personnelService.addPerson(newPerson);
+    this.personService.addPerson(newPerson);
     this.submittedPerson = newPerson;
   }
 
@@ -212,7 +210,7 @@ export class AddPeopleComponent implements OnInit {
     this.editedPerson!.lastName = this.personForm.controls.lastName.value!.trim();
     this.editedPerson!.profession = this.personForm.controls.profession.value!;
 
-    this.personnelService.updatePerson(this.editedPerson!);
+    this.personService.updatePerson(this.editedPerson!);
     this.submittedPerson = this.editedPerson;
     this.editedPerson = null;
   }

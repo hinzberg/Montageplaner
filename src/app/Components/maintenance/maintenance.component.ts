@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PersonnelService} from '../../core/services/personnel.service';
+import {PersonService} from '../../core/services/person.service';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import {CommonModule} from '@angular/common';
 })
 export class MaintenanceComponent {
 
-  constructor(private personnelService: PersonnelService) {
+  constructor(private personnelService: PersonService) {
   }
 
   onClearAllClicked() {
