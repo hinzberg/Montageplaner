@@ -3,9 +3,10 @@
 .sidebar {
   width: 250px;
   height: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: $color-primary;
+  border-radius: 0 20px 20px 0;
+  background-color: $color-primary-transparent;
+  margin-right: 15px;
+  border-left: 0;
 }
 
 .sidebarHeader {
@@ -14,7 +15,7 @@
   padding-top: 15px;
   padding-bottom: 5px;
   font-weight: bold;
-  color: $color-primary-negative;
+  color: $color-primary;
   letter-spacing: 0.1em;
   font-size: 1.2rem;
 }
@@ -23,20 +24,21 @@
   text-align: center;
   padding-top: 6px;
   padding-bottom: 6px;
-  color: $color-primary-negative;
+  color: $color-primary;
   margin: 4px 10px;
+  font-size: 1.1rem;
   letter-spacing: 0.1em;
 
   &:hover {
     border-radius: 6px;
-    background-color: $color-primary-negative;
+    background-color: $color-primary;
     cursor: pointer;
-    color: $color-primary;
+    color: $color-primary-negative;
   }
 
   &.active {
-    background-color: $color-primary-negative;
-    color: $color-primary;
+    background-color: $color-primary;
+    color: $color-primary-negative;
     border-radius: 6px;
   }
 }
@@ -44,7 +46,7 @@
 hr {
   border: none;           /* Removes the default border */
   height: 2px;            /* Sets the height of the line */
-  background-color: $color-primary-negative;
+  background-color: $color-primary;
   margin-left: 10px;
   margin-right: 10px;
 }

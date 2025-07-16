@@ -20,20 +20,21 @@
 .text {
   margin-left: 6px;
   margin-right: 6px;
-  font-size:  16px;
-  color: $color-primary-negative;
+  color: $color-primary;
+  font-size: 1.0rem;
+  letter-spacing: 0.1em;
 }
 
 .hrShort {
-  height: 2px;      // Visible height
-  background: $color-primary-negative;
+  height: 1px;      // Visible height
+  background: $color-primary;
   border: none;     // Remove default border
   width: 8px;
 }
 
 .hrLong {
   flex: 1;          // Makes it grow to fill space
-  height: 2px;      // Visible height
-  background: $color-primary-negative;
+  height: 1px;      // Visible height
+  background: $color-primary;
   border: none;     // Remove default border
 }
