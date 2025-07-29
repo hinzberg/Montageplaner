@@ -29,16 +29,16 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
               private personService: PersonService) {
 
     // Initialize the personEditService to ensure it's ready for use
-    this.personService.clearSelectedPerson();
+    this.personService.clearSelectedItem();
   }
 
   ngOnInit(): void {
     // Get initial list of persons
-    this.persons = this.personService.getPersons();
+    this.persons = this.personService.getItems();
 
     // Subscribe to updates
     this.subscription.add(
-      this.personService.personsUpdated.subscribe(persons => {
+      this.personService.itemsUpdated.subscribe(persons => {
         this.persons = persons;
       })
     );
@@ -47,7 +47,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   toggleSelection(person: Person): void {
     person.isSelected = !person.isSelected;
     // Update the person selection in the service to persist the change
-    this.personService.updatePerson(person);
+    this.personService.updateItem(person);
   }
 
   onNewPersonClicked(): void {
@@ -61,13 +61,13 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   }
 
   onEditPersonClicked(person: Person): void {
-    this.personService.setSelectedPerson(person);
+    this.personService.setSelectedItem(person);
     this.router.navigate(['/addPeople']);
   }
 
   onConfirmDelete(): void {
     if (this.personToDelete) {
-      this.personService.removePerson(this.personToDelete.id);
+      this.personService.removeItem(this.personToDelete.id);
       this.personToDelete = null;
     }
     this.showConfirmDialog = false;

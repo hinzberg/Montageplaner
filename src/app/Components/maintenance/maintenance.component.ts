@@ -15,6 +15,6 @@ export class MaintenanceComponent {
   }
 
   onClearAllClicked() {
-    this.personnelService.clearPersons()
+    this.personnelService.clearItems()
   }
 }

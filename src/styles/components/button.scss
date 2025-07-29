@@ -21,7 +21,7 @@ button {
   height: 40px;
   font-weight: bold;
   background-color:transparent;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  box-shadow: $color-primary-transparent 0px 5px 15px;
   backdrop-filter: blur(10px);
 
   &:hover {
@@ -43,6 +43,7 @@ button {
   &.red-button {
     border-color: $color-reset;
     color: $color-reset;
+    box-shadow: $color-reset-transparent 0px 5px 15px;
 
     &:hover {
       background-color: $color-reset;
@@ -80,6 +81,8 @@ button {
   border: none;
   font-weight: bold;
   color: $color-primary;
+  border: 0;
+  box-shadow: none;
 
   &:hover {
     background:none;
@@ -103,6 +106,8 @@ button {
   border: none;
   font-weight: bold;
   color: $color-reset;
+  border: 0;
+  box-shadow: none;
 
   &:hover {
     background:none;

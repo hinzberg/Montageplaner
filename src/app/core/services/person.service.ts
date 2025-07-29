@@ -1,12 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Person } from '../models/person.model';
+import { IEntityService} from "./IEntityService";
 
 const STORAGE_KEY = 'montageplaner_persons';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonService {
+
+export class PersonService implements IEntityService<Person> {
 
   // This is actual the list of persons
   private persons: Person[] = [];
@@ -16,70 +18,70 @@ export class PersonService {
 
   // This is the event emitter for the persons list
   //  It's used to notify components that are subscribed to it about changes in the personnel list.
-  public personsUpdated = new EventEmitter<Person[]>();
+  public itemsUpdated = new EventEmitter<Person[]>();
 
   constructor() {
     // Load persons from local storage on service initialization
-    this.loadPersonsFromStorage();
+    this.loadFromStorage();
   }
 
   // Get all persons
-  getPersons(): Person[] {
+  getItems(): Person[] {
     return [...this.persons];
   }
 
   // Add a new person
-  addPerson(person: Person): void {
+  addItem(person: Person): void {
     this.persons.push(person);
-    this.personsUpdated.emit([...this.persons]);
-    this.savePersonsToStorage();
+    this.itemsUpdated.emit([...this.persons]);
+    this.saveToStorage();
   }
 
   // Remove a person by id
-  removePerson(id: string): void {
+  removeItem(id: string): void {
     const index = this.persons.findIndex(p => p.id === id);
     if (index !== -1) {
       this.persons.splice(index, 1);
-      this.personsUpdated.emit([...this.persons]);
-      this.savePersonsToStorage();
+      this.itemsUpdated.emit([...this.persons]);
+      this.saveToStorage();
     }
   }
 
   // Update a person by id
-  updatePerson(updatedPerson: Person): void {
+  updateItem(updatedPerson: Person): void {
     const index = this.persons.findIndex(p => p.id === updatedPerson.id);
     if (index !== -1) {
       this.persons[index] = updatedPerson;
-      this.personsUpdated.emit([...this.persons]);
-      this.savePersonsToStorage();
+      this.itemsUpdated.emit([...this.persons]);
+      this.saveToStorage();
     }
   }
 
   // Get a person by id
-  getPerson(id: string): Person | undefined {
+  getItem(id: string): Person | undefined {
     return this.persons.find(p => p.id === id);
   }
 
   // Clear all persons
-  clearPersons(): void {
+  clearItems(): void {
     this.persons = [];
-    this.personsUpdated.emit([]);
-    this.savePersonsToStorage();
+    this.itemsUpdated.emit([]);
+    this.saveToStorage();
   }
 
-  // Get current number of persons
-  getPersonCount(): number {
+  // Gets current number of persons
+  getItemCount(): number {
     return this.persons.length;
   }
 
-  private loadPersonsFromStorage(): void {
+  loadFromStorage(): void {
     const storedPersons = localStorage.getItem(STORAGE_KEY);
     if (storedPersons) {
       try {
         // Parse the stored JSON and recreate Person objects
         const parsedPersons = JSON.parse(storedPersons);
         this.persons = parsedPersons.map((p: any) => new Person(p.firstName, p.lastName, p.profession, p.isActive, p.canBeTeamLeader));
-        this.personsUpdated.emit([...this.persons]);
+        this.itemsUpdated.emit([...this.persons]);
       } catch (error) {
         console.error('Error loading persons from storage:', error);
         this.persons = [];
@@ -87,7 +89,7 @@ export class PersonService {
     }
   }
 
-  private savePersonsToStorage(): void {
+  saveToStorage(): void {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.persons));
     } catch (error) {
@@ -95,16 +97,15 @@ export class PersonService {
     }
   }
 
-  setSelectedPerson(person: Person): void {
+  setSelectedItem(person: Person): void {
     this.selectedPerson = person;
   }
 
-  getSelectedPerson(): Person | null {
+  getSelectedItem(): Person | null {
     return this.selectedPerson;
   }
 
-  clearSelectedPerson() {
+  clearSelectedItem() {
     this.selectedPerson = null;
   }
-
 }

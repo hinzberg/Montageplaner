@@ -1,7 +1,8 @@
 // Primary colors
 $color-primary-border: #6667AB; // Very Peri
 $color-primary: #6667AB; // Very Peri
-$color-primary-transparent: #FFFFFF80; // Very Peri
+$color-primary-transparent: #6667AB40; // Very Peri with transparency
+$color-sidebar-transparent: #FFFFFF80;
 $color-primary-negative: white;
 $color-primary-hover: #d0eaff;
 $color-primary-error: #ff4d4d;
@@ -15,6 +16,7 @@ $color-inactive: rgb(160,160,160);
 $color-reset-bg: #ffe5e5;
 $color-reset-border: #ff4d4d;
 $color-reset: #ff4d4d;
+$color-reset-transparent: #ff4d4d40;
 $color-reset-hover-bg: #ffcccc;
 $color-reset-hover-border: #ff1a1a;
 $color-reset-hover-text: #800000;

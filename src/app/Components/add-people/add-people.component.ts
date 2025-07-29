@@ -69,10 +69,10 @@ export class AddPeopleComponent implements OnInit {
 
   ngOnInit(): void {
     // Get initial persons
-    this.persons = this.personService.getPersons();
+    this.persons = this.personService.getItems();
 
     // Subscribe to updates
-    this.personService.personsUpdated.subscribe(persons => {
+    this.personService.itemsUpdated.subscribe(persons => {
       this.persons = persons;
     });
 
@@ -81,7 +81,7 @@ export class AddPeopleComponent implements OnInit {
     this.headlineTitle = 'Add new Person';
 
     // Is a selectedPerson in the PersonEditService?
-    const person = this.personService.getSelectedPerson();
+    const person = this.personService.getSelectedItem();
     if (person) {
       this.editedPerson = person;
       this.personForm.controls.firstName.setValue(person.firstName);
@@ -89,7 +89,7 @@ export class AddPeopleComponent implements OnInit {
       this.personForm.controls.profession.setValue(person.profession);
       this.personForm.controls.canBeTeamLeader.setValue(person.canBeTeamLeader);
       this.personForm.controls.isActive.setValue(person.isActive);
-      this.personService.clearSelectedPerson(); // Clear person to avoid stale data
+      this.personService.clearSelectedItem(); // Clear person to avoid stale data
       this.headlineTitle = 'Edit Person';
     }
   }
@@ -214,7 +214,7 @@ export class AddPeopleComponent implements OnInit {
     );
 
     // Add the person to the service
-    this.personService.addPerson(newPerson);
+    this.personService.addItem(newPerson);
     this.personForConfirmDialog = newPerson;
   }
 
@@ -226,7 +226,7 @@ export class AddPeopleComponent implements OnInit {
     this.editedPerson!.canBeTeamLeader = this.personForm.controls.canBeTeamLeader.value!;
     this.editedPerson!.isActive = this.personForm.controls.isActive.value!;
 
-    this.personService.updatePerson(this.editedPerson!);
+    this.personService.updateItem(this.editedPerson!);
     this.personForConfirmDialog = this.editedPerson;
     this.editedPerson = null;
   }
