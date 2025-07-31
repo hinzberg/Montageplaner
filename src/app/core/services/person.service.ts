@@ -1,8 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Person } from '../models/person.model';
 import { IEntityService} from "./IEntityService";
-
-const STORAGE_KEY = 'montageplaner_persons';
+const STORAGE_KEY = 'assembly-planer-persons';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class PersonService implements IEntityService<Person> {
   // For Editing a person, we keep a reference to the person being edited
   private selectedPerson: Person | null = null;
 
-  // This is the event emitter for the persons list
+  // This is the event emitter
   //  It's used to notify components that are subscribed to it about changes in the personnel list.
   public itemsUpdated = new EventEmitter<Person[]>();
 
