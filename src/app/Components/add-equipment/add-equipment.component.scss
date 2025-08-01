@@ -1,0 +1,37 @@
+@import '../../../styles/app-colors';
+
+.person-card {
+  padding: 16px;
+  max-width: 300px;
+  display: block;
+  margin: 20px auto;
+  border: 2px solid $color-primary-border;
+  border-radius: 6px;
+  background-color: white;
+}
+
+form
+{
+  display: inline-block;
+  text-align: left;
+  width: 25%;
+}
+
+.form {
+  input, select {
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+
+    &.invalid-input {
+      background-color: $color-primary-error-input;
+    }
+  }
+
+  .checkboxContainer {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

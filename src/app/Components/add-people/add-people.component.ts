@@ -27,7 +27,7 @@ import {basicTextValidation} from "../../shared/utils/form-validators-utils";
 export class AddPeopleComponent implements OnInit {
 
   // HeadlineTitle
-  headlineTitle = 'Add Staff';
+  headlineTitle = '';
 
   // Contains an existing person if in edit mode
   editedPerson: Person | null = null;
