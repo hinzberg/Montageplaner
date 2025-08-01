@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {PersonService} from '../../core/services/person.service';
 import {CommonModule} from '@angular/common';
+import {RandomPersonGenerator} from "../../shared/utils/random-person-generator";
 
 @Component({
   selector: 'app-maintenance',
@@ -16,5 +17,11 @@ export class MaintenanceComponent {
 
   onClearAllClicked() {
     this.personnelService.clearItems()
+  }
+
+  onAddRandomPeopleClicked() {
+    const generator = new RandomPersonGenerator();
+    const people = generator.generatePeople(15);
+    people.forEach(person => this.personnelService.addItem(person));
   }
 }

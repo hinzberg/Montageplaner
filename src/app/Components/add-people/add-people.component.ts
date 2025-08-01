@@ -14,6 +14,7 @@ import {CommonModule} from '@angular/common';
 import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
 import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
+import {basicTextValidation} from "../../shared/utils/form-validators-utils";
 
 @Component({
   selector: 'app-add-staff',
@@ -48,8 +49,8 @@ export class AddPeopleComponent implements OnInit {
   };
 
   readonly personForm = new FormGroup<PersonForm>({
-    firstName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
-    lastName: new FormControl('', {validators: [Validators.required, this.validateName()]}),
+    firstName: new FormControl('', {validators: [Validators.required, basicTextValidation()]}),
+    lastName: new FormControl('', {validators: [Validators.required, basicTextValidation()]}),
     profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
     isSelected: new FormControl(false),
     canBeTeamLeader: new FormControl(false),
@@ -92,40 +93,6 @@ export class AddPeopleComponent implements OnInit {
       this.personService.clearSelectedItem(); // Clear person to avoid stale data
       this.headlineTitle = 'Edit Person';
     }
-  }
-
-  // Custom validator for names
-  validateName() {
-
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value;
-
-      if (!value) {
-        return {required: true};
-      }
-
-      // Trim the value to check for leading/trailing spaces
-      if (value !== value.trim()) {
-        return {hasSpaces: true};
-      }
-
-      // Check if the value contains only letters and spaces
-      if (!/^[a-zA-ZäöüßÄÖÜ\s]*$/.test(value)) {
-        return {invalidCharacters: true};
-      }
-
-      // Check minimum length (2 characters)
-      if (value.length < 2) {
-        return {minlength: {requiredLength: 2, actualLength: value.length}};
-      }
-
-      // Check maximum length (50 characters)
-      if (value.length > 50) {
-        return {maxlength: {requiredLength: 50, actualLength: value.length}};
-      }
-
-      return null;
-    };
   }
 
   // Custom validator for profession
