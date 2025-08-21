@@ -1,1 +1,63 @@
+<app-toolbar>
+  <button class="toolbar-button" (click)="onNewEquipmentClicked()">Add New</button>
+</app-toolbar>
+
 <div class="pageHeadline">Manage Equipment</div>
+
+<div class="equipment-container">
+  <div *ngIf="equipments.length === 0" class="no-persons vertical-layout">
+    <div>No equipment yet.</div>
+    <button class="circle-button" (click)="onNewEquipmentClicked()">+</button>
+    <div>Why not add some?</div>
+  </div>
+
+  <table *ngIf="equipments.length > 0" class="tableContent">
+    <thead>
+    <tr>
+      <th class="tableHeader"></th>
+      <th class="tableHeader">Description</th>
+      <th class="tableHeader">Type</th>
+      <th class="tableHeader">Active</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let equipment of equipments">
+      <td class="tableCell centerCell">
+        <div>
+          <input id="selected-check-{{equipment.id}}"
+                 type="checkbox"
+                 [checked]="equipment.isSelected"
+                 (change)="toggleSelection(equipment)">
+          <label for="selected-check-{{equipment.id}}"></label>
+        </div>
+      </td>
+      <td class="tableCell" [class.inactive]="!equipment.isActive">{{ equipment.description }}</td>
+      <td class="tableCell" [class.inactive]="!equipment.isActive">{{ equipment.equipmentType }}</td>
+      <td class="tableCell centerCell" [class.inactive]="!equipment.isActive">
+        @if (equipment.isActive) {
+          YES
+        } @else {
+          NO
+        }
+      </td>
+      <td class="tableCell">
+        <div class="horizontal-layout">
+          <button class="table-button" (click)="onEditEquipmentClicked(equipment)">Edit</button>
+          <button class="table-button-red" (click)="onDeleteEquipmentClicked(equipment)">Delete</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-confirm-overlay-dialog
+    [isVisible]="showConfirmDialog"
+    [title]="dialogTitle"
+    [message]="dialogMessage"
+    [useInnerHTML]="true"
+    (confirmEvent)="onConfirmDelete()"
+    (cancelEvent)="onCancelDelete()">
+  </app-confirm-overlay-dialog>
+
+</div>

@@ -1,0 +1,60 @@
+@import '../app-colors';
+
+.tableContent {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $color-primary-border;
+  border: 2px solid $color-primary-border;
+
+  .tableHeader {
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    border-right: 2px solid white;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+  }
+
+  .tableCell {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid $color-primary;
+    background-color: white;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
+
+  .centerCell {
+    text-align: center;
+  }
+
+  .inactive {
+    color: $color-inactive;
+  }
+
+  .tableCellActions {
+    text-align: left;
+    padding-left: 12px;
+  }
+
+  /*
+  .tableCell:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  */
+
+  .delete-button {
+    color: $color-reset;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #c82333;
+    }
+
+    &:active {
+      background-color: #bd2130;
+    }
+  }
+}

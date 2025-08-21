@@ -13,8 +13,8 @@ import {ToFormControls} from "../../shared/utils/form-utils";
 import {Equipment} from "../../core/models/equipment.model";
 import {EquipmentType} from "../../core/models/equipment-type.enum";
 import {basicTextValidation} from "../../shared/utils/form-validators-utils";
-import {PersonService} from "../../core/services/person.service";
 import {EquipmentService} from "../../core/services/equipment.service";
+import {EquipmentAddedOverlayDialogComponent} from "./equipment-added-overlay-dialog/equipment-added-overlay-dialog.component";
 
 @Component({
   selector: 'app-add-equipment',
@@ -23,7 +23,8 @@ import {EquipmentService} from "../../core/services/equipment.service";
     FormsModule,
     NgForOf,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EquipmentAddedOverlayDialogComponent
   ],
   templateUrl: './add-equipment.component.html',
   styleUrl: './add-equipment.component.scss'
@@ -97,12 +98,29 @@ export class AddEquipmentComponent implements OnInit {
     });
   }
 
-
-
-
   ngOnInit(): void {
+    // Get initial persons
+    this.equipments = this.equipmentService.getItems();
+
+    // Subscribe to updates
+    this.equipmentService.itemsUpdated.subscribe(equipment => {
+      this.equipments = equipment;
+    });
+
+    // Set some default values for the page
     this.editedEquipment = null;
     this.headlineTitle = 'Add new Equipment';
+
+    // Is a selectedEquipment in the Service?
+    const equipment = this.equipmentService.getSelectedItem();
+    if (equipment) {
+      this.editedEquipment = equipment;
+      this.equipmentForm.controls.description.setValue(equipment.description);
+      this.equipmentForm.controls.equipmentType.setValue(equipment.equipmentType);
+      this.equipmentForm.controls.isActive.setValue(equipment.isActive);
+      this.equipmentService.clearSelectedItem(); // Clear to avoid stale data
+      this.headlineTitle = 'Edit Equipment';
+    }
   }
 
   // Custom validator for equipment type
@@ -118,7 +136,66 @@ export class AddEquipmentComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.equipmentForm.valid) {
+      // Mark all fields as touched to trigger validation messages
+      Object.keys(this.equipmentForm.controls).forEach(key => {
+        const control = this.equipmentForm.get(key);
+        control?.markAsTouched();
+      });
 
+      // Update validation messages
+      this.updateValidationMessages();
+
+      // If the form is still valid after marking as touched
+      if (this.equipmentForm.valid) {
+
+        if (this.editedEquipment != null) {
+          this.updateEquipment()
+          this.titleForConfirmDialog = 'Equipment updated';
+        } else {
+          this.addNewEquipment();
+          this.titleForConfirmDialog = 'Equipment added';
+        }
+
+        this.showConfirmDialog = true;
+      }
+    } else {
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.equipmentForm.controls).forEach(key => {
+        const control = this.equipmentForm.get(key);
+        control?.markAsTouched();
+      });
+      this.updateValidationMessages();
+    }
+  }
+
+  addNewEquipment(): void {
+    // Create a new Person instance
+    const newEquipment = new Equipment(
+      this.equipmentForm.controls.description.value!.trim(),
+      this.equipmentForm.controls.equipmentType.value!,
+      this.equipmentForm.controls.isActive.value!,
+    );
+
+    // Add the person to the service
+    this.equipmentService.addItem(newEquipment);
+    this.equipmentForConfirmDialog = newEquipment;
+  }
+
+  updateEquipment(): void {
+    // Update the person with the edited values
+    this.editedEquipment!.description = this.equipmentForm.controls.description.value!.trim();
+    this.editedEquipment!.equipmentType = this.equipmentForm.controls.equipmentType.value!;
+    this.editedEquipment!.isActive = this.equipmentForm.controls.isActive.value!;
+
+    this.equipmentService.updateItem(this.editedEquipment!);
+    this.equipmentForConfirmDialog = this.editedEquipment;
+    this.editedEquipment = null;
+  }
+
+  onConfirmOkDialog(): void {
+    this.onReset()
+    this.showConfirmDialog = false;
   }
 
   onReset(): void {

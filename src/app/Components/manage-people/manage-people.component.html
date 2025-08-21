@@ -10,7 +10,7 @@
     <div>Why not add some?</div>
   </div>
 
-  <table *ngIf="persons.length > 0" class="personnel-table">
+  <table *ngIf="persons.length > 0" class="tableContent">
     <thead>
     <tr>
       <th class="tableHeader"></th>
@@ -24,7 +24,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let person of persons">
-      <td class="tableCell">
+      <td class="tableCell centerCell">
         <div>
           <input id="selected-check-{{person.id}}"
                  type="checkbox"
@@ -36,14 +36,14 @@
       <td class="tableCell" [class.inactive]="!person.isActive">{{ person.firstName }}</td>
       <td class="tableCell" [class.inactive]="!person.isActive">{{ person.lastName }}</td>
       <td class="tableCell" [class.inactive]="!person.isActive">{{ person.profession }}</td>
-      <td class="tableCell" [class.inactive]="!person.isActive">
+      <td class="tableCell centerCell" [class.inactive]="!person.isActive">
         @if (person.canBeTeamLeader) {
           YES
         } @else {
           NO
         }
       </td>
-      <td class="tableCell" [class.inactive]="!person.isActive">
+      <td class="tableCell centerCell" [class.inactive]="!person.isActive">
         @if (person.isActive) {
           YES
         } @else {

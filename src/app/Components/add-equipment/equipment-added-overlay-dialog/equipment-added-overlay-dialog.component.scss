@@ -1,0 +1,23 @@
+@import '../../../../styles/app-colors';
+
+.dialogLabel {
+  font-size: 1.0rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.dialogLabelBold {
+  font-size: 1.0rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: $color-dim-text;
+}
+
+.horizontal-stack {
+  display: flex;
+  flex-direction: row;
+  align-items: center; // Vertikale Zentrierung
+  gap: 10px; // Abstand zwischen den Elementen
+}

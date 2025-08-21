@@ -51,7 +51,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   }
 
   onNewPersonClicked(): void {
-    this.router.navigate(['/addPeople']);
+    let navigateSuccess = this.router.navigate(['/addPeople']);
   }
 
   onDeletePersonClicked(person: Person): void {
