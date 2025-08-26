@@ -44,7 +44,6 @@ export class AddEquipmentComponent implements OnInit {
 
   equipmentTypes = Object.values(EquipmentType);
   formErrors: { [key: string]: string } = {};
-  equipments: Equipment[] = [];
 
   // Field name mapping for user-friendly error messages
   private fieldNames: { [key: string]: string } = {
@@ -99,13 +98,6 @@ export class AddEquipmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get initial persons
-    this.equipments = this.equipmentService.getItems();
-
-    // Subscribe to updates
-    this.equipmentService.itemsUpdated.subscribe(equipment => {
-      this.equipments = equipment;
-    });
 
     // Set some default values for the page
     this.editedEquipment = null;

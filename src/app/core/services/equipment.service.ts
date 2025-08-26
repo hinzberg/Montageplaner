@@ -1,75 +1,75 @@
-import {Injectable, EventEmitter} from '@angular/core';
-import {Equipment} from '../models/equipment.model';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Equipment } from '../models/equipment.model';
+
 const STORAGE_KEY = 'assembly-planer-equipments';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class EquipmentService {
-
-  // This is actual the list of equipment
-  private equipments: Equipment[] = [];
 
   // For Editing equipment, we keep a reference to the equipment being edited
   private selectedEquipment: Equipment | null = null;
 
-  // This is the event emitter
-  // It's used to notify components that are subscribed to it about changes in the equipment list.
-  public itemsUpdated = new EventEmitter<Equipment[]>();
+  // Single source of truth - the BehaviorSubject holds the current state
+  private equipmentsSubject = new BehaviorSubject<Equipment[]>([]);
 
   constructor() {
     // Load items from local storage on service initialization
     this.loadFromStorage();
   }
 
-  // Get all
-  getItems(): Equipment[] {
-    return [...this.equipments];
+  // Get all equipment as an Observable
+  getItems(): Observable<Equipment[]> {
+    return this.equipmentsSubject.asObservable();
   }
 
-  // Add a new
+  // Get current snapshot of equipment (useful when you need the array directly)
+  getItemsSnapshot(): Equipment[] {
+    return this.equipmentsSubject.value;
+  }
+
+  // Add a new equipment
   addItem(equipment: Equipment): void {
-    this.equipments.push(equipment);
-    this.itemsUpdated.emit([...this.equipments]);
+    const currentEquipments = this.equipmentsSubject.value;
+    const updatedEquipments = [...currentEquipments, equipment];
+    this.equipmentsSubject.next(updatedEquipments);
     this.saveToStorage();
   }
 
-  // Remove by id
+  // Remove equipment by id
   removeItem(id: string): void {
-    const index = this.equipments.findIndex(p => p.id === id);
-    if (index !== -1) {
-      this.equipments.splice(index, 1);
-      this.itemsUpdated.emit([...this.equipments]);
-      this.saveToStorage();
-    }
-  }
-
-  // Update by id
-  updateItem(updatedEquipment: Equipment): void {
-    const index = this.equipments.findIndex(p => p.id === updatedEquipment.id);
-    if (index !== -1) {
-      this.equipments[index] = updatedEquipment;
-      this.itemsUpdated.emit([...this.equipments]);
-      this.saveToStorage();
-    }
-  }
-
-  // Get by id
-  getItem(id: string): Equipment | undefined {
-    return this.equipments.find(p => p.id === id);
-  }
-
-  // Clear all
-  clearItems(): void {
-    this.equipments = [];
-    this.itemsUpdated.emit([]);
+    const currentEquipments = this.equipmentsSubject.value;
+    const updatedEquipments = currentEquipments.filter(p => p.id !== id);
+    this.equipmentsSubject.next(updatedEquipments);
     this.saveToStorage();
   }
 
-  // Gets current number of items
+  // Update equipment by id
+  updateItem(updatedEquipment: Equipment): void {
+    const currentEquipments = this.equipmentsSubject.value;
+    const updatedEquipments = currentEquipments.map(p => 
+      p.id === updatedEquipment.id ? updatedEquipment : p
+    );
+    this.equipmentsSubject.next(updatedEquipments);
+    this.saveToStorage();
+  }
+
+  // Get equipment by id
+  getItem(id: string): Equipment | undefined {
+    return this.equipmentsSubject.value.find(p => p.id === id);
+  }
+
+  // Clear all equipment
+  clearItems(): void {
+    this.equipmentsSubject.next([]);
+    this.saveToStorage();
+  }
+
+  // Gets current number of equipment
   getItemCount(): number {
-    return this.equipments.length;
+    return this.equipmentsSubject.value.length;
   }
 
   loadFromStorage(): void {
@@ -78,18 +78,20 @@ export class EquipmentService {
       try {
         // Parse the stored JSON and recreate items
         const parsedEquipments = JSON.parse(storedEquipments);
-        this.equipments = parsedEquipments.map((p: any) => new Equipment(p.description, p.equipmentType, p.isActive));
-        this.itemsUpdated.emit([...this.equipments]);
+        const equipments = parsedEquipments.map((p: any) => 
+          new Equipment(p.description, p.equipmentType, p.isActive)
+        );
+        this.equipmentsSubject.next(equipments);
       } catch (error) {
         console.error('Error loading equipments from storage:', error);
-        this.equipments = [];
+        this.equipmentsSubject.next([]);
       }
     }
   }
 
   saveToStorage(): void {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.equipments));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.equipmentsSubject.value));
     } catch (error) {
       console.error('Error saving equipments to storage:', error);
     }
