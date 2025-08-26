@@ -3,62 +3,67 @@
 </app-toolbar>
 
 <div class="pageHeadline">Manage People</div>
-<div class="personnel-container">
-  <div *ngIf="persons.length === 0" class="no-persons vertical-layout">
-    <div>No people yet.</div>
-    <button class="circle-button" (click)="onNewPersonClicked()">+</button>
-    <div>Why not add some?</div>
-  </div>
 
-  <table *ngIf="persons.length > 0" class="tableContent">
-    <thead>
-    <tr>
-      <th class="tableHeader"></th>
-      <th class="tableHeader">First Name</th>
-      <th class="tableHeader">Last Name</th>
-      <th class="tableHeader">Profession</th>
-      <th class="tableHeader">Leader</th>
-      <th class="tableHeader">Active</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let person of persons">
-      <td class="tableCell centerCell">
-        <div>
-          <input id="selected-check-{{person.id}}"
-                 type="checkbox"
-                 [checked]="person.isSelected"
-                 (change)="toggleSelection(person)">
-          <label for="selected-check-{{person.id}}"></label>
-        </div>
-      </td>
-      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.firstName }}</td>
-      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.lastName }}</td>
-      <td class="tableCell" [class.inactive]="!person.isActive">{{ person.profession }}</td>
-      <td class="tableCell centerCell" [class.inactive]="!person.isActive">
-        @if (person.canBeTeamLeader) {
-          YES
-        } @else {
-          NO
-        }
-      </td>
-      <td class="tableCell centerCell" [class.inactive]="!person.isActive">
-        @if (person.isActive) {
-          YES
-        } @else {
-          NO
-        }
-      </td>
-      <td class="tableCell">
-      <div class="horizontal-layout">
-        <button class="table-button" (click)="onEditPersonClicked(person)">Edit</button>
-        <button class="table-button-red" (click)="onDeletePersonClicked(person)">Delete</button>
-      </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="personnel-container">
+
+  <div *ngIf="(persons$ | async) as persons; else noData">
+    <ng-container *ngIf="persons.length > 0; else noData">
+      <app-search-bar (search)="search$.next($event)"
+                      [debounce]="300"
+                      placeholder="Search people"></app-search-bar>
+
+      <table class="tableContent">
+        <thead>
+        <tr>
+          <th class="tableHeader"></th>
+          <th class="tableHeader">First Name</th>
+          <th class="tableHeader">Last Name</th>
+          <th class="tableHeader">Profession</th>
+          <th class="tableHeader">Leader</th>
+          <th class="tableHeader">Active</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let person of persons$ | async; index as i">
+          <td class="tableCell centerCell">
+            <div>
+              <input id="selected-check-{{person.id}}"
+                     type="checkbox"
+                     [checked]="person.isSelected"
+                     (change)="toggleSelection(person)">
+              <label for="selected-check-{{person.id}}"></label>
+            </div>
+          </td>
+          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.firstName }}</td>
+          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.lastName }}</td>
+          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.profession }}</td>
+          <td class="tableCell centerCell" [class.inactive]="!person.isActive">
+            @if (person.canBeTeamLeader) {
+              YES
+            } @else {
+              NO
+            }
+          </td>
+          <td class="tableCell centerCell" [class.inactive]="!person.isActive">
+            @if (person.isActive) {
+              YES
+            } @else {
+              NO
+            }
+          </td>
+          <td class="tableCell">
+            <div class="horizontal-layout">
+              <button class="table-button" (click)="onEditPersonClicked(person)">Edit</button>
+              <button class="table-button-red" (click)="onDeletePersonClicked(person)">Delete</button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </ng-container>
+  </div>
 
   <app-confirm-overlay-dialog
     [isVisible]="showConfirmDialog"
@@ -68,5 +73,14 @@
     (confirmEvent)="onConfirmDelete()"
     (cancelEvent)="onCancelDelete()">
   </app-confirm-overlay-dialog>
+
+  <ng-template #noData>
+    <div class="no-persons vertical-layout">
+      <div>No people yet.</div>
+      <button class="circle-button" (click)="onNewPersonClicked()">+</button>
+      <div>Why not add some?</div>
+    </div>
+  </ng-template>
+
 </div>
 

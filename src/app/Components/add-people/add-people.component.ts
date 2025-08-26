@@ -15,6 +15,7 @@ import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
 import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
 import {basicTextValidation} from "../../shared/utils/form-validators-utils";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-add-staff',
@@ -39,7 +40,6 @@ export class AddPeopleComponent implements OnInit {
 
   professions = Object.values(Profession);
   formErrors: { [key: string]: string } = {};
-  persons: Person[] = [];
 
   // Field name mapping for user-friendly error messages
   private fieldNames: { [key: string]: string } = {
@@ -69,13 +69,6 @@ export class AddPeopleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get initial persons
-    this.persons = this.personService.getItems();
-
-    // Subscribe to updates
-    this.personService.itemsUpdated.subscribe(persons => {
-      this.persons = persons;
-    });
 
     // Set some default values for the page
     this.editedPerson = null;

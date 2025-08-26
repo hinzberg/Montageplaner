@@ -1,12 +1,13 @@
 <div class="glassPanel sidebar">
+
   <a routerLink="/splash">
     <div class="sidebarHeader">
       Assembly Planning
     </div>
   </a>
   <hr>
-  @for (item of items; track $index) {
 
+  @for (item of items; track $index) {
     @if (item.type === 'group') {
       <app-sidebar-group>{{ item.label }}</app-sidebar-group>
     }

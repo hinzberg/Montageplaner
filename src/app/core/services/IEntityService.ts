@@ -1,11 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { Observable } from "rxjs/internal/Observable";
 
 export interface IEntityService<T> {
-  // Event emitter that emits when the collection updates (array of T)
-  itemsUpdated: EventEmitter<T[]>;
 
   // Get all items as an array copy
-  getItems(): T[];
+  getItems(): Observable<T[]>;
 
   // Add an item
   addItem(item: T): void;
