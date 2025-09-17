@@ -1,9 +1,8 @@
-<div class="search">
+<div class="search-bar-container">
   <input
     type="search"
     [placeholder]="placeholder"
     [formControl]="control"
     (blur)="touch()"
   />
-  <button *ngIf="clearable && control.value" type="button" (click)="clear()">✕</button>
 </div>

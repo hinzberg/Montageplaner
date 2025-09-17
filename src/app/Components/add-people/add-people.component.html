@@ -1,8 +1,8 @@
 <h2 class="pageHeadline">{{headlineTitle}}</h2>
 
 <div class="form">
-  <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
 
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()" novalidate>
     <div>
       <label class="formLabel" for="firstName">First Name</label>
       <input id="firstName" formControlName="firstName" [class.invalid-input]="formErrors['firstName']"/>

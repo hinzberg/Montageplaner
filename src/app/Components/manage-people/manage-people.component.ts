@@ -34,6 +34,8 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   dialogTitle = 'Delete Person';
   dialogMessage = '';
 
+
+
   /*
   filteredPersons$: Observable<Person[]> = combineLatest([
     this.persons,
@@ -51,6 +53,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
     })
   );
 */
+
   constructor(private router: Router,
               private personService: PersonService) {
 
