@@ -34,26 +34,6 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   dialogTitle = 'Delete Person';
   dialogMessage = '';
 
-
-
-  /*
-  filteredPersons$: Observable<Person[]> = combineLatest([
-    this.persons,
-    this.search$.pipe(startWith(''))
-  ]).pipe(
-    map(([persons, term]) => {   // <-- name it `persons` (array)
-      const t = (term || '').trim().toLowerCase();
-      if (!t)
-        return persons;
-
-      return this.persons.filter(p =>
-        p.name.toLowerCase().includes(t) ||
-        p.firstName.toLowerCase().includes(t)
-      );
-    })
-  );
-*/
-
   constructor(private router: Router,
               private personService: PersonService) {
 
@@ -62,8 +42,32 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Get initial list of persons
-    this.persons$ = this.personService.getItems();
+    // Get initial list of persons and combine with search for filtering
+    this.persons$ = combineLatest([
+      this.personService.getItems(),
+      this.search$.pipe(startWith(''))
+    ]).pipe(
+      map(([persons, searchTerm]) => {
+        console.log('Filtering with search term:', searchTerm, 'Type:', typeof searchTerm); // Debug log
+        
+        // Ensure searchTerm is a string
+        const term = (typeof searchTerm === 'string' ? searchTerm : '').trim().toLowerCase();
+        
+        if (!term || term === '') {
+          console.log('Returning all persons:', persons.length); // Debug log
+          return persons;
+        }
+        
+        const filtered = persons.filter(person =>
+          person.firstName.toLowerCase().includes(term) ||
+          person.lastName.toLowerCase().includes(term) ||
+          person.profession.toLowerCase().includes(term)
+        );
+        
+        console.log('Filtered persons:', filtered.length); // Debug log
+        return filtered;
+      })
+    );
   }
 
   toggleSelection(person: Person): void {
@@ -104,6 +108,11 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchTerm: string): void {
+    // This method is called when the search term is changed
+    // But it is not really needed, because the search term is already in the search$ subject
+    // and the search$ subject is already subscribed to the search term
+    // so when the search term is changed, the search$ subject will emit the new search term
+    // and the persons$ observable will be filtered accordingly
     console.log('Search term:', searchTerm);
     this.search$.next(searchTerm);
   }

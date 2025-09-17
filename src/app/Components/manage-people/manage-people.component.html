@@ -6,19 +6,18 @@
 
 <div class="personnel-container">
 
+  <app-search-bar (search)="onSearch($event)"
+                  [debounce]="300"
+                  placeholder="Search people">
+  </app-search-bar>
+
+  <!-- Display current search content -->
+  <div class="search-display" *ngIf="search$.value">
+    <p>Searching for: <strong>{{ search$.value }}</strong></p>
+  </div>
+
   <div *ngIf="(persons$ | async) as persons; else noData">
     <ng-container *ngIf="persons.length > 0; else noData">
-
-      <app-search-bar (search)="onSearch($event)"
-                      [debounce]="300"
-                      placeholder="Search people">
-      </app-search-bar>
-
-      <!-- Display current search content -->
-      <div class="search-display" *ngIf="search$.value">
-        <p>Searching for: <strong>{{ search$.value }}</strong></p>
-      </div>
-
       <table class="tableContent">
         <thead>
         <tr>
