@@ -102,4 +102,9 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
+
+  onSearch(searchTerm: string): void {
+    console.log('Search term:', searchTerm);
+    this.search$.next(searchTerm);
+  }
 }
