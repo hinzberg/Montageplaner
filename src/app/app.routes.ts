@@ -8,11 +8,12 @@ import { ManagePeopleComponent } from "./Components/manage-people/manage-people.
 import { ManageEquipmentComponent } from "./Components/manage-equipment/manage-equipment.component";
 import { PlanAssemblyComponent} from "./Components/plan-assembly/plan-assembly.component";
 import { MaintenanceComponent} from "./Components/maintenance/maintenance.component";
-// import { PersonFormComponent} from "./playground/person-form/person-form.component";
+import { ListParentComponent } from "./playground/sample-list-child/list-parent/list-parent.component";
 
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
   { path: '', component: SplashComponent },
+  // { path: '', component: ListParentComponent }, // Playground Sample list-child
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },
