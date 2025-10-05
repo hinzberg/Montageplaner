@@ -59,6 +59,27 @@ button {
     }
   }
 
+  &.message-box-button {
+    color: $color-primary-secondary-text;
+    border: 1px solid $color-primary-negative;
+    height: 30px;
+
+    &:hover {
+      background-color: $color-primary-negative;
+      border-color: $color-primary-negative;
+      color: $color-primary;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: $color-primary-negative;
+      border-color: $color-primary-negative;
+      color: $color-primary;
+    }
+  }
+
+
+
   &.circle-button {
     height: 40px;
     width: 40px;

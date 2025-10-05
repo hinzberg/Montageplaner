@@ -1,0 +1,15 @@
+@if (isOpen) {
+<div class="dialog-overlay">
+  <div class="glassPanel message-box">
+    <div class="message-header">
+      <div class="message-title">{{ title }}</div>
+    </div>
+    <div class="message-content">
+      <ng-content></ng-content>
+    </div>
+    <div class="message-footer">
+      <button class="message-box-button" (click)="closeDialog()">OK</button>
+    </div>
+  </div>
+</div>
+}

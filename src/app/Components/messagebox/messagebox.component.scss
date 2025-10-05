@@ -1,0 +1,43 @@
+@import '../../../styles/app-colors';
+
+.message-box {
+  border-radius: 20px;
+  padding: 0px;
+  min-width: 400px;
+  max-width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  backdrop-filter: blur(10px);
+}
+
+.message-header {
+  background-color: $color-primary;
+  height: 40px;
+  border-radius: 20px 20px 0 0;
+  display: flex;              /* enables flexbox */
+  justify-content: center;    /* centers horizontally */
+  align-items: center;        /* centers vertically */
+}
+
+.message-title {
+  color: $color-primary-negative;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+.message-content {
+  display: flex;              /* enables flexbox */
+  justify-content: center;    /* centers horizontally */
+  align-items: center;        /* centers vertically */
+  min-height: 200px;
+}
+
+.message-footer {
+  background-color: $color-primary;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 20px 20px;
+}
+

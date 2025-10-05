@@ -13,7 +13,7 @@ import { DialogParentComponent} from "./playground/sample-dialog-open/dialog-par
 import { MessageboxComponent} from "./Components/messagebox/messagebox.component";
 
 export const routes: Routes = [
-  // { path: '', component: MessageboxComponent },
+  { path: '', component: MessageboxComponent },
   // The path with an empty name is the default page and will be loaded automatically at startup.
   { path: '', component: SplashComponent },
   //{ path: '', component: DialogParentComponent },

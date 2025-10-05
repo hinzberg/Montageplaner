@@ -1,0 +1,16 @@
+@if (isOpen) {
+  <div class="dialog-overlay">
+   <!-- Modal content -->
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <h2>{{title}}</h2>
+      </div>
+      <div class="dialog-content-box">
+        <ng-content></ng-content>
+      </div>
+      <div class="dialog-footer">
+        <span class="span-button" (click)="closeDialog()">Close Dialog</span>
+      </div>
+    </div>
+  </div>
+}

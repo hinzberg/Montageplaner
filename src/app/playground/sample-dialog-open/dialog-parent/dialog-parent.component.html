@@ -1,0 +1,6 @@
+<h1>Dialog Demo</h1>
+<button (click)="showDialog = true">Open dialog</button>
+<app-dialog title="Demo Dialog Header" [isOpen]="showDialog"
+            (onClose)="showDialog = false">
+  This is the dialog content.<br>The dialog can be closed by clicking 'Close Dialog' button
+</app-dialog>
