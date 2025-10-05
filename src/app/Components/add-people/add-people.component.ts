@@ -13,14 +13,14 @@ import {
 import {CommonModule} from '@angular/common';
 import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
-import {PeopleAddedOverlayDialogComponent} from "./people-added-overlay-dialog/people-added-dialog.component";
 import {basicTextValidation} from "../../shared/utils/form-validators-utils";
-import {Observable} from "rxjs";
+import { ChangeDetectorRef } from '@angular/core';
+import {MessageboxComponent} from "../messagebox/messagebox.component";
 
 @Component({
   selector: 'app-add-staff',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, PeopleAddedOverlayDialogComponent],
+  imports: [ReactiveFormsModule, CommonModule, MessageboxComponent],
   templateUrl: './add-people.component.html',
   styleUrl: './add-people.component.scss'
 })
@@ -60,8 +60,8 @@ export class AddPeopleComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private personService: PersonService,
+    private cdr: ChangeDetectorRef
   ) {
-
     // Subscribe to form value changes to update validation messages
     this.personForm.valueChanges.subscribe(() => {
       this.updateValidationMessages();
@@ -192,8 +192,10 @@ export class AddPeopleComponent implements OnInit {
   }
 
   onConfirmOkDialog(): void {
-    this.onReset()
     this.showConfirmDialog = false;
+    this.cdr.detectChanges();
+    console.log('Dialog state now:', this.showConfirmDialog);
+    this.onReset();
   }
 
   onReset(): void {

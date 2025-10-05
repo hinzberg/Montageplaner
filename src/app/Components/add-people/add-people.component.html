@@ -1,4 +1,4 @@
-<h2 class="pageHeadline">{{headlineTitle}}</h2>
+<h2 class="pageHeadline">{{ headlineTitle }}</h2>
 
 <div class="form">
 
@@ -44,12 +44,26 @@
   </form>
 
   <!-- Show the submitted person -->
-  <app-people-added-overlay-dialog
-    [isVisible]="showConfirmDialog"
-    [submittedPerson]="personForConfirmDialog"
-    [title]="titleForConfirmDialog"
-    (ok)="onConfirmOkDialog()">
-  </app-people-added-overlay-dialog>
+  <app-messagebox [title]="titleForConfirmDialog"
+                  [isOpen]="showConfirmDialog"
+                  (onClose)="onConfirmOkDialog()">
+    @if (personForConfirmDialog) {
+    <div class="vertical-stack">
+      <div class="horizontal-stack">
+        <div class="dialogLabelBold">First Name:</div>
+        <div class="dialogLabel"> {{ personForConfirmDialog!.firstName }}</div>
+      </div>
+      <div class="horizontal-stack">
+        <div class="dialogLabelBold">Last Name:</div>
+        <div class="dialogLabel"> {{ personForConfirmDialog!.lastName }}</div>
+      </div>
+      <div class="horizontal-stack">
+        <div class="dialogLabelBold">Profession:</div>
+        <div class="dialogLabel"> {{ personForConfirmDialog!.profession }}</div>
+      </div>
+    </div>
+    }
+  </app-messagebox>
 
 </div>
 
