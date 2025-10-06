@@ -34,12 +34,22 @@
     </div>
   </form>
 
-  <!-- Show the submitted equipment -->
-  <app-equipment-added-overlay-dialog
-    [isVisible]="showConfirmDialog"
-    [submittedEquipment]="equipmentForConfirmDialog"
-    [title]="titleForConfirmDialog"
-    (ok)="onConfirmOkDialog()">
-  </app-equipment-added-overlay-dialog>
+  <!-- Show the submitted person in a messagebox overlay -->
+  <app-messagebox [title]="titleForConfirmDialog"
+                  [isVisible]="showConfirmDialog"
+                  (onOkClose)="onConfirmOkDialog()">
+    @if (equipmentForConfirmDialog) {
+      <div class="vertical-stack">
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Description:</div>
+          <div class="dialogContent"> {{ equipmentForConfirmDialog.description }}</div>
+        </div>
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Type:</div>
+          <div class="dialogContent"> {{ equipmentForConfirmDialog?.equipmentType }}</div>
+        </div>
+      </div>
+    }
+  </app-messagebox>
 
 </div>

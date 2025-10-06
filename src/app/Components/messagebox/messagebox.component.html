@@ -1,4 +1,4 @@
-@if (isOpen) {
+@if (isVisible) {
 <div class="dialog-overlay">
   <div class="glassPanel message-box">
     <div class="message-header">
@@ -8,7 +8,7 @@
       <ng-content></ng-content>
     </div>
     <div class="message-footer">
-      <button class="message-box-button" (click)="closeDialog()">OK</button>
+      <button class="message-box-button" (click)="closeOkDialog()">OK</button>
     </div>
   </div>
 </div>

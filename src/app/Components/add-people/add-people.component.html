@@ -43,23 +43,23 @@
     </div>
   </form>
 
-  <!-- Show the submitted person -->
+  <!-- Show the submitted person in a messagebox overlay -->
   <app-messagebox [title]="titleForConfirmDialog"
-                  [isOpen]="showConfirmDialog"
-                  (onClose)="onConfirmOkDialog()">
+                  [isVisible]="showConfirmDialog"
+                  (onOkClose)="onConfirmOkDialog()">
     @if (personForConfirmDialog) {
     <div class="vertical-stack">
       <div class="horizontal-stack">
-        <div class="dialogLabelBold">First Name:</div>
-        <div class="dialogLabel"> {{ personForConfirmDialog!.firstName }}</div>
+        <div class="dialogLabel">First Name</div>
+        <div class="dialogContent"> {{ personForConfirmDialog!.firstName }}</div>
       </div>
       <div class="horizontal-stack">
-        <div class="dialogLabelBold">Last Name:</div>
-        <div class="dialogLabel"> {{ personForConfirmDialog!.lastName }}</div>
+        <div class="dialogLabel">Last Name</div>
+        <div class="dialogContent"> {{ personForConfirmDialog!.lastName }}</div>
       </div>
       <div class="horizontal-stack">
-        <div class="dialogLabelBold">Profession:</div>
-        <div class="dialogLabel"> {{ personForConfirmDialog!.profession }}</div>
+        <div class="dialogLabel">Profession</div>
+        <div class="dialogContent"> {{ personForConfirmDialog!.profession }}</div>
       </div>
     </div>
     }

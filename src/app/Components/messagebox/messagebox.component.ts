@@ -10,14 +10,13 @@ import {NgIf} from "@angular/common";
   templateUrl: './messagebox.component.html',
   styleUrl: './messagebox.component.scss'
 })
+
 export class MessageboxComponent {
   @Input() title = "Messagebox";
-  @Input() isOpen = false;
-  @Output() onClose = new EventEmitter<boolean>();
+  @Input() isVisible = false;
+  @Output() onOkClose = new EventEmitter<boolean>();
 
-  closeDialog(): void {
-    this.onClose.emit(true);
+  closeOkDialog(): void {
+    this.onOkClose.emit(true);
   }
 }
-
-

@@ -14,7 +14,7 @@ import {Equipment} from "../../core/models/equipment.model";
 import {EquipmentType} from "../../core/models/equipment-type.enum";
 import {basicTextValidation} from "../../shared/utils/form-validators-utils";
 import {EquipmentService} from "../../core/services/equipment.service";
-import {EquipmentAddedOverlayDialogComponent} from "./equipment-added-overlay-dialog/equipment-added-overlay-dialog.component";
+import {MessageboxComponent} from "../messagebox/messagebox.component";
 
 @Component({
   selector: 'app-add-equipment',
@@ -24,7 +24,7 @@ import {EquipmentAddedOverlayDialogComponent} from "./equipment-added-overlay-di
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    EquipmentAddedOverlayDialogComponent
+    MessageboxComponent
   ],
   templateUrl: './add-equipment.component.html',
   styleUrl: './add-equipment.component.scss'
