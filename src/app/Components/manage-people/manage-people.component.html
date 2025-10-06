@@ -71,14 +71,22 @@
     </ng-container>
   </div>
 
-  <app-confirm-overlay-dialog
+  <!--app-confirm-overlay-dialog
     [isVisible]="showConfirmDialog"
     [title]="dialogTitle"
     [message]="dialogMessage"
     [useInnerHTML]="true"
     (confirmEvent)="onConfirmDelete()"
     (cancelEvent)="onCancelDelete()">
-  </app-confirm-overlay-dialog>
+  </app-confirm-overlay-dialog-->
+
+  <!-- Show the submitted person in a messagebox overlay -->
+  <app-questionbox [title]="dialogTitle"
+                  [isVisible]="showConfirmDialog"
+                  (onOkClose)="onConfirmDelete()"
+                  (onCancelClose)="onCancelDelete()">
+    {{dialogMessage}}
+  </app-questionbox>
 
   <ng-template #noData>
     <div class="no-persons vertical-layout">

@@ -60,23 +60,46 @@ button {
   }
 
   &.message-box-button {
-    color: $color-primary-secondary-text;
+    background-color: $color-primary-negative;
     border: 1px solid $color-primary-negative;
-    height: 30px;
+    color: $color-primary;
+    height: 28px;
 
     &:hover {
-      background-color: $color-primary-negative;
+      background-color: $color-background-blue;
       border-color: $color-primary-negative;
       color: $color-primary;
     }
 
     &:focus {
       outline: none;
-      background-color: $color-primary-negative;
+      background-color: $color-background-blue;
       border-color: $color-primary-negative;
       color: $color-primary;
     }
   }
+
+  &.message-box-cancel-button {
+    background-color: $color-reset-hover-text;
+    border: 1px solid $color-reset-hover-text;
+    color: $color-primary-negative;
+    height: 28px;
+
+    &:hover {
+      background-color: $color-reset-hover-bg;
+      border-color: $color-reset;
+      color: $color-primary-negative;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: $color-reset-hover-bg;
+      border-color: $color-reset;
+      color: $color-primary-negative;
+    }
+  }
+
+
 
 
 

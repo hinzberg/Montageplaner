@@ -10,6 +10,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SearchBarComponent} from "../search-bar/search-bar.component";
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import {MessageboxComponent} from "../messagebox/messagebox.component";
+import {QuestionboxComponent} from "../questionbox/questionbox.component";
 
 @Component({
   selector: 'app-manage-people',
@@ -19,7 +21,10 @@ import { map, startWith } from 'rxjs/operators';
     ConfirmOverlayDialogComponent,
     ToolbarComponent,
     ReactiveFormsModule,
-    SearchBarComponent],
+    SearchBarComponent,
+    MessageboxComponent,
+    QuestionboxComponent
+  ],
   templateUrl: './manage-people.component.html',
   styleUrl: './manage-people.component.scss'
 })
@@ -49,21 +54,21 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
     ]).pipe(
       map(([persons, searchTerm]) => {
         console.log('Filtering with search term:', searchTerm, 'Type:', typeof searchTerm); // Debug log
-        
+
         // Ensure searchTerm is a string
         const term = (typeof searchTerm === 'string' ? searchTerm : '').trim().toLowerCase();
-        
+
         if (!term || term === '') {
           console.log('Returning all persons:', persons.length); // Debug log
           return persons;
         }
-        
+
         const filtered = persons.filter(person =>
           person.firstName.toLowerCase().includes(term) ||
           person.lastName.toLowerCase().includes(term) ||
           person.profession.toLowerCase().includes(term)
         );
-        
+
         console.log('Filtered persons:', filtered.length); // Debug log
         return filtered;
       })
