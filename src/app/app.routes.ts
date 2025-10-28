@@ -16,9 +16,7 @@ import {SimpleSignalComponent} from "./playground/simple-signal/simple-signal.co
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
   { path: '', component: SplashComponent },
-  // { path: '', component: SimpleSignalComponent },
-  // { path: '', component: DialogParentComponent },
-  // { path: '', component: ListParentComponent }, // Playground Sample list-child
+  // { path: '', component: PropertyBindingComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },
