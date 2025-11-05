@@ -1,0 +1,24 @@
+<div>
+  <label for="firstName">First Name:</label>
+  <input id="firstName" type="text" [(ngModel)]="firstName" />
+</div>
+
+<div>
+  <label for="lastName">Last Namen:</label>
+  <input id="lastName" type="text" [(ngModel)]="lastName" />
+</div>
+
+<div>
+  <label>
+    <input type="checkbox" [(ngModel)]="isEmployee" />
+    Is Employee
+  </label>
+</div>
+
+<hr />
+
+<div>
+  <p><strong>First Name:</strong> {{ firstName }}</p>
+  <p><strong>Last Name:</strong> {{ lastName }}</p>
+  <p><strong>Is Employee:</strong> {{ isEmployee }}</p>
+</div>
