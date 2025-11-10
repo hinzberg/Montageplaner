@@ -1,0 +1,19 @@
+<h2>Sample for Style Binding</h2>
+
+<p
+  [style.color]="isImportant ? 'red' : null"
+  [style.fontWeight]="isImportant ? 'bold' : null">
+  This text can be bold and red.</p>
+
+<p
+  [style.textDecoration]="isUnderlined ? 'underline' : null">
+  This text can be underlined.</p>
+
+<p
+  [style.color]="isImportant ? 'red' : null"
+  [style.fontWeight]="isImportant ? 'bold' : null"
+  [style.textDecoration]="isUnderlined ? 'underline' : null">
+  This text can be bold and red but also underlined.</p>
+
+<button (click)="toggleImportant()">Toggle Important</button>
+<button (click)="toggleUnderlined()">Toggle Underlined</button>

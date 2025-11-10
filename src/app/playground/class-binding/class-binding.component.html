@@ -1,0 +1,14 @@
+<h2>Sample for Class Binding and ngClass</h2>
+
+<p [class.important]="isImportant">This text can be bold and red.</p>
+
+<p [class.underlined]="isUnderlined">This text can be underlined.</p>
+
+<p [class.important]="isImportant" [class.isUnderlined]="isUnderlined">This text can be bold and red but also underlined.</p>
+
+<p [ngClass]="{ important: isImportant, underlined: isUnderlined }">
+  This text can be bold and red but also underlined but uses [ngClass] for styling.</p>
+
+<button (click)="toggleImportant()">Toggle Important</button>
+<button (click)="toggleUnderlined()">Toggle Underlined</button>
+

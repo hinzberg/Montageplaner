@@ -13,10 +13,13 @@ import { ListParentComponent } from "./playground/sample-list-child/list-parent/
 import { DialogParentComponent} from "./playground/sample-dialog-open/dialog-parent/dialog-parent.component";
 import {SimpleSignalComponent} from "./playground/simple-signal/simple-signal.component";
 import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-binding.component";
+import { ClassBindingComponent} from "./playground/class-binding/class-binding.component";
+import { StyleBindingComponent } from "./playground/style-binding/style-binding.component";
 
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
-  { path: '', component: SplashComponent },
+  //{ path: '', component: SplashComponent },
+  { path: '', component: StyleBindingComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },
