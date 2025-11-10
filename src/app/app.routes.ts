@@ -9,17 +9,20 @@ import { ManageEquipmentComponent } from "./Components/manage-equipment/manage-e
 import { PlanAssemblyComponent} from "./Components/plan-assembly/plan-assembly.component";
 import { MaintenanceComponent} from "./Components/maintenance/maintenance.component";
 // Playground imports
+/*
 import { ListParentComponent } from "./playground/sample-list-child/list-parent/list-parent.component";
 import { DialogParentComponent} from "./playground/sample-dialog-open/dialog-parent/dialog-parent.component";
 import {SimpleSignalComponent} from "./playground/simple-signal/simple-signal.component";
 import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-binding.component";
 import { ClassBindingComponent} from "./playground/class-binding/class-binding.component";
 import { StyleBindingComponent } from "./playground/style-binding/style-binding.component";
+*/
+import { EventBindingComponent} from "./playground/event-binding/event-binding.component";
 
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
   //{ path: '', component: SplashComponent },
-  { path: '', component: StyleBindingComponent },
+  { path: '', component:  EventBindingComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },

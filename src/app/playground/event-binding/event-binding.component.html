@@ -1,0 +1,15 @@
+<h2>Sample for Event Binding</h2>
+<p>
+  <input type="text" (keydown.enter)="textInput($event)"/>
+</p>
+<p>
+<button (click)="buttonClick($event)">Klick Me</button>
+</p>
+
+<p>
+  <button (click)="setState('active')">Set Active</button>
+</p>
+
+<p>
+  <button (click)="setStateEvent('active', $event)">Set Active with Event</button>
+</p>
