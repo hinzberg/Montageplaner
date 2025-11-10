@@ -8,7 +8,6 @@
   align-items: center; // vertically center within the row
 }
 
-// Example usage
 .container {
   @include horizontal-align(center);
   padding-top: 6px;

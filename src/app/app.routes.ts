@@ -16,13 +16,12 @@ import {SimpleSignalComponent} from "./playground/simple-signal/simple-signal.co
 import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-binding.component";
 import { ClassBindingComponent} from "./playground/class-binding/class-binding.component";
 import { StyleBindingComponent } from "./playground/style-binding/style-binding.component";
-*/
 import { EventBindingComponent} from "./playground/event-binding/event-binding.component";
+*/
 
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
-  //{ path: '', component: SplashComponent },
-  { path: '', component:  EventBindingComponent },
+  { path: '', component: SplashComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },

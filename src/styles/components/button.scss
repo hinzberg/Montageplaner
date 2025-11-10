@@ -1,38 +1,30 @@
 @import '../app-colors';
 
-
-.glassPanel {
-  background-color:transparent;
-  border: 2px solid white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  backdrop-filter: blur(10px);
-}
-
 button {
   letter-spacing: 1px;
   font-size: 1rem;
-  padding: 5px;
+  padding: 5px 15px;
   border: 3px solid $color-primary;
-  border-radius: 5px;
-  color: $color-primary;
+  border-radius: 10px;
+  background-color:$color-primary;
+  color: $color-primary-text;
   cursor: pointer;
   transition: background-color 0.1s ease, color 0.1s ease;
   min-width: 100px;
   height: 40px;
   font-weight: bold;
-  background-color:transparent;
   box-shadow: $color-primary-transparent 0px 5px 15px;
   backdrop-filter: blur(10px);
 
   &:hover {
-    background-color: $color-primary;
-    color: $color-primary-secondary-text;
+    background-color: $color-primary-dark;
+    border: 3px solid $color-primary-dark;
   }
 
   &:focus {
     outline: none;
     background-color: $color-primary;
-    color: $color-primary-secondary-text;
+    color: $color-primary-text;
   }
 
   &.toolbar-button {
@@ -42,66 +34,23 @@ button {
 
   &.red-button {
     border-color: $color-reset;
-    color: $color-reset;
+    color: $color-primary-text;
+    background-color:$color-reset;
     box-shadow: $color-reset-transparent 0px 5px 15px;
 
     &:hover {
-      background-color: $color-reset;
-      border-color: $color-reset;
-      color: $color-primary-secondary-text;
+      background-color: $color-reset-dark;
+      border-color: $color-reset-dark;
+      color: $color-primary-text;
     }
 
     &:focus {
       outline: none;
-      background-color: $color-reset;
-      border-color: $color-reset;
-      color: $color-primary-secondary-text;
+      background-color: $color-reset-dark;
+      border-color: $color-reset-dark;
+      color: $color-primary-text;
     }
   }
-
-  &.message-box-button {
-    background-color: $color-primary-negative;
-    border: 1px solid $color-primary-negative;
-    color: $color-primary;
-    height: 28px;
-
-    &:hover {
-      background-color: $color-background-blue;
-      border-color: $color-primary-negative;
-      color: $color-primary;
-    }
-
-    &:focus {
-      outline: none;
-      background-color: $color-background-blue;
-      border-color: $color-primary-negative;
-      color: $color-primary;
-    }
-  }
-
-  &.message-box-cancel-button {
-    background-color: $color-reset-hover-text;
-    border: 1px solid $color-reset-hover-text;
-    color: $color-primary-negative;
-    height: 28px;
-
-    &:hover {
-      background-color: $color-reset-hover-bg;
-      border-color: $color-reset;
-      color: $color-primary-negative;
-    }
-
-    &:focus {
-      outline: none;
-      background-color: $color-reset-hover-bg;
-      border-color: $color-reset;
-      color: $color-primary-negative;
-    }
-  }
-
-
-
-
 
   &.circle-button {
     height: 40px;
@@ -125,19 +74,22 @@ button {
   border: none;
   font-weight: bold;
   color: $color-primary;
+  background: none;
   border: 0;
   box-shadow: none;
 
   &:hover {
     background:none;
     text-decoration: underline;
-    color: $color-primary;
+    color: $color-primary-dark;
+    border: 0;
   }
 
   &:focus {
     background:none;
     text-decoration: underline;
-    color: $color-primary;
+    color: $color-primary-dark;
+    border: 0;
   }
 }
 
@@ -150,19 +102,22 @@ button {
   border: none;
   font-weight: bold;
   color: $color-reset;
+  background: none;
   border: 0;
   box-shadow: none;
 
   &:hover {
     background:none;
     text-decoration: underline;
-    color: $color-reset;
+    color: $color-reset-dark;
+    border: 0;
   }
 
   &:focus {
     background:none;
     text-decoration: underline;
-    color: $color-reset;
+    color: $color-reset-dark;
+    border: 0;
   }
 }
 
