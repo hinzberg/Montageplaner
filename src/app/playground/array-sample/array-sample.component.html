@@ -1,0 +1,19 @@
+<button (click)="addEntry()">Add</button>
+
+@if (entries.length > 0) {
+  <div>
+    <ul>
+      @for (entry of entries; track entry) {
+        <li>
+          <div>Content: {{ entry.content }}</div>
+          <div>Date: {{ entry.date | date:'dd.MM.yyyy HH:mm:ss' }}</div>
+          <button (click)="removeEntry(entry)">Remove</button>
+        </li>
+      }
+    </ul>
+  </div>
+} @else {
+  <div>
+    No entries
+  </div>
+}

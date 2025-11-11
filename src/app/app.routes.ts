@@ -17,6 +17,7 @@ import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-bindin
 import { ClassBindingComponent} from "./playground/class-binding/class-binding.component";
 import { StyleBindingComponent } from "./playground/style-binding/style-binding.component";
 import { EventBindingComponent} from "./playground/event-binding/event-binding.component";
+import { ArraySampleComponent} from "./playground/array-sample/array-sample.component";
 */
 
 export const routes: Routes = [
