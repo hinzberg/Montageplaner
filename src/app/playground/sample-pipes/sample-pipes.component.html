@@ -1,0 +1,38 @@
+<h1>Inbuild Pipes Sample</h1>
+
+<h2>Uppercase and Lowercase Pipes</h2>
+<div> {{ sampleName | uppercase }} </div>
+<div> {{ sampleName | lowercase }} </div>
+
+<h2>Titlecase Pipes</h2>
+<div> {{ sampleName | titlecase }} </div>
+
+<h2>Number Pipe with formatting</h2>
+<div> {{ sampleValue | number: '1.2-2' }} </div>
+<div> {{ sampleValue | number: '8.2-3' }} </div>
+<div> {{ sampleValue | number: '1.8' }} </div>
+
+<h2>Currency Pipe with Currency Symbol</h2>
+<div> {{ sampleCurrency | currency: 'EUR' :true : '1.3-3' }} </div>
+<div> {{ sampleCurrency | currency: 'JPY' :true : '1.2' }} </div>
+
+<h2>Currency Pipe with Currency Name</h2>
+<div> {{ sampleCurrency | currency: 'EUR' :false : '1.3-3' }} </div>
+<div> {{ sampleCurrency | currency: 'JPY' :false : '1.2' }} </div>
+
+<h2>Date Pipe with different formatting</h2>
+<div> {{ sampleDate | date }}</div>
+<div> {{ sampleDate | date:'short' }}</div>
+<div> {{ sampleDate | date:'mediumTime' }}</div>
+
+<h2>An Object with and without JSON Pipe</h2>
+<div> {{ sampleObject }}</div>
+<div> {{ sampleObject | json }}</div>
+
+<h2>Percent Pipes</h2>
+<div> {{ percentageSample | percent }} </div>
+
+<h2>Slice Pipes</h2>
+<div> {{ arraySample | slice: 0:4 }} </div>
+<div> {{ arraySample | slice: 2:15 }} </div>
+
