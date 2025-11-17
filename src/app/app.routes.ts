@@ -19,6 +19,7 @@ import { StyleBindingComponent } from "./playground/style-binding/style-binding.
 import { EventBindingComponent} from "./playground/event-binding/event-binding.component";
 import { ArraySampleComponent} from "./playground/array-sample/array-sample.component";
 import { SamplePipesComponent } from './playground/sample-pipes/sample-pipes.component';
+import { SampleCustomPipeComponent} from "./playground/sample-custom-pipe/sample-custom-pipe.component";
 */
 
 export const routes: Routes = [
