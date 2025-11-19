@@ -22,9 +22,11 @@ import { SamplePipesComponent } from './playground/sample-pipes/sample-pipes.com
 import { SampleCustomPipeComponent} from "./playground/sample-custom-pipe/sample-custom-pipe.component";
 */
 
+import { DataserviceSampleComponent} from "./playground/dataservice-sample/dataservice-sample.component";
+
 export const routes: Routes = [
   // The path with an empty name is the default page and will be loaded automatically at startup.
-  { path: '', component: SplashComponent },
+  { path: '', component: DataserviceSampleComponent },
   { path: 'splash', component: SplashComponent },
   { path: 'addPeople', component: AddPeopleComponent },
   { path: 'addEquipment', component: AddEquipmentComponent },

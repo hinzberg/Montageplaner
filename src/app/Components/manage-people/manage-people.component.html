@@ -2,7 +2,7 @@
   <button class="toolbar-button" (click)="onNewPersonClicked()">Add New</button>
 </app-toolbar>
 
-<div class="pageHeadline">Manage People</div>
+<h1>Manage People</h1>
 
 <div class="personnel-container">
 
@@ -71,21 +71,20 @@
     </ng-container>
   </div>
 
-  <!--app-confirm-overlay-dialog
-    [isVisible]="showConfirmDialog"
-    [title]="dialogTitle"
-    [message]="dialogMessage"
-    [useInnerHTML]="true"
-    (confirmEvent)="onConfirmDelete()"
-    (cancelEvent)="onCancelDelete()">
-  </app-confirm-overlay-dialog-->
-
   <!-- Show the submitted person in a messagebox overlay -->
   <app-questionbox [title]="dialogTitle"
                   [isVisible]="showConfirmDialog"
                   (onOkClose)="onConfirmDelete()"
                   (onCancelClose)="onCancelDelete()">
-    {{dialogMessage}}
+    @if (dialogMessage) {
+      <div class="vertical-stack">
+        <div class="dialogContent">Are you sure you want to delete</div>
+        <div class="horizontal-stack">
+          <div class="dialogContent">{{dialogMessage}}</div>
+          <div class="dialogContent">?</div>
+        </div>
+      </div>
+    }
   </app-questionbox>
 
   <ng-template #noData>

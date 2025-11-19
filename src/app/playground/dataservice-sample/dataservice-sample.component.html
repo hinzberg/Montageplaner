@@ -1,0 +1,19 @@
+<h1>Countries and Capitals</h1>
+<table class="countries-table">
+  <thead>
+    <tr>
+      <th><h3>Land</h3></th>
+      <th><h3>Hauptstadt</h3></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (country of dataService.countries; track country.name) {
+      <tr>
+        <td>{{ country.name }}</td>
+        <td>{{ country.capital }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<button>Load Countries</button>

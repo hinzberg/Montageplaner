@@ -1,6 +1,6 @@
 @if (isVisible) {
   <div class="dialog-overlay">
-    <div class="glassPanel message-box">
+    <div class="message-box">
       <div class="message-header">
         <div class="message-title">{{ title }}</div>
       </div>
@@ -9,6 +9,7 @@
       </div>
       <div class="message-footer">
         <button class="message-box-button" (click)="closeOkDialog()">OK</button>
+        <div class="spacer-horizontal-15"></div>
         <button class="message-box-cancel-button" (click)="closeCancelDialog()">Cancel</button>
       </div>
     </div>

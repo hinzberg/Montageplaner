@@ -87,7 +87,7 @@ export class ManagePeopleComponent implements OnInit, OnDestroy {
 
   onDeletePersonClicked(person: Person): void {
     this.personToDelete = person;
-    this.dialogMessage = `Are you sure you want to delete <strong>${person.firstName} ${person.lastName}</strong>?`;
+    this.dialogMessage = `${person.firstName} ${person.lastName}`;
     this.showConfirmDialog = true;
   }
 
