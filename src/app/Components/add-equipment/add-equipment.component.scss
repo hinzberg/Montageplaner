@@ -1,21 +1,12 @@
 @import '../../../styles/app-colors';
 @import '../../../styles/components/messageboxContent';
 
-.person-card {
-  padding: 16px;
-  max-width: 300px;
-  display: block;
-  margin: 20px auto;
-  border: 2px solid $color-primary-border;
-  border-radius: 6px;
-  background-color: white;
-}
-
 form
 {
   display: inline-block;
   text-align: left;
   width: 25%;
+  min-width: 400px;
 }
 
 .form {

@@ -6,3 +6,57 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
   backdrop-filter: blur(10px);
 }
+
+.glass-button {
+  background-color: $color-primary-transparent-C0;
+  border: 2px solid $color-primary;
+  letter-spacing: 0.1rem;
+  font-size: 1.2rem;
+  padding: 5px 15px;
+  border-radius: 10px;
+  color:$color-primary-negative;
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  min-width: 100px;
+  height: 45px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: $color-primary-transparent-E0;
+    border: 2px solid $color-primary;
+   }
+
+  &:focus {
+    outline: none;
+    background-color: $color-primary-transparent-E0;
+    border: 2px solid $color-primary;
+  }
+}
+
+.glass-red-button {
+  background-color: $color-red-transparent-C0;
+  border: 2px solid $color-red;
+  letter-spacing: 0.1rem;
+  font-size: 1.2rem;
+  padding: 5px 15px;
+  border-radius: 10px;
+  color:$color-primary-negative;
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  min-width: 100px;
+  height: 45px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: $color-red-transparent-E0;
+    border: 2px solid $color-red;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $color-red-transparent-E0;
+    border: 2px solid $color-red;
+  }
+}

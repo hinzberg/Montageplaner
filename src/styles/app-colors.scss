@@ -2,12 +2,17 @@
 $color-primary-border: #6667AB; // Very Peri
 $color-primary: #6667AB; // Very Peri
 $color-primary-dark: #46478B; // Very Peri
+$color-primary-transparent-80: #6667AB80;
+$color-primary-transparent-C0: #6667ABC0;
+$color-primary-transparent-E0: #6667ABE0;
+
 $color-sidebar-transparent: #FFFFFF80;
 $color-primary-negative: white;
 $color-primary-hover: #d0eaff;
 $color-primary-error: #ff4d4d;
 $color-primary-error-input: #fff3cd;
 $color-primary-text: white;
+
 $color-background-blue: rgb(196, 216, 255);
 $color-dim-text: rgb(100, 100, 100);
 $color-inactive: rgb(160,160,160);
@@ -19,6 +24,13 @@ $color-reset-dark: #df2d2d;
 $color-reset-transparent: #ff4d4d40;
 $color-reset-hover-border: #ff1a1a;
 $color-reset-hover-text: #ff4d4d;
+
+$color-red: #ff4d4d;
+$color-red-transparent-80: #ff4d4d80;
+$color-red-transparent-C0: #ff4d4dC0;
+$color-red-transparent-E0: #ff4d4dE0;
+
+
 
 // Background colors
 $white-linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(230, 230, 230) 100%);

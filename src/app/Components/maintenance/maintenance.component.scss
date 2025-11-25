@@ -1,1 +1,8 @@
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Abstand zwischen den Buttons */
+  align-items: center;
+  align-self: center;
+}
 
