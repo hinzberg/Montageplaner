@@ -13,7 +13,6 @@ import {
 import {CommonModule} from '@angular/common';
 import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
-import {basicTextValidation} from "../../shared/utils/form-validators-utils";
 import { ChangeDetectorRef } from '@angular/core';
 import {MessageboxComponent} from "../messagebox/messagebox.component";
 
@@ -49,13 +48,24 @@ export class AddPeopleComponent implements OnInit {
   };
 
   readonly personForm = new FormGroup<PersonForm>({
-    firstName: new FormControl('', {validators: [Validators.required, basicTextValidation()]}),
-    lastName: new FormControl('', {validators: [Validators.required, basicTextValidation()]}),
-    profession: new FormControl(Profession.Artist, {validators: [Validators.required, this.validateProfession]}),
+    firstName: new FormControl('', {validators: [Validators.required , Validators.minLength(2)]}),
+    lastName: new FormControl('', {validators: [Validators.required, Validators.minLength(2) ] }),
+    profession: new FormControl(Profession.Artist, {validators: [Validators.required]}),
     isSelected: new FormControl(false),
     canBeTeamLeader: new FormControl(false),
     isActive: new FormControl(true)
   })
+
+  // Getter for easy access
+  get firstName() {
+    return this.personForm.controls.firstName;
+  }
+  get lastName() {
+    return this.personForm.controls.lastName;
+  }
+  get profession() {
+    return this.personForm.controls.profession;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -64,7 +74,7 @@ export class AddPeopleComponent implements OnInit {
   ) {
     // Subscribe to form value changes to update validation messages
     this.personForm.valueChanges.subscribe(() => {
-      this.updateValidationMessages();
+      //
     });
   }
 
@@ -105,30 +115,6 @@ export class AddPeopleComponent implements OnInit {
     return this.fieldNames[key] || key;
   }
 
-  // Update validation messages
-  updateValidationMessages() {
-    this.formErrors = {};
-    Object.keys(this.personForm.controls).forEach(key => {
-      const control = this.personForm.get(key);
-      if (control?.errors) {
-        const fieldName = this.getFieldName(key);
-        if (control.errors['required']) {
-          this.formErrors[key] = `${fieldName} is required`;
-        } else if (control.errors['minlength']) {
-          this.formErrors[key] = `${fieldName} must be at least ${control.errors['minlength'].requiredLength} characters`;
-        } else if (control.errors['maxlength']) {
-          this.formErrors[key] = `${fieldName} must not exceed ${control.errors['maxlength'].requiredLength} characters`;
-        } else if (control.errors['hasSpaces']) {
-          this.formErrors[key] = `${fieldName} cannot have leading or trailing spaces`;
-        } else if (control.errors['invalidCharacters']) {
-          this.formErrors[key] = `${fieldName} can only contain letters and spaces`;
-        } else if (control.errors['invalidProfession']) {
-          this.formErrors[key] = 'Please select a valid profession';
-        }
-      }
-    });
-  }
-
   onSubmit(): void {
     if (this.personForm.valid) {
       // Mark all fields as touched to trigger validation messages
@@ -136,9 +122,6 @@ export class AddPeopleComponent implements OnInit {
         const control = this.personForm.get(key);
         control?.markAsTouched();
       });
-
-      // Update validation messages
-      this.updateValidationMessages();
 
       // If the form is still valid after marking as touched
       if (this.personForm.valid) {
@@ -159,7 +142,6 @@ export class AddPeopleComponent implements OnInit {
         const control = this.personForm.get(key);
         control?.markAsTouched();
       });
-      this.updateValidationMessages();
     }
   }
 
