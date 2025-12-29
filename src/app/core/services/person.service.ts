@@ -1,112 +1,123 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal, WritableSignal, computed } from '@angular/core';
 import { Person } from '../models/person.model';
-import { IEntityService} from "./IEntityService";
+import { IEntityService } from "./IEntityService";
 
+// Local storage key used to persist persons data
 const STORAGE_KEY = 'assembly-planer-persons';
+
+ // PersonService manages the application's persons data using Angular Signals.
+ // All state is managed using Angular Signals for optimal change detection
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService implements IEntityService<Person> {
 
-  // For Editing a person, we keep a reference to the person being edited
-  private selectedPerson: Person | null = null;
+  //Signal holding the currently selected person for editing operations.
+  // Null when no person is selected.
+  private selectedPersonSignal: WritableSignal<Person | null> = signal(null);
 
-  // Single source of truth - the BehaviorSubject holds the current state
-  private personsSubject = new BehaviorSubject<Person[]>([]);
+  // Signal holding the complete array of persons.
+  // This is the single source of truth for all persons data.
+  private personsSignal: WritableSignal<Person[]> = signal([]);
 
   constructor() {
-    // Load persons from local storage on service initialization
+    // Load persons from localStorage on service initialization
     this.loadFromStorage();
   }
 
-  // Get all persons as an Observable
-  getItems(): Observable<Person[]> {
-    return this.personsSubject.asObservable();
+  // Returns the persons signal for direct access in components.
+  getItems(): WritableSignal<Person[]> {
+    return this.personsSignal;
   }
 
-  // Get current snapshot of persons (useful when you need the array directly)
-  getItemsSnapshot(): Person[] {
-    return this.personsSubject.value;
-  }
-
-  // Add a new person
+  //Adds a new person to the collection.
+  // Creates a new array with the added person to maintain immutability,
   addItem(person: Person): void {
-    const currentPersons = this.personsSubject.value;
+    const currentPersons = this.personsSignal();
     const updatedPersons = [...currentPersons, person];
-    this.personsSubject.next(updatedPersons);
+    this.personsSignal.set(updatedPersons);
     this.saveToStorage();
   }
 
-  // Remove a person by id
+  //Removes a person from the collection by their ID.
+  // Creates a new filtered array to maintain immutability,
   removeItem(id: string): void {
-    const currentPersons = this.personsSubject.value;
+    const currentPersons = this.personsSignal();
     const updatedPersons = currentPersons.filter(p => p.id !== id);
-    this.personsSubject.next(updatedPersons);
+    this.personsSignal.set(updatedPersons);
     this.saveToStorage();
   }
 
-  // Update a person by id
+  // Updates an existing person in the collection.
+  // Finds the person by ID and replaces it with the updated version.
+  // Creates a new array to maintain immutability,
   updateItem(updatedPerson: Person): void {
-    const currentPersons = this.personsSubject.value;
-    const updatedPersons = currentPersons.map(p => 
+    const currentPersons = this.personsSignal();
+    const updatedPersons = currentPersons.map(p =>
       p.id === updatedPerson.id ? updatedPerson : p
     );
-    this.personsSubject.next(updatedPersons);
+    this.personsSignal.set(updatedPersons);
     this.saveToStorage();
   }
 
-  // Get a person by id
+  //Retrieves a single person by their ID.
   getItem(id: string): Person | undefined {
-    return this.personsSubject.value.find(p => p.id === id);
+    return this.personsSignal().find(p => p.id === id);
   }
 
-  // Clear all persons
+  // Removes all persons from the collection.
   clearItems(): void {
-    this.personsSubject.next([]);
+    this.personsSignal.set([]);
     this.saveToStorage();
   }
 
-  // Gets current number of persons
+  //Returns the current count of persons in the collection.
   getItemCount(): number {
-    return this.personsSubject.value.length;
+    return this.personsSignal().length;
   }
 
+  // Loads persons data from localStorage.
+  // Called automatically during service initialization.
   loadFromStorage(): void {
     const storedPersons = localStorage.getItem(STORAGE_KEY);
     if (storedPersons) {
       try {
         // Parse the stored JSON and recreate Person objects
         const parsedPersons = JSON.parse(storedPersons);
-        const persons = parsedPersons.map((p: any) => 
+        const persons = parsedPersons.map((p: any) =>
           new Person(p.firstName, p.lastName, p.profession, p.isActive, p.canBeTeamLeader)
         );
-        this.personsSubject.next(persons);
+        this.personsSignal.set(persons);
       } catch (error) {
         console.error('Error loading persons from storage:', error);
-        this.personsSubject.next([]);
+        this.personsSignal.set([]);
       }
     }
   }
 
+  //Persists the current persons array to localStorage.
+  // Called automatically after any CRUD operation.
   saveToStorage(): void {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.personsSubject.value));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.personsSignal()));
     } catch (error) {
       console.error('Error saving persons to storage:', error);
     }
   }
 
+  //Sets the currently selected person for editing operations.
   setSelectedItem(person: Person): void {
-    this.selectedPerson = person;
+    this.selectedPersonSignal.set(person);
   }
 
+  // Returns the currently selected person.
   getSelectedItem(): Person | null {
-    return this.selectedPerson;
+    return this.selectedPersonSignal();
   }
 
-  clearSelectedItem() {
-    this.selectedPerson = null;
+  //Clears the currently selected person.
+  clearSelectedItem(): void {
+    this.selectedPersonSignal.set(null);
   }
 }
