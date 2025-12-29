@@ -79,10 +79,13 @@ a:active {
 
 .errorLabel {
   color: $color-primary-error;
-  margin-top: 2px;
-  margin-bottom: 10px;
   font-size: 1.0rem;
   letter-spacing: 1px;
+  background: $color-pastel-yellow;
+  padding: 8px 5px;
+  border: solid 1px $color-primary-error;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 form {

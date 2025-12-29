@@ -79,10 +79,9 @@ export class AddPeopleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     // Set some default values for the page
     this.editedPerson = null;
-    this.headlineTitle = 'Add new Person';
+    this.headlineTitle = 'Add a new Person';
 
     // Is a selectedPerson in the PersonEditService?
     const person = this.personService.getSelectedItem();

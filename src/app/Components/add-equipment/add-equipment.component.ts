@@ -62,10 +62,12 @@ export class AddEquipmentComponent implements OnInit {
     private fb: FormBuilder,
     private equipmentService: EquipmentService,
   ) {
+
     // Subscribe to form value changes to update validation messages
     this.equipmentForm.valueChanges.subscribe(() => {
       this.updateValidationMessages();
     });
+
   }
 
   // Get a user-friendly field name
