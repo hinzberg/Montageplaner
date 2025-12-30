@@ -60,13 +60,28 @@
     </div>
   </ng-template>
 
-  <app-confirm-overlay-dialog
+  <!--app-confirm-overlay-dialog
     [isVisible]="showConfirmDialog"
     [title]="dialogTitle"
     [message]="dialogMessage"
     [useInnerHTML]="true"
     (confirmEvent)="onConfirmDelete()"
     (cancelEvent)="onCancelDelete()">
-  </app-confirm-overlay-dialog>
+  </app-confirm-overlay-dialog-->
+
+  <app-questionbox [title]="dialogTitle"
+                   [isVisible]="showConfirmDialog"
+                   (onOkClose)="onConfirmDelete()"
+                   (onCancelClose)="onCancelDelete()">
+    @if (dialogMessage) {
+      <div class="vertical-stack">
+        <div class="dialogContent">Are you sure you want to delete</div>
+        <div class="horizontal-stack">
+          <div class="dialogContent">{{dialogMessage}}</div>
+          <div class="dialogContent">?</div>
+        </div>
+      </div>
+    }
+  </app-questionbox>
 
 </div>

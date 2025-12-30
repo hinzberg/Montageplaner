@@ -5,6 +5,7 @@ import {EquipmentService} from "../../core/services/equipment.service";
 import {Equipment} from "../../core/models/equipment.model";
 import {CommonModule} from "@angular/common";
 import {ConfirmOverlayDialogComponent} from "../shared/confirm-overlay-dialog/confirm-overlay-dialog.component";
+import {QuestionboxComponent} from "../questionbox/questionbox.component";
 
 @Component({
   selector: 'app-manage-equipment',
@@ -12,7 +13,8 @@ import {ConfirmOverlayDialogComponent} from "../shared/confirm-overlay-dialog/co
   imports: [
     CommonModule,
     ToolbarComponent,
-    ConfirmOverlayDialogComponent
+    ConfirmOverlayDialogComponent,
+    QuestionboxComponent
   ],
   templateUrl: './manage-equipment.component.html',
   styleUrl: './manage-equipment.component.scss'
@@ -50,7 +52,7 @@ export class ManageEquipmentComponent implements OnInit {
 
   onDeleteEquipmentClicked(equipment: Equipment): void {
     this.equipmentToDelete = equipment;
-    this.dialogMessage = `Are you sure you want to delete <strong>${equipment.description}</strong>?`;
+    this.dialogMessage = equipment.description;
     this.showConfirmDialog = true;
   }
 
