@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Equipment } from '../models/equipment.model';
 
 const STORAGE_KEY = 'assembly-planer-equipments';
@@ -9,103 +8,111 @@ const STORAGE_KEY = 'assembly-planer-equipments';
 })
 export class EquipmentService {
 
-  // For Editing equipment, we keep a reference to the equipment being edited
-  private selectedEquipment: Equipment | null = null;
+  // Signal holding the currently selected equipment for editing operations.
+  // Null when no equipment is selected.
+  private selectedEquipmentSignal: WritableSignal<Equipment | null> = signal(null);
 
-  // Single source of truth - the BehaviorSubject holds the current state
-  private equipmentsSubject = new BehaviorSubject<Equipment[]>([]);
+  // Signal holding the complete array of equipments.
+  // This is the single source of truth for all equipments data.
+  private equipmentsSignal: WritableSignal<Equipment[]> = signal([]);
 
   constructor() {
     // Load items from local storage on service initialization
     this.loadFromStorage();
   }
 
-  // Get all equipment as an Observable
-  getItems(): Observable<Equipment[]> {
-    return this.equipmentsSubject.asObservable();
+  // Returns the equipments signal for direct access in components.
+  getItems(): WritableSignal<Equipment[]> {
+    return this.equipmentsSignal;
   }
 
-  // Get current snapshot of equipment (useful when you need the array directly)
-  getItemsSnapshot(): Equipment[] {
-    return this.equipmentsSubject.value;
-  }
-
-  // Add a new equipment
+  // Adds a new equipment to the collection.
+  // Creates a new array with the added equipment to maintain immutability.
   addItem(equipment: Equipment): void {
-    const currentEquipments = this.equipmentsSubject.value;
+    const currentEquipments = this.equipmentsSignal();
     const updatedEquipments = [...currentEquipments, equipment];
-    this.equipmentsSubject.next(updatedEquipments);
+    this.equipmentsSignal.set(updatedEquipments);
     this.saveToStorage();
   }
 
-  // Remove equipment by id
+  // Removes an equipment from the collection by their ID.
+  // Creates a new filtered array to maintain immutability.
   removeItem(id: string): void {
-    const currentEquipments = this.equipmentsSubject.value;
+    const currentEquipments = this.equipmentsSignal();
     const updatedEquipments = currentEquipments.filter(p => p.id !== id);
-    this.equipmentsSubject.next(updatedEquipments);
+    this.equipmentsSignal.set(updatedEquipments);
     this.saveToStorage();
   }
 
-  // Update equipment by id
+  // Updates an existing equipment in the collection.
+  // Finds the equipment by ID and replaces it with the updated version.
+  // Creates a new array to maintain immutability.
   updateItem(updatedEquipment: Equipment): void {
-    const currentEquipments = this.equipmentsSubject.value;
-    const updatedEquipments = currentEquipments.map(p => 
+    const currentEquipments = this.equipmentsSignal();
+    const updatedEquipments = currentEquipments.map(p =>
       p.id === updatedEquipment.id ? updatedEquipment : p
     );
-    this.equipmentsSubject.next(updatedEquipments);
+    this.equipmentsSignal.set(updatedEquipments);
     this.saveToStorage();
   }
 
-  // Get equipment by id
+  // Retrieves a single equipment by their ID.
   getItem(id: string): Equipment | undefined {
-    return this.equipmentsSubject.value.find(p => p.id === id);
+    return this.equipmentsSignal().find(p => p.id === id);
   }
 
-  // Clear all equipment
+  // Removes all equipments from the collection.
   clearItems(): void {
-    this.equipmentsSubject.next([]);
+    this.equipmentsSignal.set([]);
     this.saveToStorage();
   }
 
-  // Gets current number of equipment
+  // Returns the current count of equipments in the collection.
   getItemCount(): number {
-    return this.equipmentsSubject.value.length;
+    return this.equipmentsSignal().length;
   }
 
+  // Loads equipments data from localStorage.
+  // Called automatically during service initialization.
   loadFromStorage(): void {
     const storedEquipments = localStorage.getItem(STORAGE_KEY);
     if (storedEquipments) {
       try {
-        // Parse the stored JSON and recreate items
+        // Parse the stored JSON and recreate Equipment objects
         const parsedEquipments = JSON.parse(storedEquipments);
-        const equipments = parsedEquipments.map((p: any) => 
+        const equipments = parsedEquipments.map((p: any) =>
           new Equipment(p.description, p.equipmentType, p.isActive)
         );
-        this.equipmentsSubject.next(equipments);
+        this.equipmentsSignal.set(equipments);
       } catch (error) {
         console.error('Error loading equipments from storage:', error);
-        this.equipmentsSubject.next([]);
+        this.equipmentsSignal.set([]);
       }
     }
   }
 
+  // Persists the current equipments array to localStorage.
+  // Called automatically after any CRUD operation.
   saveToStorage(): void {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.equipmentsSubject.value));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.equipmentsSignal()));
     } catch (error) {
       console.error('Error saving equipments to storage:', error);
     }
   }
 
+  // Sets the currently selected equipment for editing operations.
   setSelectedItem(equipment: Equipment): void {
-    this.selectedEquipment = equipment;
+    this.selectedEquipmentSignal.set(equipment);
   }
 
+  // Returns the currently selected equipment.
   getSelectedItem(): Equipment | null {
-    return this.selectedEquipment;
+    return this.selectedEquipmentSignal();
   }
 
-  clearSelectedItem() {
-    this.selectedEquipment = null;
+  // Clears the currently selected equipment.
+  clearSelectedItem(): void {
+    this.selectedEquipmentSignal.set(null);
   }
 }

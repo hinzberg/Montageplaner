@@ -6,10 +6,10 @@
 
 <div class="equipment-container">
 
-  <div *ngIf="(equipments$ | async) as equipments; else noData">
-    <ng-container *ngIf="equipments.length > 0; else noData">
+  <div *ngIf="equipments() as equipmentsList; else noData">
+    <ng-container *ngIf="equipmentsList.length > 0; else noData">
 
-      <table *ngIf="equipments.length > 0" class="tableContent">
+      <table *ngIf="equipmentsList.length > 0" class="tableContent">
         <thead>
         <tr>
           <th class="tableHeader"></th>
@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let equipment of equipments">
+        <tr *ngFor="let equipment of equipmentsList">
           <td class="tableCell centerCell">
             <div>
               <input id="selected-check-{{equipment.id}}"

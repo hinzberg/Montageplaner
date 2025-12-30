@@ -1,11 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
 import {ToolbarComponent} from "../toolbar/toolbar.component";
 import {Router} from "@angular/router";
 import {EquipmentService} from "../../core/services/equipment.service";
-import {Observable, Subscription} from "rxjs";
 import {Equipment} from "../../core/models/equipment.model";
 import {CommonModule} from "@angular/common";
-import {Person} from "../../core/models/person.model";
 import {ConfirmOverlayDialogComponent} from "../shared/confirm-overlay-dialog/confirm-overlay-dialog.component";
 
 @Component({
@@ -20,9 +18,9 @@ import {ConfirmOverlayDialogComponent} from "../shared/confirm-overlay-dialog/co
   styleUrl: './manage-equipment.component.scss'
 })
 
-export class ManageEquipmentComponent implements OnInit, OnDestroy {
+export class ManageEquipmentComponent implements OnInit {
 
-  equipments$: Observable<Equipment[]> = new Observable<Equipment[]>(); // will hold the list of equipments
+  equipments: WritableSignal<Equipment[]>; // Signal holding the list of equipments
 
   // Dialog state
   showConfirmDialog = false;
@@ -33,14 +31,11 @@ export class ManageEquipmentComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private equipmentService: EquipmentService) {
     this.equipmentService.clearSelectedItem();
+    // Get the equipments signal from the service
+    this.equipments = this.equipmentService.getItems();
   }
 
   ngOnInit(): void {
-    // Get initial list of equipment
-    this.equipments$ = this.equipmentService.getItems();
-  }
-
-  ngOnDestroy(): void {
   }
 
   toggleSelection(equipment: Equipment): void {
