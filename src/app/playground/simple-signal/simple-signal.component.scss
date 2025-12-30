@@ -3,3 +3,10 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.playground-container {
+  display: inline-block;
+  text-align: left;
+  width: 25%;
+  min-width: 400px;
+}

@@ -1,4 +1,4 @@
-<h2>Sample for Style Binding</h2>
+<h1>Sample for Style Binding</h1>
 
 <p
   [style.color]="isImportant ? 'red' : null"
@@ -15,5 +15,8 @@
   [style.textDecoration]="isUnderlined ? 'underline' : null">
   This text can be bold and red but also underlined.</p>
 
-<button (click)="toggleImportant()">Toggle Important</button>
-<button (click)="toggleUnderlined()">Toggle Underlined</button>
+<div class="button-group">
+  <button (click)="toggleImportant()">Toggle Important</button>
+  <p class="spacer-horizontal-15"></p>
+  <button (click)="toggleUnderlined()">Toggle Underlined</button>
+</div>

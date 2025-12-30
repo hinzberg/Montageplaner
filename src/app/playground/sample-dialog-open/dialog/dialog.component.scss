@@ -14,12 +14,13 @@
   margin: auto;
   padding: 0;
   border: 2px solid steelblue;
-  width: 50%;
+  width: 30%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .dialog-content-box {
-  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .dialog-header {
@@ -39,4 +40,5 @@
   background-color: white;
   color: steelblue;
   cursor: pointer;
+  padding: 5px;
 }
