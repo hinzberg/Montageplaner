@@ -1,0 +1,32 @@
+@import '../../../styles/app-colors';
+
+.playground-container {
+  display: inline-block;
+  text-align: left;
+  width: 25%;
+  min-width: 400px;
+}
+
+.playground-link {
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: $color-primary;
+  margin: 4px 10px;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+
+  &:hover {
+    border-radius: 6px;
+    background-color: $color-primary-dark;
+    cursor: pointer;
+    color: $color-primary-negative;
+  }
+
+  &.active {
+    background-color: $color-primary;
+    color: $color-primary-negative;
+    border-radius: 6px;
+  }
+}
+

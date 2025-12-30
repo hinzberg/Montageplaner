@@ -8,12 +8,14 @@ import { ManagePeopleComponent } from "./Components/manage-people/manage-people.
 import { ManageEquipmentComponent } from "./Components/manage-equipment/manage-equipment.component";
 import { PlanAssemblyComponent} from "./Components/plan-assembly/plan-assembly.component";
 import { MaintenanceComponent} from "./Components/maintenance/maintenance.component";
+import { PlaygroundMainComponent} from "./playground/playground-main/playground-main.component";
+
 // Playground imports
+import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-binding.component";
 /*
 import { ListParentComponent } from "./playground/sample-list-child/list-parent/list-parent.component";
 import { DialogParentComponent} from "./playground/sample-dialog-open/dialog-parent/dialog-parent.component";
 import {SimpleSignalComponent} from "./playground/simple-signal/simple-signal.component";
-import { TwowayBindingComponent} from "./playground/twoway-binding/twoway-binding.component";
 import { ClassBindingComponent} from "./playground/class-binding/class-binding.component";
 import { StyleBindingComponent } from "./playground/style-binding/style-binding.component";
 import { EventBindingComponent} from "./playground/event-binding/event-binding.component";
@@ -35,5 +37,7 @@ export const routes: Routes = [
   { path: 'plan', component: PlanAssemblyComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'playground', component: PlaygroundMainComponent },
+  { path: 'playground-two-way', component: TwowayBindingComponent },
   { path: '**', pathMatch: 'full',component: WrongRouteComponent}
 ];

@@ -1,24 +1,26 @@
-<div>
-  <label for="firstName">First Name:</label>
-  <input id="firstName" type="text" [(ngModel)]="firstName" />
-</div>
+<h1>Two-Way-Binding Sample</h1>
 
-<div>
-  <label for="lastName">Last Namen:</label>
-  <input id="lastName" type="text" [(ngModel)]="lastName" />
-</div>
+<div class="playground-container">
+  <div>
+    <label for="firstName">First Name:</label>
+    <input id="firstName" type="text" [(ngModel)]="firstName"/>
+  </div>
 
-<div>
-  <label>
-    <input type="checkbox" [(ngModel)]="isEmployee" />
-    Is Employee
-  </label>
-</div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" type="text" [(ngModel)]="lastName"/>
+  </div>
 
-<hr />
+  <div class="checkboxContainer">
+    <input id="checkboxActive" type="checkbox" [(ngModel)]="isEmployee"/>
+    <label class="formLabel" for="checkboxActive">Is Employee</label>
+  </div>
 
-<div>
-  <p><strong>First Name:</strong> {{ firstName }}</p>
-  <p><strong>Last Name:</strong> {{ lastName }}</p>
-  <p><strong>Is Employee:</strong> {{ isEmployee }}</p>
+  <hr/>
+
+  <div>
+    <p><strong>First Name:</strong> {{ firstName }}</p>
+    <p><strong>Last Name:</strong> {{ lastName }}</p>
+    <p><strong>Is Employee:</strong> {{ isEmployee }}</p>
+  </div>
 </div>

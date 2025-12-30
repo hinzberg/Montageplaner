@@ -53,6 +53,15 @@ export class NavigationSidebarComponent {
       routeLink: 'maintenance',
       label: 'Maintenance'
     },
-
+    {
+      type : 'group',
+      routeLink: '',
+      label: 'Playground'
+    },
+    {
+      type : 'link',
+      routeLink: 'playground',
+      label: 'Enter Playground'
+    },
   ]
 }

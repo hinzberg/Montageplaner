@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-twoway-binding',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './twoway-binding.component.html',
   styleUrl: './twoway-binding.component.scss'
 })

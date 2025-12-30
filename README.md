@@ -1,13 +1,12 @@
-## Montageplaner
+## Assembly Planning: An Angular and CSS Learning Project
+A small, hands-on Angular project for exploring Angular concepts and CSS techniques. 
+I use this repository as a playground to learn, experiment, and prototype ideas including components, routing, state management, 
+Signals, forms and many more.
 
-### Done
-- 2025-08-22 Added Equipment Management Page
-- 2025-07-01 Person can now be edited from the Manage Personnel Table
-- 2025-06-25 Added Maintenance Page to delete all people
-- 2025-06-19 Added SF Pro as a custom font
-- 2025-06-19 Added background blur to overlay dialogs
-- 2025-06-04 Added sidebar-group (Sidebar Grouping Element)
+The idea for this project is based on an application I developed many years ago. A lightweight app for planning the deployment of personnel and equipment on construction sites. Let's wait and see how it turns out this time.
 
-### Next ToDos
-- Sort Columns for Tables
-- Filter / Search for Tables
+### Goals
+- Create a low-risk space to try new Angular and web platform features.
+- Provide example patterns for component design and styling.
+- Encourage experimentation and incremental learning.
+- Keep the project small and modular so features can be isolated and changed easily.
