@@ -15,11 +15,13 @@ import {PersonService} from '../../core/services/person.service';
 import {ToFormControls} from '../../shared/utils/form-utils';
 import { ChangeDetectorRef } from '@angular/core';
 import {MessageboxComponent} from "../messagebox/messagebox.component";
+import {InfoBoxComponent } from "../SubComponents/info-box/info-box.component";
+import {InfoBoxType} from "../SubComponents/info-box/info-box-type.enum";
 
 @Component({
   selector: 'app-add-staff',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageboxComponent],
+  imports: [ReactiveFormsModule, CommonModule, MessageboxComponent, InfoBoxComponent],
   templateUrl: './add-people.component.html',
   styleUrl: './add-people.component.scss'
 })
@@ -39,6 +41,8 @@ export class AddPeopleComponent implements OnInit {
 
   professions = Object.values(Profession);
   formErrors: { [key: string]: string } = {};
+
+  protected readonly InfoBoxType = InfoBoxType;
 
   // Field name mapping for user-friendly error messages
   private fieldNames: { [key: string]: string } = {

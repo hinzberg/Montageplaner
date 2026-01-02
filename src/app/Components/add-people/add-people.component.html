@@ -9,14 +9,14 @@
       @if (firstName.invalid && (firstName.dirty || firstName.touched))
       {
         @if (firstName.hasError('required')) {
-          <div class="errorLabel">
+          <app-info-box [type]="InfoBoxType.Error">
             First Name is required.
-          </div>
+          </app-info-box>
         }
         @if (firstName.hasError('minlength')) {
-          <div class="errorLabel">
+          <app-info-box  [type]="InfoBoxType.Error">
             First Name has a minimum length of 2 letters.
-          </div>
+          </app-info-box>
         }
       }
     </div>
@@ -27,14 +27,14 @@
       @if (lastName.invalid && (lastName.dirty || lastName.touched))
       {
         @if (lastName.hasError('required')) {
-          <div class="errorLabel">
+          <app-info-box  [type]="InfoBoxType.Error">
             Last Name is required.
-          </div>
+          </app-info-box>
         }
         @if (lastName.hasError('minlength')) {
-          <div class="errorLabel">
+          <app-info-box  [type]="InfoBoxType.Error">
             Last Name has a minimum length of 2 letters.
-          </div>
+          </app-info-box>
         }
       }
     </div>

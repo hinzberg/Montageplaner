@@ -7,9 +7,9 @@
     <div>
       <label class="formLabel" for="description">Description</label>
       <input id="description" formControlName="description" [class.invalid-input]="formErrors['description']"/>
-      <div *ngIf="formErrors['description']" class="errorLabel">
+      <app-info-box *ngIf="formErrors['description']" [type]="InfoBoxType.Error">
         {{ formErrors['description'] }}
-      </div>
+      </app-info-box>
     </div>
 
     <div>
@@ -18,9 +18,9 @@
         <option value="">Select an equipment type</option>
         <option *ngFor="let equipment of equipmentTypes" [value]="equipment">{{ equipment }}</option>
       </select>
-      <div *ngIf="formErrors['equipmentType']" class="errorLabel">
+      <app-info-box *ngIf="formErrors['equipmentType']" [type]="InfoBoxType.Error">
         {{ formErrors['equipmentType'] }}
-      </div>
+      </app-info-box>
     </div>
 
     <div class="checkboxContainer">

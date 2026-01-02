@@ -15,6 +15,8 @@ import {EquipmentType} from "../../core/models/equipment-type.enum";
 import {basicTextValidation} from "../../shared/utils/form-validators-utils";
 import {EquipmentService} from "../../core/services/equipment.service";
 import {MessageboxComponent} from "../messagebox/messagebox.component";
+import {InfoBoxComponent} from "../SubComponents/info-box/info-box.component";
+import {InfoBoxType} from "../SubComponents/info-box/info-box-type.enum";
 
 @Component({
   selector: 'app-add-equipment',
@@ -24,7 +26,8 @@ import {MessageboxComponent} from "../messagebox/messagebox.component";
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    MessageboxComponent
+    MessageboxComponent,
+    InfoBoxComponent
   ],
   templateUrl: './add-equipment.component.html',
   styleUrl: './add-equipment.component.scss'
@@ -44,6 +47,7 @@ export class AddEquipmentComponent implements OnInit {
 
   equipmentTypes = Object.values(EquipmentType);
   formErrors: { [key: string]: string } = {};
+  protected readonly InfoBoxType = InfoBoxType;
 
   // Field name mapping for user-friendly error messages
   private fieldNames: { [key: string]: string } = {

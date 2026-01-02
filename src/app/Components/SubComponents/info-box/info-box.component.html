@@ -1,0 +1,7 @@
+<div [ngClass]="{
+  'errorStyle': type() === InfoBoxType.Error,
+  'warningStyle': type() === InfoBoxType.Warning,
+  'infoStyle': type() === InfoBoxType.Info
+}">
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,34 @@
+@import '../../../../styles/app-colors';
+
+.errorStyle {
+  color: $color-primary-error;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+  background: $color-pastel-yellow;
+  padding: 8px 5px;
+  border: solid 1px $color-primary-error;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.warningStyle {
+  color: #856404;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+  background: #fff3cd;
+  padding: 8px 5px;
+  border: solid 1px #ffc107;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.infoStyle {
+  color: #004085;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+  background: #cce5ff;
+  padding: 8px 5px;
+  border: solid 1px #0d6efd;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
