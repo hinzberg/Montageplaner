@@ -16,13 +16,27 @@
   }
 
   .tableCell {
-    padding: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
     text-align: left;
     border-bottom: 2px solid $color-primary;
     background-color: white;
     letter-spacing: 1px;
     font-size: 1.1rem;
   }
+
+  .tableCellAlternate {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 2px solid $color-primary;
+    background-color: #f3f6ff;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
+
 
   .centerCell {
     text-align: center;

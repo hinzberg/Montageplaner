@@ -13,5 +13,5 @@ import { NavigationSidebarComponent} from "./Components/navigation-sidebar/navig
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Montageplaner';
+  title = 'Assembly Planning';
 }

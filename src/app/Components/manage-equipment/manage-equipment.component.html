@@ -20,8 +20,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let equipment of equipmentsList">
-          <td class="tableCell centerCell">
+        <tr *ngFor="let equipment of equipmentsList; index as i">
+          <td [class]="(i % 2 === 0 ? 'tableCell' : 'tableCellAlternate') + ' centerCell'">
             <div>
               <input id="selected-check-{{equipment.id}}"
                      type="checkbox"
@@ -30,16 +30,16 @@
               <label for="selected-check-{{equipment.id}}"></label>
             </div>
           </td>
-          <td class="tableCell" [class.inactive]="!equipment.isActive">{{ equipment.description }}</td>
-          <td class="tableCell" [class.inactive]="!equipment.isActive">{{ equipment.equipmentType }}</td>
-          <td class="tableCell centerCell" [class.inactive]="!equipment.isActive">
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !equipment.isActive}">{{ equipment.description }}</td>
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !equipment.isActive}">{{ equipment.equipmentType }}</td>
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'centerCell': true, 'inactive': !equipment.isActive}">
             @if (equipment.isActive) {
               YES
             } @else {
               NO
             }
           </td>
-          <td class="tableCell">
+          <td [class]="i % 2 === 0 ? 'tableCell' : 'tableCellAlternate'">
             <div class="horizontal-layout">
               <button class="table-button" (click)="onEditEquipmentClicked(equipment)">Edit</button>
               <button class="table-button-red" (click)="onDeleteEquipmentClicked(equipment)">Delete</button>

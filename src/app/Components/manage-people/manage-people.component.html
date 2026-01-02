@@ -27,7 +27,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let person of persons(); index as i">
-          <td class="tableCell centerCell">
+          <td [class]="(i % 2 === 0 ? 'tableCell' : 'tableCellAlternate') + ' centerCell'">
             <div>
               <input id="selected-check-{{person.id}}"
                      type="checkbox"
@@ -36,24 +36,24 @@
               <label for="selected-check-{{person.id}}"></label>
             </div>
           </td>
-          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.firstName }}</td>
-          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.lastName }}</td>
-          <td class="tableCell" [class.inactive]="!person.isActive">{{ person.profession }}</td>
-          <td class="tableCell centerCell" [class.inactive]="!person.isActive">
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !person.isActive}">{{ person.firstName }}</td>
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !person.isActive}">{{ person.lastName }}</td>
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !person.isActive}">{{ person.profession }}</td>
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'centerCell': true, 'inactive': !person.isActive}">
             @if (person.canBeTeamLeader) {
               YES
             } @else {
               NO
             }
           </td>
-          <td class="tableCell centerCell" [class.inactive]="!person.isActive">
+          <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'centerCell': true, 'inactive': !person.isActive}">
             @if (person.isActive) {
               YES
             } @else {
               NO
             }
           </td>
-          <td class="tableCell">
+          <td [class]="i % 2 === 0 ? 'tableCell' : 'tableCellAlternate'">
             <div class="horizontal-layout">
               <button class="table-button" (click)="onEditPersonClicked(person)">Edit</button>
               <button class="table-button-red" (click)="onDeletePersonClicked(person)">Delete</button>
