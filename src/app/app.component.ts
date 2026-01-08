@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { WebheaderComponent } from './Components/webheader/webheader.component';
-import { WebfooterComponent } from './Components/webfooter/webfooter.component';
 import { NavigationSidebarComponent} from "./Components/navigation-sidebar/navigation-sidebar.component";
+import { InspectorComponent} from "./Components/inspector/inspector.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, WebheaderComponent, WebfooterComponent , NavigationSidebarComponent],
+  imports: [CommonModule, RouterOutlet, InspectorComponent , NavigationSidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
