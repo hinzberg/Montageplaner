@@ -1,62 +1,62 @@
 @import '../app-colors';
 
+// Metro: "glass" is now flat. Solid surfaces, square corners,
+// thin hairline border, no blur, no shadow, no gradient.
+// Class names kept for HTML compatibility.
+
 .glassPanel {
-  background-color:transparent;
-  border: 2px solid white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-  backdrop-filter: blur(10px);
+  background-color: $color-surface;
+  border: 1px solid $color-hairline;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .glass-button {
-  background-color: $color-primary-transparent-C0;
-  border: 2px solid $color-primary;
-  letter-spacing: 0.1rem;
-  font-size: 1.2rem;
-  padding: 5px 15px;
-  border-radius: 10px;
-  color:$color-primary-negative;
+  background-color: $color-primary;
+  border: none;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  padding: 8px 20px;
+  border-radius: 0; // square
+  color: $color-primary-text;
   cursor: pointer;
-  transition: background-color 0.1s ease, color 0.1s ease;
+  transition: background-color 0.1s ease;
   min-width: 100px;
   height: 45px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px;
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  backdrop-filter: none;
 
   &:hover {
-    background-color: $color-primary-transparent-E0;
-    border: 2px solid $color-primary;
-   }
+    background-color: $color-primary-dark;
+  }
 
   &:focus {
     outline: none;
-    background-color: $color-primary-transparent-E0;
-    border: 2px solid $color-primary;
+    background-color: $color-primary-dark;
   }
 }
 
 .glass-red-button {
-  background-color: $color-red-transparent-C0;
-  border: 2px solid $color-red;
-  letter-spacing: 0.1rem;
-  font-size: 1.2rem;
-  padding: 5px 15px;
-  border-radius: 10px;
-  color:$color-primary-negative;
+  background-color: $color-red;
+  border: none;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  padding: 8px 20px;
+  border-radius: 0; // square
+  color: $color-primary-text;
   cursor: pointer;
-  transition: background-color 0.1s ease, color 0.1s ease;
+  transition: background-color 0.1s ease;
   min-width: 100px;
   height: 45px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 5px 15px;
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  backdrop-filter: none;
 
   &:hover {
-    background-color: $color-red-transparent-E0;
-    border: 2px solid $color-red;
+    background-color: $color-reset-dark;
   }
 
   &:focus {
     outline: none;
-    background-color: $color-red-transparent-E0;
-    border: 2px solid $color-red;
+    background-color: $color-reset-dark;
   }
 }

@@ -8,26 +8,46 @@
 @import 'styles/components/sidepanels';
 @import 'styles/components/table';
 
-@font-face {
-  font-family: 'MainFont';
-  src: url('assets/fonts/SFPRODISPLAYREGULAR.OTF') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+// Metro design tokens
+:root {
+  --bg: #{$color-page-bg};
+  --surface: #{$color-surface};
+  --fg: #{$color-fg};
+  --fg-secondary: #{$color-fg-secondary};
+  --accent: #{$color-primary};
+  --accent-dark: #{$color-primary-dark};
+  --hairline: #{$color-hairline};
+
+  --font-family: "Segoe UI", "Segoe", Tahoma, Geneva, Verdana, sans-serif;
+  --fs-hero: 42px;
+  --fs-header: 24px;
+  --fs-subheader: 20px;
+  --fs-body: 15px;
+  --fs-caption: 12px;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-12: 48px;
+
+  --page-margin: 24px;
+  --touch-min: 40px;
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-attachment: fixed;
-  background-color: #f9f3e8;
-  // background: linear-gradient(180deg, rgba(249, 243, 232, 1) 0%, $color-background-blue 100%);
-  font-family: 'MainFont', sans-serif;
-  font-size: 1.0rem;
-  background-image: url("assets/images/bluebackground2.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  // Metro: flat solid background, no image, no gradient
+  background: $color-page-bg;
+  color: $color-fg;
+  font-family: "Segoe UI", "Segoe", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
 }
 
 html {
@@ -35,20 +55,21 @@ html {
   width: 100%;
 }
 
+// Metro: large, light type carries the design
 h1 {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 42px;
+  font-weight: 300; // Light
   margin-top: 20px;
-  color: $color-primary;
-  letter-spacing: 0.1rem;
+  color: $color-fg;
+  letter-spacing: 0;
 }
 
 .pageHeadline {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 42px;
+  font-weight: 300; // Light
   margin-top: 20px;
-  color: $color-primary;
-  letter-spacing: 0.1em;
+  color: $color-fg;
+  letter-spacing: 0;
 }
 
 

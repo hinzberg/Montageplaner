@@ -25,9 +25,9 @@ input[type="checkbox"] + label::before {
   vertical-align: -25%;
   height: 2ex;
   width: 2ex;
-  background-color: white;
+  background-color: $color-surface;
   border: 2px solid $color-primary;
-  border-radius: 4px;
+  border-radius: 0; // Metro: square
   margin-right: 0.5em;
 }
 

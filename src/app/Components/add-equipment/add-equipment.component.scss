@@ -12,7 +12,7 @@ form
 .form {
   input, select {
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 0; // Metro: square
     width: 100%;
     margin-bottom: 5px;
     transition: background-color 0.3s ease;

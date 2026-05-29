@@ -1,23 +1,27 @@
 @import '../app-colors';
 
+// Metro: flat, square, solid surface, accent border.
 input, select {
-  font-size: 1.0rem;
+  font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
   margin-top: 5px;
   margin-bottom: 5px;
-  background: $white-linear-gradient;
+  padding: 8px;
+  background: $color-surface;
   border: 2px solid $color-primary-border;
+  border-radius: 0;
+  color: $color-fg;
 }
 
 input:focus {
-  border: 2px solid $color-primary-border;
+  border: 2px solid $color-primary-dark;
   outline: none;
-  background: white;
+  background: $color-surface;
 }
 
 select:focus {
-  border: 2px solid $color-primary-border;
+  border: 2px solid $color-primary-dark;
   outline: none;
-  background: white;
+  background: $color-surface;
 }

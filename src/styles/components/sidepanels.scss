@@ -3,34 +3,37 @@
 .sidebar {
   width: 250px;
   height: 100%;
-  border-radius: 0 20px 20px 0;
-  background-color: $color-sidebar-transparent;
+  border-radius: 0; // Metro: square
+  background-color: $color-surface;
   margin-right: 15px;
   border-left: 0;
+  border-right: 1px solid $color-hairline;
 }
 
 .sidebarHeader {
   width: 100%;
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 5px;
-  font-weight: bold;
-  color: $color-primary;
-  letter-spacing: 0.1em;
-  font-size: 1.2rem;
+  box-sizing: border-box;
+  height: 56px; // match toolbar height so the divider aligns with the toolbar border
+  display: flex;
+  align-items: center; // vertical center, like toolbar content
+  text-align: left; // Metro: left aligned
+  padding: 0 16px;
+  font-weight: 300; // Light
+  color: $color-fg;
+  letter-spacing: 0;
+  font-size: 1.5rem;
 }
 
 .sidebarItem {
-  text-align: center;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  text-align: left; // Metro: strong left alignment
+  padding: 8px 16px;
   color: $color-primary;
-  margin: 4px 10px;
+  margin: 2px 0;
   font-size: 1.1rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
 
   &:hover {
-    border-radius: 6px;
+    border-radius: 0; // Metro: square
     background-color: $color-primary-dark;
     cursor: pointer;
     color: $color-primary-negative;
@@ -39,17 +42,17 @@
   &.active {
     background-color: $color-primary;
     color: $color-primary-negative;
-    border-radius: 6px;
+    border-radius: 0; // Metro: square
   }
 }
 
 .inspector {
   width: 250px;
   height: 100%;
-  border-radius: 20px 0 0 20px;
-  background-color: $color-sidebar-transparent;
+  border-radius: 0; // Metro: square
+  background-color: $color-surface;
   margin-left: 15px;
-  border-left: 0;
+  border-left: 1px solid $color-hairline;
 }
 
 hr {

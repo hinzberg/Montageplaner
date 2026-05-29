@@ -1,11 +1,11 @@
 @import '../app-colors';
 
 button {
-  letter-spacing: 0.1rem;
-  font-size: 1.2rem;
-  padding: 5px 15px;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  padding: 8px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 0; // Metro: square corners
   background-color:$color-primary;
   color: $color-primary-text;
   cursor: pointer;

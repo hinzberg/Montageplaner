@@ -38,5 +38,14 @@ $color-pastel-blue: #c5ebf9;
 
 
 // Background colors
-$white-linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(230, 230, 230) 100%);
+// Metro: flat, no gradients. Kept as a variable name for compatibility,
+// but resolves to a solid color now.
+$white-linear-gradient: #ffffff;
+
+// Metro surfaces (light theme)
+$color-surface: #ffffff;          // panels / cards / tiles
+$color-page-bg: #f2f2f2;          // app background (flat, neutral)
+$color-fg: #1a1a1a;               // primary text
+$color-fg-secondary: rgba(26, 26, 26, 0.6); // secondary text (opacity, not gray hex)
+$color-hairline: #e0e0e0;         // thin dividers / borders
 

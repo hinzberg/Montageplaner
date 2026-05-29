@@ -1,5 +1,6 @@
 @import '../app-colors';
 
+// Metro: flat scrim, no blur.
 .dialog-overlay {
   position: fixed;
   top: 0;
@@ -10,34 +11,34 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: rgba(200, 200, 200, 0.3);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(2px); // for Safari
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
+// Metro: flat, square, no shadow/blur, thin border.
 .dialog-container {
-  background-color: white;
+  background-color: $color-surface;
   padding: 24px;
-  border-radius: 5px;
+  border-radius: 0;
   min-width: 400px;
   max-width: 400px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-  backdrop-filter: blur(10px);
+  border: 1px solid $color-hairline;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .dialog-title {
-  font-size: 1.25rem;
-  letter-spacing: 1px;
-  color: $color-primary-negative;
+  font-size: 1.5rem;
+  font-weight: 300; // Light
+  letter-spacing: 0;
+  color: $color-fg;
 }
 
 .dialog-message {
   margin: 0 0 24px 0;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #666;
+  color: $color-fg-secondary;
 }
 
 .dialog-button-container {

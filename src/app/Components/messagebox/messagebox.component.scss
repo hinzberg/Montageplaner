@@ -1,28 +1,30 @@
 @import '../../../styles/app-colors';
 
 .message-box {
-  border-radius: 20px;
+  border-radius: 0; // Metro: square
   padding: 0px;
   min-width: 400px;
   max-width: 400px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  backdrop-filter: none;
+  border: 1px solid $color-hairline;
 }
 
 .message-header {
-  background-color: rgba($color-primary-negative, 0.8);
+  background-color: $color-primary;
   height: 50px;
-  border-radius: 20px 20px 0 0;
+  border-radius: 0;
   display: flex;              /* enables flexbox */
-  justify-content: center;    /* centers horizontally */
+  justify-content: flex-start; /* Metro: left aligned */
   align-items: center;        /* centers vertically */
+  padding: 0 16px;
 }
 
 .message-title {
-  color: $color-primary;
-  font-weight: bold;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
+  color: $color-primary-text;
+  font-weight: 300; // Light
+  font-size: 1.25rem;
+  letter-spacing: 0;
 }
 
 .message-content {
@@ -30,18 +32,17 @@
   justify-content: center;    /* centers horizontally */
   align-items: center;        /* centers vertically */
   min-height: 200px;
-  background-color: $color-primary-negative;
-  border-top: solid 2px $color-primary;
-  border-bottom: solid 2px $color-primary;
+  background-color: $color-surface;
 }
 
 .message-footer {
-  background-color: rgba($color-primary-negative, 0.8);
+  background-color: $color-surface;
   height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; // Metro: action buttons right
   align-items: center;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0;
+  padding: 0 16px;
 }
 
 .message-box-button {
@@ -49,6 +50,7 @@
   border: 1px solid $color-primary;
   color: $color-primary-text;
   height: 32px;
+  padding: 0 16px;
 
   &:hover {
     outline: none;
@@ -66,6 +68,7 @@
   border: 1px solid $color-reset;
   color: $color-primary-text;
   height: 32px;
+  padding: 0 16px;
 
   &:hover {
     outline: none;
