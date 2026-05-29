@@ -1,0 +1,93 @@
+<h1>{{ headlineTitle() }}</h1>
+
+<div class="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+      <label class="formLabel" for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName"/>
+      @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+        @if (firstName.hasError('required')) {
+          <app-info-box [type]="InfoBoxType.Error">
+            First Name is required.
+          </app-info-box>
+        }
+        @if (firstName.hasError('minlength')) {
+          <app-info-box [type]="InfoBoxType.Error">
+            First Name has a minimum length of 2 letters.
+          </app-info-box>
+        }
+      }
+    </div>
+
+    <div>
+      <label class="formLabel" for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName"/>
+      @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+        @if (lastName.hasError('required')) {
+          <app-info-box [type]="InfoBoxType.Error">
+            Last Name is required.
+          </app-info-box>
+        }
+        @if (lastName.hasError('minlength')) {
+          <app-info-box [type]="InfoBoxType.Error">
+            Last Name has a minimum length of 2 letters.
+          </app-info-box>
+        }
+      }
+    </div>
+
+    <div>
+      <label class="formLabel" for="profession">Profession</label>
+      <select id="profession" formControlName="profession">
+        <option value="">Select a profession</option>
+        @for (prof of professions; track prof) {
+          <option [value]="prof">{{ prof }}</option>
+        }
+      </select>
+      @if (profession.invalid && (profession.dirty || profession.touched)) {
+        @if (profession.hasError('required')) {
+          <div class="errorLabel">
+            Profession is required.
+          </div>
+        }
+      }
+      <div class="checkboxContainer">
+        <input id="checkboxActive" type="checkbox" formControlName="isActive"/>
+        <label class="formLabel" for="checkboxActive">Is Active</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="checkboxLeader" type="checkbox" formControlName="canBeTeamLeader"/>
+        <label class="formLabel" for="checkboxLeader">Can be Team Leader</label>
+      </div>
+    </div>
+
+    <div class="buttonItemContainer">
+      <button type="button" class="metro-red-button" (click)="onReset()">Reset</button>
+      <button type="submit" class="metro-button">Submit</button>
+    </div>
+  </form>
+
+  <!-- Show the submitted person in a messagebox overlay -->
+  <app-messagebox [title]="titleForConfirmDialog()"
+                  [isVisible]="showConfirmDialog()"
+                  (onOkClose)="onConfirmOkDialog()">
+    @if (itemForConfirmDialog(); as person) {
+      <div class="vertical-stack">
+        <div class="horizontal-stack">
+          <div class="dialogLabel">First Name</div>
+          <div class="dialogContent"> {{ person.firstName }}</div>
+        </div>
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Last Name</div>
+          <div class="dialogContent"> {{ person.lastName }}</div>
+        </div>
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Profession</div>
+          <div class="dialogContent"> {{ person.profession }}</div>
+        </div>
+      </div>
+    }
+  </app-messagebox>
+
+</div>

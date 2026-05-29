@@ -20,12 +20,12 @@
     border-radius: 0; // Metro: square
     background-color: $color-primary-dark;
     cursor: pointer;
-    color: $color-primary-negative;
+    color: $color-primary-text;
   }
 
   &.active {
     background-color: $color-primary;
-    color: $color-primary-negative;
+    color: $color-primary-text;
     border-radius: 0; // Metro: square
   }
 }

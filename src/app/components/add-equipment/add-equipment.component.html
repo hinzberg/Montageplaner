@@ -1,0 +1,57 @@
+<h1>{{ headlineTitle() }}</h1>
+
+<div class="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <div>
+      <label class="formLabel" for="description">Description</label>
+      <input id="description" formControlName="description" [class.invalid-input]="formErrors()['description']"/>
+      @if (formErrors()['description']; as error) {
+        <app-info-box [type]="InfoBoxType.Error">{{ error }}</app-info-box>
+      }
+    </div>
+
+    <div>
+      <label class="formLabel" for="equipmentType">Equipment Type</label>
+      <select id="equipmentType" formControlName="equipmentType" [class.invalid-input]="formErrors()['equipmentType']">
+        <option value="">Select an equipment type</option>
+        @for (equipment of equipmentTypes; track equipment) {
+          <option [value]="equipment">{{ equipment }}</option>
+        }
+      </select>
+      @if (formErrors()['equipmentType']; as error) {
+        <app-info-box [type]="InfoBoxType.Error">{{ error }}</app-info-box>
+      }
+    </div>
+
+    <div class="checkboxContainer">
+      <input id="checkboxActive" type="checkbox" formControlName="isActive"/>
+      <label class="formLabel" for="checkboxActive">Is Active</label>
+    </div>
+
+    <div class="buttonItemContainer">
+      <button type="button" class="metro-red-button" (click)="onReset()">Reset</button>
+      <button type="submit" class="metro-button">Submit</button>
+    </div>
+  </form>
+
+  <!-- Show the submitted equipment in a messagebox overlay -->
+  <app-messagebox [title]="titleForConfirmDialog()"
+                  [isVisible]="showConfirmDialog()"
+                  (onOkClose)="onConfirmOkDialog()">
+    @if (itemForConfirmDialog(); as equipment) {
+      <div class="vertical-stack">
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Description:</div>
+          <div class="dialogContent"> {{ equipment.description }}</div>
+        </div>
+        <div class="horizontal-stack">
+          <div class="dialogLabel">Type:</div>
+          <div class="dialogContent"> {{ equipment.equipmentType }}</div>
+        </div>
+      </div>
+    }
+  </app-messagebox>
+
+</div>

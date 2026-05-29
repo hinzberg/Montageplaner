@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { NavigationSidebarComponent} from "./Components/navigation-sidebar/navigation-sidebar.component";
-import { InspectorComponent} from "./Components/inspector/inspector.component";
+import { NavigationSidebarComponent} from "./components/navigation-sidebar/navigation-sidebar.component";
+import { InspectorComponent} from "./components/inspector/inspector.component";
 
 @Component({
   selector: 'app-root',

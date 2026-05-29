@@ -4,19 +4,25 @@
 @import 'styles/components/input';
 @import 'styles/components/checkbox';
 @import 'styles/components/overlay';
-@import 'styles/components/glass';
+@import 'styles/components/metro';
 @import 'styles/components/sidepanels';
 @import 'styles/components/table';
 
-// Metro design tokens
+// Metro design tokens — mirror the SCSS palette in app-colors.scss
+// (single source of truth: edit hex there, tokens follow).
 :root {
   --bg: #{$color-page-bg};
   --surface: #{$color-surface};
   --fg: #{$color-fg};
   --fg-secondary: #{$color-fg-secondary};
+  --fg-muted: #{$color-fg-muted};
+  --fg-disabled: #{$color-fg-disabled};
+  --hairline: #{$color-hairline};
   --accent: #{$color-primary};
   --accent-dark: #{$color-primary-dark};
-  --hairline: #{$color-hairline};
+  --on-accent: #{$color-primary-text};
+  --danger: #{$color-reset};
+  --danger-dark: #{$color-reset-dark};
 
   --font-family: "Segoe UI", "Segoe", Tahoma, Geneva, Verdana, sans-serif;
   --fs-hero: 42px;
@@ -100,12 +106,12 @@ a:active {
 }
 
 .errorLabel {
-  color: $color-primary-error;
+  color: $color-error-text;
   font-size: 1.0rem;
   letter-spacing: 1px;
-  background: $color-pastel-yellow;
+  background: $color-error-bg;
   padding: 8px 5px;
-  border: solid 1px $color-primary-error;
+  border: solid 1px $color-error-text;
   margin-top: 5px;
   margin-bottom: 5px;
 }

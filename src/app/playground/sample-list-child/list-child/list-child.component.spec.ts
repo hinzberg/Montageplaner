@@ -14,6 +14,8 @@ describe('ListChildComponent', () => {
     
     fixture = TestBed.createComponent(ListChildComponent);
     component = fixture.componentInstance;
+    // personIn is a required @Input; provide one before change detection.
+    fixture.componentRef.setInput('personIn', { firstname: 'Test', name: 'Person' });
     fixture.detectChanges();
   });
 

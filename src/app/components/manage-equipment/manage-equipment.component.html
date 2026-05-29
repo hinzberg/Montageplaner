@@ -1,0 +1,76 @@
+<app-toolbar>
+  <button class="metro-button toolbar-button" (click)="onNew()">Add New</button>
+</app-toolbar>
+
+<h1>Manage Equipment</h1>
+
+<div class="equipment-container">
+
+  <app-search-bar (search)="onSearch($event)"
+                  [debounce]="300"
+                  placeholder="Search equipment">
+  </app-search-bar>
+
+  @if (items().length > 0) {
+    <table class="tableContent">
+      <thead>
+      <tr>
+        <th class="tableHeader"></th>
+        <th class="tableHeader">Description</th>
+        <th class="tableHeader">Type</th>
+        <th class="tableHeader">Active</th>
+        <th class="tableHeader"></th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (equipment of items(); track equipment.id; let i = $index) {
+          <tr>
+            <td [class]="(i % 2 === 0 ? 'tableCell' : 'tableCellAlternate') + ' centerCell'">
+              <div>
+                <input id="selected-check-{{equipment.id}}"
+                       type="checkbox"
+                       [checked]="equipment.isSelected"
+                       (change)="toggleSelection(equipment)">
+                <label for="selected-check-{{equipment.id}}"></label>
+              </div>
+            </td>
+            <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !equipment.isActive}">{{ equipment.description }}</td>
+            <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'inactive': !equipment.isActive}">{{ equipment.equipmentType }}</td>
+            <td [ngClass]="{'tableCell': i % 2 === 0, 'tableCellAlternate': i % 2 !== 0, 'centerCell': true, 'inactive': !equipment.isActive}">
+              @if (equipment.isActive) { YES } @else { NO }
+            </td>
+            <td [class]="i % 2 === 0 ? 'tableCell' : 'tableCellAlternate'">
+              <div class="horizontal-layout">
+                <button class="table-button" (click)="onEdit(equipment)">Edit</button>
+                <button class="table-button-red" (click)="onDelete(equipment)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <div class="no-persons vertical-layout">
+      <div>No equipment yet.</div>
+      <button class="circle-button" (click)="onNew()">+</button>
+      <div>Why not add some?</div>
+    </div>
+  }
+
+  <!-- Delete confirmation -->
+  <app-questionbox [title]="dialogTitle"
+                   [isVisible]="showConfirmDialog"
+                   (onOkClose)="onConfirmDelete()"
+                   (onCancelClose)="onCancelDelete()">
+    @if (dialogMessage) {
+      <div class="vertical-stack">
+        <div class="dialogContent">Are you sure you want to delete</div>
+        <div class="horizontal-stack">
+          <div class="dialogContent">{{dialogMessage}}</div>
+          <div class="dialogContent">?</div>
+        </div>
+      </div>
+    }
+  </app-questionbox>
+
+</div>
