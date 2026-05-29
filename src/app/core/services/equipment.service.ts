@@ -1,7 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Equipment } from '../models/equipment.model';
-
-const STORAGE_KEY = 'assembly-planer-equipments';
+import { IndexedDbService, STORE_EQUIPMENTS } from './indexed-db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,8 @@ export class EquipmentService {
   // This is the single source of truth for all equipments data.
   private equipmentsSignal: WritableSignal<Equipment[]> = signal([]);
 
-  constructor() {
-    // Load items from local storage on service initialization
+  constructor(private db: IndexedDbService) {
+    // Load items from IndexedDB on service initialization
     this.loadFromStorage();
   }
 
@@ -72,33 +71,29 @@ export class EquipmentService {
     return this.equipmentsSignal().length;
   }
 
-  // Loads equipments data from localStorage.
+  // Loads equipments data from IndexedDB.
   // Called automatically during service initialization.
+  // Fire-and-forget: the signal is filled once the DB resolves.
   loadFromStorage(): void {
-    const storedEquipments = localStorage.getItem(STORAGE_KEY);
-    if (storedEquipments) {
-      try {
-        // Parse the stored JSON and recreate Equipment objects
-        const parsedEquipments = JSON.parse(storedEquipments);
-        const equipments = parsedEquipments.map((p: any) =>
-          new Equipment(p.description, p.equipmentType, p.isActive)
+    this.db.getAll<any>(STORE_EQUIPMENTS)
+      .then(parsedEquipments => {
+        // Recreate Equipment objects from the stored records
+        const equipments = parsedEquipments.map(p =>
+          new Equipment(p.description, p.equipmentType, p.isActive, p.id)
         );
         this.equipmentsSignal.set(equipments);
-      } catch (error) {
+      })
+      .catch(error => {
         console.error('Error loading equipments from storage:', error);
         this.equipmentsSignal.set([]);
-      }
-    }
+      });
   }
 
-  // Persists the current equipments array to localStorage.
-  // Called automatically after any CRUD operation.
+  // Persists the current equipments array to IndexedDB.
+  // Called automatically after any CRUD operation. Fire-and-forget.
   saveToStorage(): void {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.equipmentsSignal()));
-    } catch (error) {
-      console.error('Error saving equipments to storage:', error);
-    }
+    this.db.putAll(STORE_EQUIPMENTS, this.equipmentsSignal())
+      .catch(error => console.error('Error saving equipments to storage:', error));
   }
 
   // Sets the currently selected equipment for editing operations.

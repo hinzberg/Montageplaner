@@ -1,9 +1,7 @@
 import { Injectable, signal, WritableSignal, computed } from '@angular/core';
 import { Person } from '../models/person.model';
 import { IEntityService } from "./IEntityService";
-
-// Local storage key used to persist persons data
-const STORAGE_KEY = 'assembly-planer-persons';
+import { IndexedDbService, STORE_PERSONS } from './indexed-db.service';
 
  // PersonService manages the application's persons data using Angular Signals.
  // All state is managed using Angular Signals for optimal change detection
@@ -21,8 +19,8 @@ export class PersonService implements IEntityService<Person> {
   // This is the single source of truth for all persons data.
   private personsSignal: WritableSignal<Person[]> = signal([]);
 
-  constructor() {
-    // Load persons from localStorage on service initialization
+  constructor(private db: IndexedDbService) {
+    // Load persons from IndexedDB on service initialization
     this.loadFromStorage();
   }
 
@@ -77,33 +75,29 @@ export class PersonService implements IEntityService<Person> {
     return this.personsSignal().length;
   }
 
-  // Loads persons data from localStorage.
+  // Loads persons data from IndexedDB.
   // Called automatically during service initialization.
+  // Fire-and-forget: the signal is filled once the DB resolves.
   loadFromStorage(): void {
-    const storedPersons = localStorage.getItem(STORAGE_KEY);
-    if (storedPersons) {
-      try {
-        // Parse the stored JSON and recreate Person objects
-        const parsedPersons = JSON.parse(storedPersons);
-        const persons = parsedPersons.map((p: any) =>
-          new Person(p.firstName, p.lastName, p.profession, p.isActive, p.canBeTeamLeader)
+    this.db.getAll<any>(STORE_PERSONS)
+      .then(parsedPersons => {
+        // Recreate Person objects from the stored records
+        const persons = parsedPersons.map(p =>
+          new Person(p.firstName, p.lastName, p.profession, p.isActive, p.canBeTeamLeader, p.id)
         );
         this.personsSignal.set(persons);
-      } catch (error) {
+      })
+      .catch(error => {
         console.error('Error loading persons from storage:', error);
         this.personsSignal.set([]);
-      }
-    }
+      });
   }
 
-  //Persists the current persons array to localStorage.
-  // Called automatically after any CRUD operation.
+  //Persists the current persons array to IndexedDB.
+  // Called automatically after any CRUD operation. Fire-and-forget.
   saveToStorage(): void {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.personsSignal()));
-    } catch (error) {
-      console.error('Error saving persons to storage:', error);
-    }
+    this.db.putAll(STORE_PERSONS, this.personsSignal())
+      .catch(error => console.error('Error saving persons to storage:', error));
   }
 
   //Sets the currently selected person for editing operations.

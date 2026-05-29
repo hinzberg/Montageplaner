@@ -10,8 +10,8 @@ export class Person {
   lastName: string;
   profession: Profession;
 
-  constructor(firstName: string, lastName: string, profession: Profession, isActive: boolean, canBeTeamLeader: boolean) {
-    this.id = generateGuid();
+  constructor(firstName: string, lastName: string, profession: Profession, isActive: boolean, canBeTeamLeader: boolean, id?: string) {
+    this.id = id ?? generateGuid();
     this.isActive = false;
     this.isSelected = false;
     this.firstName = firstName;

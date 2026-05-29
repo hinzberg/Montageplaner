@@ -8,8 +8,8 @@ export class Equipment {
   description: string;
   equipmentType: EquipmentType;
 
-  constructor(description: string, equipmentType: EquipmentType, isActive: boolean) {
-    this.id = generateGuid();
+  constructor(description: string, equipmentType: EquipmentType, isActive: boolean, id?: string) {
+    this.id = id ?? generateGuid();
     this.isActive = false;
     this.isSelected = false;
     this.description = description;
