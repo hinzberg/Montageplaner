@@ -44,16 +44,20 @@ button {
     }
   }
 
-  &.circle-button {
+  &.metro-square-button {
     height: 40px;
     width: 40px;
     max-height: 40px;
     max-width: 40px;
-    border-radius: 50%;
+    border-radius: 0;
     min-width: 40px;
     min-height: 40px;
     font-weight: bold;
     border: 3px solid $color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 }
 

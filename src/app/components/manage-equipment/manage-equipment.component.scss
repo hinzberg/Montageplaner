@@ -6,3 +6,11 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: $color-primary;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+}
